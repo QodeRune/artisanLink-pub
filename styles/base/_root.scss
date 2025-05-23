@@ -1,0 +1,23 @@
+@use "abstracts" as abs;
+
+:root {
+  @each $color, $shade in abs.$colors {
+    @each $index, $clr in $shade {
+      --clr-#{$color}-#{$index}: $clr;
+    }
+  }
+
+  @each $scale, $sz in abs.$sizing {
+    @each $index, $size in $sz {
+      --size-#{$scale}-#{$index}: $size;
+    }
+  }
+
+  @each $key, $value in abs.$base-sizes {
+    --size-#{$key}: #{$value};
+  }
+
+  --ff-primary: #(abs.$ff-primary);
+  --ff-secondary: #(abs.$ff-secondary);
+  --ff-accent: #(abs.$ff-accent);
+}
