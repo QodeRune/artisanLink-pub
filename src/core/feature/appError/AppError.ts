@@ -1,6 +1,7 @@
 // src/core/feature/appError/AppError.ts
 import type { TErrorType, IErrorInfo, IAppErrorParams, IHandleErrorParams } from "@/core/coreTypes"
-import { ErrorTypeResponse, ErrorType } from "@/core/constants/errorConstants"
+import { ErrorTypeResponse, ErrorType, StatusCodeKeys } from "@/core/constants/errorConstants"
+import type { IApiResponseError } from "@/core/coreTypes/ErrorType"
 
 /**
  * Custom error class to standardize application error handling
@@ -31,6 +32,19 @@ export class AppError extends Error {
 
     // Ensure the prototype chain is properly maintained in TypeScript
     Object.setPrototypeOf(this, AppError.prototype)
+  }
+  // Even more concise version using optional chaining and nullish coalescing
+  /**
+   * Most concise version using modern JS features
+   */
+  private static extractStatusCode(error: IApiResponseError): number {
+    const getValue = (obj: unknown, key: string) => obj?.[key]
+
+    return (
+      StatusCodeKeys.map((key) => getValue(error, key) || getValue(error.response, key)).find(
+        (val) => typeof val === "number" && val > 0,
+      ) || 0
+    )
   }
 
   /**
@@ -71,6 +85,22 @@ export class AppError extends Error {
   }
 
   /**
+   * Helper function to check if an error is an API response error
+   */
+  private static isApiResponseError(error: unknown): error is IApiResponseError {
+    if (!error || typeof error !== "object") return false
+
+    // Check if any of the status code keys exist on the error or its response
+    for (const key of StatusCodeKeys) {
+      if (key in error || (error as IApiResponseError).response?.[key] !== undefined) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /**
    * Determines the error type based on the error instance
    */
   private static determineErrorType(error: unknown): TErrorType {
@@ -96,9 +126,10 @@ export class AppError extends Error {
       }
     }
 
-    // Handle HTTP errors based on status code in Response objects
-    if (error && typeof error === "object" && "status" in error) {
-      const status = (error as { status: number }).status
+    // Handle HTTP errors using the new flexible approach
+    if (this.isApiResponseError(error)) {
+      const status = this.extractStatusCode(error)
+
       if (status === 404) return ErrorType.NOT_FOUND
       if (status === 401) return ErrorType.UNAUTHORIZED
       if (status === 403) return ErrorType.FORBIDDEN
@@ -126,17 +157,18 @@ export class AppError extends Error {
    */
   static handleHttpError({
     error,
-    statusCode,
+    statusCode: overrideStatusCode,
     feedbackMessage,
   }: {
-    error: any
+    error: IApiResponseError
     statusCode?: number
     feedbackMessage?: string
   }): AppError {
+    // Extract status code using the flexible helper
+    const code = overrideStatusCode || this.extractStatusCode(error) || 500
+
     // Determine HTTP error type based on status code
     let errorType: TErrorType
-    const code = statusCode || error.response?.status || error.status || 500
-
     if (code === 404) errorType = ErrorType.NOT_FOUND
     else if (code === 401) errorType = ErrorType.UNAUTHORIZED
     else if (code === 403) errorType = ErrorType.FORBIDDEN
