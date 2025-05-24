@@ -1,3 +1,5 @@
+import type { IInputProps } from "@/types/ui"
+
 // src/core/coreTypes/formTypes.ts
 export type FormFieldType =
   | "text"
@@ -13,17 +15,16 @@ export type FormFieldType =
   | "radio"
 
 export interface FormFieldOption {
-  label: string
+  labelText: string
   value: string
 }
 
-export interface FormField {
+export interface FormField extends Partial<IInputProps> {
   id: string
   name: string
-  label: string
+  labelText: string
   type: FormFieldType
   placeholder?: string
-  value?: string | number | boolean
   options?: FormFieldOption[]
   required?: boolean
   disabled?: boolean
@@ -35,6 +36,7 @@ export interface FormField {
   pattern?: string
   error?: string
   className?: string
+  helperText?: string
 }
 
 export interface FormProps<T = Record<string, unknown>>

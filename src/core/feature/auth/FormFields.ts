@@ -1,12 +1,83 @@
 // src/core/feature/auth/FormFields.ts
-export const signInFields = {
-  email: "",
-  password: "",
-}
+import type { FormField } from "@/types/ui"
 
-export const signUpFields = {
-  firstName: "first name",
-  lastName: "last name",
-  phone: "phone number",
-  ...signInFields,
-}
+export const signInFields: FormField[] = [
+  {
+    id: "email",
+    name: "email",
+    labelText: "Email Address",
+    type: "email",
+    placeholder: "your@email.com",
+    required: true,
+    helperText: "",
+    readonly: false,
+  },
+  {
+    id: "password",
+    name: "password",
+    labelText: "Password",
+    type: "password",
+    placeholder: "Choose a strong password",
+    required: true,
+    minLength: 8,
+    helperText: "Password should be at least 8 characters",
+    readonly: false,
+  },
+]
+
+export const signUpFields: FormField[] = [
+  {
+    id: "first_name",
+    name: "first_name",
+    labelText: "First Name",
+    type: "text",
+    readonly: false,
+    placeholder: "First Name",
+    required: true,
+    minLength: 3,
+    maxLength: 20,
+    helperText: "Please enter your first name",
+  },
+  {
+    id: "last_name",
+    name: "last_name",
+    labelText: "Last Name",
+    type: "text",
+    readonly: false,
+    placeholder: "Last Name",
+    required: true,
+    minLength: 3,
+    maxLength: 20,
+    helperText: "Please enter your last name",
+  },
+  {
+    id: "email",
+    name: "email",
+    labelText: "Email Address",
+    type: "email",
+    placeholder: "your@email.com",
+    required: true,
+    helperText: "",
+    readonly: false,
+  },
+  {
+    id: "password",
+    name: "password",
+    labelText: "Password",
+    type: "password",
+    placeholder: "Choose a strong password",
+    required: true,
+    minLength: 8,
+    helperText: "Password should be at least 8 characters",
+    readonly: false,
+  },
+  {
+    id: "confirm-password",
+    name: "confirmPassword",
+    labelText: "Confirm Password",
+    type: "password",
+    placeholder: "Confirm your password",
+    required: true,
+    readonly: false,
+  },
+]
