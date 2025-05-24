@@ -1,4 +1,4 @@
-@use "abstracts" as abs;
+@use "../abstracts" as abs;
 
 :root {
   @include abs.generate-theme-colors(abs.$light-colors);
@@ -22,4 +22,9 @@
   :root {
     @include abs.generate-theme-colors(abs.$dark-colors);
   }
+}
+
+#root {
+  height: 100vh;
+  background-color: hsl(var(--clr-primary-600));
 }

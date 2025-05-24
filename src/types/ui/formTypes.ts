@@ -28,7 +28,7 @@ export interface FormField extends Partial<IInputProps> {
   options?: FormFieldOption[]
   required?: boolean
   disabled?: boolean
-  readonly: boolean
+  readOnly: boolean
   min?: number | string
   max?: number | string
   minLength?: number

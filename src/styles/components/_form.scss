@@ -1,0 +1,13 @@
+.auth_page {
+  display: grid;
+  height: inherit;
+}
+
+.auth_form {
+  color: hsl(var(--clr-primary-500));
+  display: grid;
+  width: 40vw;
+  background-color: hsl(var(--clr-secondary-700));
+  padding: var(--size-md);
+  margin: auto;
+}

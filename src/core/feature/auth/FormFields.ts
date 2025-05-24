@@ -10,7 +10,7 @@ export const signInFields: FormField[] = [
     placeholder: "your@email.com",
     required: true,
     helperText: "",
-    readonly: false,
+    readOnly: false,
   },
   {
     id: "password",
@@ -21,7 +21,7 @@ export const signInFields: FormField[] = [
     required: true,
     minLength: 8,
     helperText: "Password should be at least 8 characters",
-    readonly: false,
+    readOnly: false,
   },
 ]
 
@@ -31,7 +31,7 @@ export const signUpFields: FormField[] = [
     name: "first_name",
     labelText: "First Name",
     type: "text",
-    readonly: false,
+    readOnly: false,
     placeholder: "First Name",
     required: true,
     minLength: 3,
@@ -43,7 +43,7 @@ export const signUpFields: FormField[] = [
     name: "last_name",
     labelText: "Last Name",
     type: "text",
-    readonly: false,
+    readOnly: false,
     placeholder: "Last Name",
     required: true,
     minLength: 3,
@@ -58,7 +58,7 @@ export const signUpFields: FormField[] = [
     placeholder: "your@email.com",
     required: true,
     helperText: "",
-    readonly: false,
+    readOnly: false,
   },
   {
     id: "password",
@@ -69,7 +69,7 @@ export const signUpFields: FormField[] = [
     required: true,
     minLength: 8,
     helperText: "Password should be at least 8 characters",
-    readonly: false,
+    readOnly: false,
   },
   {
     id: "confirm-password",
@@ -78,6 +78,6 @@ export const signUpFields: FormField[] = [
     type: "password",
     placeholder: "Confirm your password",
     required: true,
-    readonly: false,
+    readOnly: false,
   },
 ]

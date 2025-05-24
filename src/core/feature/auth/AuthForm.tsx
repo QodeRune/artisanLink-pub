@@ -6,15 +6,19 @@ import type { FormField } from "@/types/ui"
 
 export const AuthForm: FC<{ formFields?: FormField[] }> = ({ formFields = signUpFields }) => {
   return (
-    <form action="" className="signup_form">
+    <form action="" className="auth_form">
       {formFields.map((field) => {
         const { id, ...rest } = field
-        return <FormInput id={id} {...rest} />
+        return <FormInput key={id} id={id} {...rest} />
       })}
     </form>
   )
 }
 
 export const AuthPage: FC = () => {
-  return <AuthForm />
+  return (
+    <div className="auth_page">
+      <AuthForm />
+    </div>
+  )
 }

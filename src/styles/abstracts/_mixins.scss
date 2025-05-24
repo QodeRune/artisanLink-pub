@@ -1,4 +1,5 @@
 // styles/abstracts/_mixins.scss
+@use "sass:math";
 @use "./breakpoints" as bp;
 @use "./colors" as cl;
 
@@ -13,7 +14,7 @@
   $color-group: $light-colors,
   $saturation-step: cl.$shade-saturation-step,
   $lightness-step: cl.$shade-lightness-step,
-  $shade-group: $color-shades
+  $shade-group: cl.$color-shades
 ) {
   @each $_color-tag, $_color in $color-group {
     @each $shade-level, $_color-shade in $shade-group {
