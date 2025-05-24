@@ -1,18 +1,114 @@
-// styles/abstract/_colors.scss
+// styles/abstracts/_colors.scss
 
-$colors: (
-  neutral: (
-    100: 0 0% 100%,
-    200: 0 0% 70%,
-    300: 0 0% 40%,
-    400: 0 0% 20%,
-    500: 0 0% 0%,
-  ),
-  primary: (
-    100: 250 50% 100%,
-    200: 250 50% 70%,
-    300: 250 50% 40%,
-    400: 250 50% 20%,
-    500: 250 50% 0%,
-  ),
+$color-shades: (
+  100: lightest,
+  200: lighter,
+  300: light,
+  400: base-light,
+  500: base,
+  600: base-dark,
+  700: dark,
+  800: darker,
+  900: darkest,
 );
+
+// Optimized step values for better aesthetics
+$shade-lightness-step: 8; // 8% gives more subtle, refined transitions
+$shade-saturation-step: 3; // 3% prevents oversaturation while maintaining vibrancy
+
+// SCHEME SET 1: Professional & Modern (Refine-like)
+$light-colors-professional: (
+  // Modern blue
+  primary: hsl(210, 100%, 56%),
+  // Dark slate
+  secondary: hsl(220, 13%, 18%),
+  // Fresh green
+  accent: hsl(142, 76%, 36%),
+  // Green for positive actions
+  success: hsl(142, 76%, 36%),
+  // Amber for warnings
+  warning: hsl(38, 92%, 50%)
+);
+
+$dark-colors-professional: (
+  // Lighter blue for dark mode
+  primary: hsl(210, 100%, 70%),
+  // Light slate
+  secondary: hsl(220, 13%, 91%),
+  // Brighter green
+  accent: hsl(142, 76%, 50%),
+  success: hsl(142, 76%, 50%),
+  warning: hsl(38, 92%, 65%)
+);
+
+// SCHEME SET 2: Warm & Inviting
+$light-colors-warm: (
+  // Coral/orange
+  primary: hsl(14, 100%, 57%),
+  // Warm orange
+  secondary: hsl(25, 95%, 53%),
+  // Pink accent
+  accent: hsl(340, 82%, 52%),
+  // Green
+  success: hsl(142, 76%, 36%),
+  // Blue for info
+  info: hsl(200, 98%, 39%)
+);
+
+$dark-colors-warm: (
+  primary: hsl(14, 100%, 70%),
+  secondary: hsl(25, 95%, 65%),
+  accent: hsl(340, 82%, 65%),
+  success: hsl(142, 76%, 50%),
+  info: hsl(200, 98%, 55%),
+);
+
+// SCHEME SET 3: Tech & Sleek
+$light-colors-tech: (
+  // Purple
+  primary: hsl(259, 100%, 65%),
+  // Blue
+  secondary: hsl(217, 91%, 60%),
+  // Teal
+  accent: hsl(158, 64%, 52%),
+  success: hsl(142, 76%, 36%),
+  // Red for errors/danger
+  danger: hsl(0, 84%, 60%)
+);
+
+$dark-colors-tech: (
+  primary: hsl(259, 100%, 75%),
+  secondary: hsl(217, 91%, 70%),
+  accent: hsl(158, 64%, 65%),
+  success: hsl(142, 76%, 50%),
+  danger: hsl(0, 84%, 70%),
+);
+
+// SCHEME SET 4: Minimalist & Clean
+$light-colors-minimal: (
+  // Almost black
+  primary: hsl(210, 11%, 15%),
+  // Light gray
+  secondary: hsl(210, 16%, 82%),
+  // Bright yellow accent
+  accent: hsl(47, 100%, 50%)
+);
+
+$dark-colors-minimal: (
+  // Almost white
+  primary: hsl(210, 11%, 93%),
+  // Dark gray
+  secondary: hsl(210, 16%, 25%),
+  accent: hsl(47, 100%, 65%)
+);
+
+// Default to minimal scheme
+$light-colors: $light-colors-minimal;
+$dark-colors: $dark-colors-minimal;
+
+// Additional color names for 4-5 color projects:
+// - success: Positive actions (save, confirm, complete)
+// - warning/caution: Warnings, pending states
+// - danger/error: Errors, destructive actions
+// - info: Informational messages, help text
+// - neutral: Disabled states, placeholders

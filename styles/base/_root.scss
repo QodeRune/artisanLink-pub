@@ -1,11 +1,7 @@
 @use "abstracts" as abs;
 
 :root {
-  @each $color, $shade in abs.$colors {
-    @each $index, $clr in $shade {
-      --clr-#{$color}-#{$index}: $clr;
-    }
-  }
+  @include abs.generate-theme-colors(abs.$light-colors);
 
   @each $scale, $sz in abs.$sizing {
     @each $index, $size in $sz {
@@ -17,7 +13,13 @@
     --size-#{$key}: #{$value};
   }
 
-  --ff-primary: #(abs.$ff-primary);
-  --ff-secondary: #(abs.$ff-secondary);
-  --ff-accent: #(abs.$ff-accent);
+  --ff-primary: #{abs.$ff-primary};
+  --ff-secondary: #{abs.$ff-secondary};
+  --ff-accent: #{abs.$ff-accent};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include abs.generate-theme-colors(abs.$dark-colors);
+  }
 }

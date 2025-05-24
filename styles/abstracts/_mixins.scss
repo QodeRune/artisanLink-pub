@@ -1,8 +1,34 @@
+// styles/abstracts/_mixins.scss
 @use "./breakpoints" as bp;
+@use "./colors" as cl;
 
 @mixin mq($key, $min_max: "min") {
   $size: map-get (bp.$breakpoints, $key);
   @media only screen and (#{$min_max}-width: $size) {
     @content;
+  }
+}
+
+@mixin generate-theme-colors(
+  $color-group: $light-colors,
+  $saturation-step: cl.$shade-saturation-step,
+  $lightness-step: cl.$shade-lightness-step,
+  $shade-group: $color-shades
+) {
+  @each $_color-tag, $_color in $color-group {
+    @each $shade-level, $_color-shade in $shade-group {
+      $shade-index: index(map-keys($shade-group), $shade-level);
+      $base-index: index(map-keys($shade-group), 500);
+      $offset: $shade-index - $base-index;
+
+      $target-lightness: lightness($_color) + ($lightness-step * -$offset);
+      $target-saturation: saturation($_color) + ($saturation-step * abs($offset));
+
+      // Clamp values to valid ranges
+      $target-lightness: math.max(5%, math.min(95%, $target-lightness));
+      $target-saturation: math.max(0%, math.min(100%, $target-saturation));
+
+      --clr-#{$_color-tag}-#{$shade-level}: #{hue($_color)} #{$target-saturation} #{$target-lightness};
+    }
   }
 }
