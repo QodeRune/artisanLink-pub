@@ -8,8 +8,23 @@ export const AuthForm: FC<{ formFields?: FormField[] }> = ({ formFields = signUp
   return (
     <form action="" className="auth_form">
       {formFields.map((field) => {
-        const { id, ...rest } = field
-        return <FormInput key={id} id={id} {...rest} />
+        const { id, iconRight: _rightIcon, iconLeft: _leftIcon, ...rest } = field
+        const r_icon = _rightIcon && (
+          <img src={_rightIcon.url} alt={_rightIcon.alt || ""} onClick={_rightIcon.onClick} />
+        )
+        const l_icon = _leftIcon && <img src={_leftIcon?.url} alt={_leftIcon?.alt || ""} />
+
+        return (
+          <FormInput
+            key={id}
+            id={id}
+            {...rest}
+            rightIcon={r_icon}
+            leftIcon={l_icon}
+            onLeftIconClick={_leftIcon?.onClick}
+            onRightIconClick={_rightIcon?.onClick}
+          />
+        )
       })}
       <input type="button" value="submit" className="form_input submit_button" />
     </form>

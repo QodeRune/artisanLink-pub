@@ -14,9 +14,15 @@ export type FormFieldType =
   | "checkbox"
   | "radio"
 
-export interface FormFieldOption {
+export interface IFormFieldOption {
   labelText: string
   value: string
+}
+
+export interface IImageProperties {
+  alt: string
+  url: string
+  onClick?: () => boolean
 }
 
 export interface FormField extends Partial<IInputProps> {
@@ -25,7 +31,7 @@ export interface FormField extends Partial<IInputProps> {
   labelText: string
   type: FormFieldType
   placeholder?: string
-  options?: FormFieldOption[]
+  options?: IFormFieldOption[]
   required?: boolean
   disabled?: boolean
   readOnly: boolean
@@ -37,6 +43,9 @@ export interface FormField extends Partial<IInputProps> {
   error?: string
   className?: string
   helperText?: string
+  // TODO:: find a way to use jsx passed in string or pass the asset url
+  iconLeft?: IImageProperties
+  iconRight?: IImageProperties
 }
 
 export interface FormProps<T = Record<string, unknown>>

@@ -36,6 +36,7 @@ export const signUpFields: FormField[] = [
     required: true,
     minLength: 3,
     helperText: "Please enter your first name",
+    iconLeft: { url: "/svg/firstName.svg", alt: "first name" },
   },
   {
     id: "last_name",
@@ -47,6 +48,7 @@ export const signUpFields: FormField[] = [
     required: true,
     minLength: 3,
     helperText: "Please enter your last name",
+    iconLeft: { url: "/svg/firstName.svg", alt: "last name" },
   },
   {
     id: "email",
@@ -57,6 +59,7 @@ export const signUpFields: FormField[] = [
     required: true,
     helperText: "",
     readOnly: false,
+    iconLeft: { url: "/svg/email.svg", alt: "email" },
   },
   {
     id: "password",
@@ -68,6 +71,15 @@ export const signUpFields: FormField[] = [
     minLength: 8,
     helperText: "Password should be at least 8 characters",
     readOnly: false,
+    iconLeft: { url: "/svg/passwordClosed.svg", alt: "password" },
+    iconRight: {
+      url: "/svg/eyeVisible.svg",
+      alt: "toggle hide password",
+      onClick: () => {
+        console.log("password")
+        return true
+      },
+    },
   },
   {
     id: "confirm-password",
@@ -77,5 +89,14 @@ export const signUpFields: FormField[] = [
     placeholder: "Confirm password",
     required: true,
     readOnly: false,
+    iconLeft: { url: "/svg/passwordClosed.svg", alt: "confirm password" },
+    iconRight: {
+      url: "/svg/eyeVisible.svg",
+      alt: "toggle hide password",
+      onClick: () => {
+        console.log("password")
+        return true
+      },
+    },
   },
 ]

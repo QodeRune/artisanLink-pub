@@ -1,6 +1,7 @@
 // src/components/ui/FormInput.tsx
 import { forwardRef } from "react"
 import type { IInputProps } from "@/types/ui"
+import clsx from "clsx"
 
 export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
   (
@@ -19,25 +20,60 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
       fullWidth,
       containerSizeVariant = "md",
       labelClassName = "inputLabel",
+      onLeftIconClick,
+      onRightIconClick,
       ...rest
     },
     ref,
   ) => {
+    const containerClasses = clsx(
+      "input-container",
+      `${containerSizeVariant}`,
+      `${fullWidth ? "full-width" : ""}`,
+      `${containerClassName || ""}`,
+    )
+
+    const inputClasses = clsx(
+      "form_input",
+      `${inputClassName || ""}`,
+      `${error ? "input-error" : ""}`,
+      `${isLoading ? "input-loading" : ""}`,
+      `${isSuccess ? "input-success" : ""}`,
+      `${leftIcon ? "has_left_icon" : ""}`,
+      `${rightIcon ? "has_right_icon" : ""}`,
+    )
+
+    // Fixed: Correct class names for left and right icons
+    const leftIconClasses = clsx("icon_left", "input_icon", `${onLeftIconClick ? "clickable" : ""}`)
+
+    const rightIconClasses = clsx("icon_right", "input_icon", `${onRightIconClick ? "clickable" : ""}`)
+
     return (
-      <div className={`form-input-container ${containerClassName || ""} ${containerSizeVariant} ${fullWidth || ""}`}>
+      <div className={containerClasses}>
         <label htmlFor={id} className={labelClassName}>
           {labelText}
         </label>
-        <div className="inputWrapper">
-          {leftIcon && <div className="icon-left">{leftIcon}</div>}
-          <input id={id} ref={ref} type={type} className={`${inputClassName} form_input`} {...rest} autoComplete="" />
+        <div className="input_wrapper">
+          {leftIcon && (
+            <span onClick={onLeftIconClick} className={leftIconClasses}>
+              {leftIcon}
+            </span>
+          )}
 
-          {rightIcon && <div className="input-rightIcon"></div>}
-          {isLoading && <div className="loading-spinner"></div>}
-          {isSuccess && <div className="input-success"></div>}
+          <input id={id} ref={ref} type={type} className={inputClasses} {...rest} autoComplete="" />
+
+          {rightIcon && (
+            <span onClick={onRightIconClick} className={rightIconClasses}>
+              {rightIcon}
+            </span>
+          )}
+
+          {isLoading && <span className="loading_spinner"></span>}
+          {isSuccess && <span className="input_success_icon"></span>}
         </div>
-        {helperText && <div className="input-success"></div>}
-        {error && <div className="input-success"></div>}
+
+        {helperText && <div className="helper_text">{helperText}</div>}
+        {error && <div className="error_text">{error}</div>}
       </div>
     )
   },

@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:19.1.5"],\
           ["@types/react-dom", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:19.1.5"],\
           ["@vitejs/plugin-react-swc", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:3.10.0"],\
+          ["clsx", "npm:2.1.1"],\
           ["eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:9.27.0"],\
           ["eslint-plugin-react-hooks", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:5.2.0"],\
           ["eslint-plugin-react-refresh", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:0.4.20"],\
@@ -1388,6 +1389,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:19.1.5"],\
           ["@types/react-dom", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:19.1.5"],\
           ["@vitejs/plugin-react-swc", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:3.10.0"],\
+          ["clsx", "npm:2.1.1"],\
           ["eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:9.27.0"],\
           ["eslint-plugin-react-hooks", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:5.2.0"],\
           ["eslint-plugin-react-refresh", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:0.4.20"],\
@@ -1497,6 +1499,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/chownr-npm-3.0.0-5275e85d25-10c0.zip/node_modules/chownr/",\
         "packageDependencies": [\
           ["chownr", "npm:3.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["clsx", [\
+      ["npm:2.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/",\
+        "packageDependencies": [\
+          ["clsx", "npm:2.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\

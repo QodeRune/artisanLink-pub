@@ -1,7 +1,72 @@
 @use "../abstracts/" as _abs;
+
 .auth_page {
   display: grid;
   height: inherit;
+}
+
+.input_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.form_input {
+  --input-height: #{_abs.get-ui(input-height)};
+  --input-radius: #{_abs.get-ui(radius-md)};
+  --default-auth-input-padding: var(--size-sm-5);
+
+  width: 100%;
+  border: 1px solid hsl(var(--clr-secondary-300));
+  border-radius: var(--input-radius);
+  height: var(--input-height);
+  outline: none;
+
+  padding-inline-start: var(--padding-left, var(--default-auth-input-padding));
+  padding-inline-end: var(--padding-right, var(--default-auth-input-padding));
+}
+
+.form_input:focus {
+  border: var(--size-sm-1) solid hsl(var(--clr-accent-500));
+}
+
+.has_left_icon {
+  --padding-left: 2.5rem;
+}
+
+.has_right_icon {
+  --padding-right: 2.5rem;
+}
+
+.input_icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 1.5rem;
+  z-index: 2;
+  pointer-events: none;
+
+  img {
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+  }
+}
+
+.input_icon.clickable {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.icon_left {
+  left: 0.75rem;
+}
+
+.icon_right {
+  right: 0.75rem;
 }
 
 .auth_form {
@@ -19,20 +84,6 @@
   background-color: hsl(var(--clr-primary-300));
 }
 
-.form_input {
-  --input-height: #{_abs.get-ui(input-height)};
-  --input-radius: #{_abs.get-ui(radius-md)};
-  width: min(40em, 100%);
-  border: 1px solid hsl(var(--clr-secondary-300));
-  border-radius: var(--input-radius);
-  height: var(--input-height);
-  padding-inline-start: var(--size-md-4);
-  outline: none;
-}
-.form_input:focus {
-  border: var(--size-sm-1) solid hsl(var(--clr-accent-500));
-}
-
 .submit_button {
   font-size: var(--size-md-1);
   text-transform: capitalize;
@@ -42,6 +93,7 @@
   padding-inline: var(--size-md);
   // transition: width 0.4s ease-in-out;
 }
+
 .submit_button:hover {
   color: hsl(var(--clr-accent-500));
   cursor: pointer;
@@ -50,5 +102,46 @@
 
 label {
   font-size: var(--size-sm-6);
-  display: none;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.helper_text {
+  font-size: var(--size-sm-5);
+  color: hsl(var(--clr-secondary-400));
+  margin-top: 0.25rem;
+}
+
+.error_text {
+  font-size: var(--size-sm-5);
+  color: hsl(var(--clr-error-500));
+  margin-top: 0.25rem;
+}
+
+.loading_spinner {
+  position: absolute;
+  right: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid hsl(var(--clr-secondary-300));
+  border-top: 2px solid hsl(var(--clr-accent-500));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.input_success_icon {
+  position: absolute;
+  right: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  color: hsl(var(--clr-success-500));
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
