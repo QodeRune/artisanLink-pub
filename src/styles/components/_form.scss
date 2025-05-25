@@ -1,18 +1,54 @@
+@use "../abstracts/" as _abs;
 .auth_page {
   display: grid;
   height: inherit;
 }
 
 .auth_form {
-  color: hsl(var(--clr-primary-500));
+  --form-radius: #{_abs.get-ui(radius-lg)};
+  --auth-form-width: 28rem;
+
+  border: 2px solid hsl(var(--clr-secondary-500));
+  border-radius: var(--form-radius);
+  color: hsl(var(--clr-secondary-500));
   display: grid;
   gap: var(--size-md);
-  width: min(24rem, 100%);
-  background-color: hsl(var(--clr-secondary-700));
-  padding: var(--size-md);
+  width: min(var(--auth-form-width), 100%);
+
+  padding: var(--size-md-4);
   margin: auto;
 }
 
 .form_input {
+  --input-height: #{_abs.get-ui(input-height)};
+  --input-radius: #{_abs.get-ui(radius-md)};
   width: min(40em, 100%);
+  border-width: 1px;
+  border-radius: var(--input-radius);
+  height: var(--input-height);
+  padding-inline-start: var(--size-md-4);
+  outline: none;
+}
+.form_input:focus {
+  border: var(--size-sm-1) solid hsl(var(--clr-accent-500));
+}
+
+.submit_button {
+  font-size: var(--size-md-2);
+  text-transform: capitalize;
+  background-color: hsl(var(--clr-secondary-700));
+  color: hsl(var(--clr-primary-500));
+  text-align: center;
+  padding-inline: var(--size-md);
+  // transition: width 0.4s ease-in-out;
+}
+.submit_button:hover {
+  color: hsl(var(--clr-accent-500));
+  cursor: pointer;
+  font-size: var(--size-md-1);
+}
+
+label {
+  font-size: var(--size-sm-6);
+  display: none;
 }

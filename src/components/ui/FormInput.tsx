@@ -30,7 +30,7 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
         </label>
         <div className="inputWrapper">
           {leftIcon && <div className="icon-left">{leftIcon}</div>}
-          <input id={id} ref={ref} type={type} className={`${inputClassName}`} {...rest} />
+          <input id={id} ref={ref} type={type} className={`${inputClassName} form_input`} {...rest} autoComplete="" />
 
           {rightIcon && <div className="input-rightIcon"></div>}
           {isLoading && <div className="loading-spinner"></div>}

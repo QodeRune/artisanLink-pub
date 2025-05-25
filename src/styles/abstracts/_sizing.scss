@@ -106,10 +106,10 @@ $ui-measurements: (
   shadow-xl: 0 20px 25px,
 
   // Component-specific sizes
-  // 32px - Input fields
-  input-height: get-size(md, 4),
-  // 32px - Buttons
-  button-height: get-size(md, 4),
+  // 40px - Input fields
+  input-height: get-size(md, 5),
+  // 40px - Buttons
+  button-height: get-size(md, 5),
   // 64px - Navigation
   navbar-height: get-size(lg, 1),
   // 256px - Sidebar

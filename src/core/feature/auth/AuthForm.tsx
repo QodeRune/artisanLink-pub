@@ -11,6 +11,7 @@ export const AuthForm: FC<{ formFields?: FormField[] }> = ({ formFields = signUp
         const { id, ...rest } = field
         return <FormInput key={id} id={id} {...rest} />
       })}
+      <input type="button" value="submit" className="form_input submit_button" />
     </form>
   )
 }
