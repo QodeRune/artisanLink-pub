@@ -1,10 +1,14 @@
 // styles/abstracts/_mixins.scss
 @use "sass:math";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:color";
 @use "./breakpoints" as bp;
 @use "./colors" as cl;
 
 @mixin mq($key, $min_max: "min") {
-  $size: map-get (bp.$breakpoints, $key);
+  $size: map.get(bp.$breakpoints, $key);
   @media only screen and (#{$min_max}-width: $size) {
     @content;
   }
@@ -18,18 +22,26 @@
 ) {
   @each $_color-tag, $_color in $color-group {
     @each $shade-level, $_color-shade in $shade-group {
-      $shade-index: index(map-keys($shade-group), $shade-level);
-      $base-index: index(map-keys($shade-group), 500);
+      $shade-index: list.index(map.keys($shade-group), $shade-level);
+      $base-index: list.index(map.keys($shade-group), 500);
       $offset: $shade-index - $base-index;
 
-      $target-lightness: lightness($_color) + ($lightness-step * -$offset);
-      $target-saturation: saturation($_color) + ($saturation-step * abs($offset));
+      // Ensure the input is a real color value
+      @if meta.type-of($_color) == "color" {
+        $base-lightness: color.channel($_color, "lightness", $space: hsl);
+        $base-saturation: color.channel($_color, "saturation", $space: hsl);
+        $hue: color.channel($_color, "hue", $space: hsl);
 
-      // Clamp values to valid ranges
-      $target-lightness: math.max(5%, math.min(95%, $target-lightness));
-      $target-saturation: math.max(0%, math.min(100%, $target-saturation));
+        $_target-lightness: $base_lightness + ($lightness-step * -$offset);
+        $_target-saturation: $base_saturation + ($saturation-step * math.abs($offset));
+        // Clamp values
+        $target-lightness: math.clamp($_target-lightness, 0%, 100%);
+        $target-saturation: math.clamp($_target-saturation, 0%, 100%);
 
-      --clr-#{$_color-tag}-#{$shade-level}: #{hue($_color)} #{$target-saturation} #{$target-lightness};
+        --clr-#{$_color-tag}-#{$shade-level}: #{$hue} #{$target-saturation} #{$target-lightness};
+      } @else {
+        @warn "Expected a color for '#{$_color-tag}', but got #{type-of($_color)}.";
+      }
     }
   }
 }
