@@ -24,7 +24,12 @@
   }
 }
 
-#root {
-  height: 100vh;
+html,
+body {
+  height: 100%;
+  font-family: var(--ff-primary);
   background-color: hsl(var(--clr-primary-600));
+}
+#root {
+  height: inherit;
 }
