@@ -6,8 +6,13 @@
 .auth_form {
   color: hsl(var(--clr-primary-500));
   display: grid;
-  width: 40vw;
+  gap: var(--size-md);
+  width: min(24rem, 100%);
   background-color: hsl(var(--clr-secondary-700));
   padding: var(--size-md);
   margin: auto;
+}
+
+.form_input {
+  width: min(40em, 100%);
 }

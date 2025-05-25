@@ -5,7 +5,7 @@
 
   @each $scale, $sz in abs.$sizing {
     @each $index, $size in $sz {
-      --size-#{$scale}-#{$index}: $size;
+      --size-#{$scale}-#{$index}: #{$size};
     }
   }
 
