@@ -1,4 +1,5 @@
 // styles/abstracts/_sizing.scss
+@use "sass:map";
 
 $sizing: (
   sm: (
@@ -55,6 +56,21 @@ $sizing: (
   ),
 );
 
+// Function to retrieve a size from the $sizing map
+@function get-size($tier, $step) {
+  @if not map.has-key($sizing, $tier) {
+    @error "Tier '#{$tier}' not found in $sizing map. Available tiers: #{map-keys($sizing)}";
+  }
+
+  $tier-map: map.get($sizing, $tier);
+
+  @if not map.has-key($tier-map, $step) {
+    @error "Step '#{$step}' not found in tier '#{$tier}'. Available steps: #{map-keys($tier-map)}";
+  }
+
+  @return map.get($tier-map, $step);
+}
+
 // Enhanced base sizes for better UX
 $base-sizes: (
   // Micro spacing
@@ -110,24 +126,10 @@ $ui-measurements: (
   // 1280px
 );
 
-// Function to retrieve a size from the $sizing map
-@function get-size($tier, $step) {
-  @if not map-has-key($sizing, $tier) {
-    @error "Tier '#{$tier}' not found in $sizing map. Available tiers: #{map-keys($sizing)}";
-  }
-
-  $tier-map: map-get($sizing, $tier);
-
-  @if not map-has-key($tier-map, $step) {
-    @error "Step '#{$step}' not found in tier '#{$tier}'. Available steps: #{map-keys($tier-map)}";
-  }
-
-  @return map-get($tier-map, $step);
-}
 // Function to get UI measurements
 @function get-ui($property) {
-  @if not map-has-key($ui-measurements, $property) {
+  @if not map.has-key($ui-measurements, $property) {
     @error "Property '#{$property}' not found in $ui-measurements map.";
   }
-  @return map-get($ui-measurements, $property);
+  @return map.get($ui-measurements, $property);
 }
