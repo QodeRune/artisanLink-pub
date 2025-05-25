@@ -57,7 +57,7 @@ export const signUpFields: FormField[] = [
     type: "email",
     placeholder: "email",
     required: true,
-    helperText: "",
+    helperText: "your-email@email.com",
     readOnly: false,
     iconLeft: { url: "/svg/email.svg", alt: "email" },
   },

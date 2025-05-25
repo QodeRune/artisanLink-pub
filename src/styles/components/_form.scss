@@ -16,12 +16,14 @@
   --input-height: #{_abs.get-ui(input-height)};
   --input-radius: #{_abs.get-ui(radius-md)};
   --default-auth-input-padding: var(--size-sm-5);
+  --auth-form-font-size: var(--size-sm-5_15);
 
   width: 100%;
   border: 1px solid hsl(var(--clr-secondary-300));
   border-radius: var(--input-radius);
   height: var(--input-height);
   outline: none;
+  font-size: var(--auth-form-font-size);
 
   padding-inline-start: var(--padding-left, var(--default-auth-input-padding));
   padding-inline-end: var(--padding-right, var(--default-auth-input-padding));
@@ -32,11 +34,11 @@
 }
 
 .has_left_icon {
-  --padding-left: 2.5rem;
+  --padding-left: var(--size-md-5);
 }
 
 .has_right_icon {
-  --padding-right: 2.5rem;
+  --padding-right: var(--size-md-5);
 }
 
 .input_icon {
@@ -45,13 +47,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 1.5rem;
+  width: var(--size-md-3);
   z-index: 2;
   pointer-events: none;
 
   img {
-    width: 1rem;
-    height: 1rem;
+    width: var(--size-sm-6);
+    height: var(--size-sm-6);
     object-fit: contain;
   }
 }
@@ -62,16 +64,16 @@
 }
 
 .icon_left {
-  left: 0.75rem;
+  left: var(--size-sm-4);
 }
 
 .icon_right {
-  right: 0.75rem;
+  right: var(--size-sm-4);
 }
 
 .auth_form {
   --form-radius: #{_abs.get-ui(radius-xl)};
-  --auth-form-width: 24rem;
+  --auth-form-width: var(--size-xl-3);
 
   border-radius: var(--form-radius);
   color: hsl(var(--clr-secondary-500));
@@ -101,28 +103,36 @@
 }
 
 label {
-  font-size: var(--size-sm-6);
+  font-size: var(--size-sm-5_15);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--size-sm-2);
 }
 
 .helper_text {
   font-size: var(--size-sm-5);
   color: hsl(var(--clr-secondary-400));
-  margin-top: 0.25rem;
+  margin-top: var(--size-sm-2);
+  display: none;
+}
+
+/* When the input within the wrapper is focused, show the helper text */
+.input_wrapper.is-focused + .helper_text,
+.input_wrapper:has(input:focus) + .helper_text {
+  display: block;
+  margin-inline-start: var(--size-sm-5);
 }
 
 .error_text {
   font-size: var(--size-sm-5);
   color: hsl(var(--clr-error-500));
-  margin-top: 0.25rem;
+  margin-top: var(--size-sm-2);
 }
 
 .loading_spinner {
   position: absolute;
-  right: 0.75rem;
-  width: 1rem;
-  height: 1rem;
+  right: var(--size-sm-5);
+  width: var(--size-sm-6);
+  height: var(--size-sm-6);
   border: 2px solid hsl(var(--clr-secondary-300));
   border-top: 2px solid hsl(var(--clr-accent-500));
   border-radius: 50%;
@@ -131,9 +141,9 @@ label {
 
 .input_success_icon {
   position: absolute;
-  right: 0.75rem;
-  width: 1rem;
-  height: 1rem;
+  right: var(--size-sm-5);
+  width: var(--size-sm-6);
+  height: var(--size-sm-6);
   color: hsl(var(--clr-success-500));
 }
 
