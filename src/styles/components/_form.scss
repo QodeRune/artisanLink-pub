@@ -5,25 +5,25 @@
 }
 
 .auth_form {
-  --form-radius: #{_abs.get-ui(radius-lg)};
-  --auth-form-width: 28rem;
+  --form-radius: #{_abs.get-ui(radius-xl)};
+  --auth-form-width: 24rem;
 
-  border: 2px solid hsl(var(--clr-secondary-500));
   border-radius: var(--form-radius);
   color: hsl(var(--clr-secondary-500));
   display: grid;
   gap: var(--size-md);
   width: min(var(--auth-form-width), 100%);
 
-  padding: var(--size-md-4);
+  padding: var(--size-md-5);
   margin: auto;
+  background-color: hsl(var(--clr-primary-300));
 }
 
 .form_input {
   --input-height: #{_abs.get-ui(input-height)};
   --input-radius: #{_abs.get-ui(radius-md)};
   width: min(40em, 100%);
-  border-width: 1px;
+  border: 1px solid hsl(var(--clr-secondary-300));
   border-radius: var(--input-radius);
   height: var(--input-height);
   padding-inline-start: var(--size-md-4);
@@ -34,7 +34,7 @@
 }
 
 .submit_button {
-  font-size: var(--size-md-2);
+  font-size: var(--size-md-1);
   text-transform: capitalize;
   background-color: hsl(var(--clr-secondary-700));
   color: hsl(var(--clr-primary-500));
