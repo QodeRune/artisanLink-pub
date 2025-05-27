@@ -7,3 +7,4 @@ export type {
   IAppErrorParams,
   IHandleErrorParams,
 } from "./ErrorType"
+export type { AriaDecision, IStrictAriaProps } from "./AriaType"
