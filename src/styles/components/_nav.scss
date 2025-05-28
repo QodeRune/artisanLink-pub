@@ -1,0 +1,18 @@
+// src/styles/components/_nav.scss
+.nav_wrapper {
+  display: grid;
+  gap: 1rem;
+}
+
+.nav_link_a {
+  display: flex;
+  gap: var(--size-md);
+  align-items: center;
+  background-color: hsl(var(--clr-primary-700));
+  padding-block: var(--size-sm-3);
+  padding-inline: var(--size-sm-2);
+  border-radius: var(--size-sm-4);
+}
+.nav_link_text {
+  text-transform: capitalize;
+}

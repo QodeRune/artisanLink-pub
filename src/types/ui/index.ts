@@ -1,5 +1,6 @@
 export * from "./input.types"
 export type { FormFieldType, IFormFieldOption, FormProps, FormField } from "./formTypes"
+export type { INavProps } from "./nav.type"
 export type {
   IClickableProps,
   INonClickableProps,
@@ -8,7 +9,7 @@ export type {
   IIcon,
   IText,
   IIconTextProps,
-  TStrictIcon,
+  IStrictIcon,
   IStrictText,
   IStrictIconTextProps,
 } from "./iconText.type"

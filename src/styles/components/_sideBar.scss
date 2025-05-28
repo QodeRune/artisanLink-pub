@@ -1,0 +1,9 @@
+// src/styles/components/_sideBar.scss
+.sideBar {
+  background-color: hsl(var(--clr-primary-100));
+  width: 20rem;
+  height: inherit;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--size-md);
+}

@@ -18,6 +18,7 @@ export interface IBaseIcon {
   iconClasses?: string
   clickable?: boolean
   onClick?: () => boolean
+  id?: string
 }
 
 export interface IBaseText {
@@ -25,6 +26,7 @@ export interface IBaseText {
   textClasses?: string
   clickable?: boolean
   onClick?: () => boolean
+  id?: string
 }
 
 // Force developers to think about each ARIA label
@@ -45,7 +47,7 @@ export interface IIconTextProps extends AriaDecision<"ariaLabel"> {
 }
 
 // !
-export interface TStrictIcon extends IBaseIcon, IStrictAriaProps {
+export interface IStrictIcon extends IBaseIcon, IStrictAriaProps {
   ariaHidden: boolean
 }
 
@@ -53,7 +55,7 @@ export interface IStrictText extends IBaseText, IStrictAriaProps {}
 
 // This enforces the thinking without runtime overhead
 export interface IStrictIconTextProps extends IStrictAriaProps {
-  icon: TStrictIcon
+  icon: IStrictIcon
   text: IStrictText
   as?: ElementType
   elClasses?: string
