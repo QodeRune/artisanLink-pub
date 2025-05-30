@@ -1,18 +1,36 @@
 // src/styles/components/_nav.scss
 .nav_wrapper {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm-3);
+  overflow-y: auto;
+  margin-block: var(--size-md-3);
 }
 
 .nav_link_a {
+  --light-btn-bg: rgb(246, 243, 247);
   display: flex;
-  gap: var(--size-md);
-  align-items: center;
-  background-color: hsl(var(--clr-primary-700));
-  padding-block: var(--size-sm-3);
-  padding-inline: var(--size-sm-2);
+  gap: var(--size-sm-5);
+  align-items: start;
+  padding-block: var(--size-sm-5);
+  padding-inline: var(--size-sm-5_14);
   border-radius: var(--size-sm-4);
+  font-size: 14px;
+  transition: hsl(var(--clr-secondary-600)) 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--size-sm-3);
 }
 .nav_link_text {
   text-transform: capitalize;
+}
+
+.nav_link_a:hover {
+  background-color: hsl(var(--clr-secondary-600));
+  color: hsl(var(--clr-primary-200));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.nav_link_a.active {
+  border-left: 3px solid hsl(var(--clr-secondary-600));
+  background-color: hsl(var(--clr-primary-200));
+  font-weight: 600;
 }

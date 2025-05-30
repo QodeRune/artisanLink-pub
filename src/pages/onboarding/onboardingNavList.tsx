@@ -10,42 +10,42 @@ const ProgramPaymentIcon = <span>💰</span>
 export const onBoardingNavItems = [
   {
     linkIcon: VideoIcon,
-    linkText: "Watch Video",
+    linkText: "Watch video",
     hrefLocation: "",
   },
   {
     linkIcon: VideoIcon,
-    linkText: "WATCH VIDEO",
+    linkText: "Watch video",
     hrefLocation: "",
   },
   {
     linkIcon: TermsIcon,
-    linkText: "TERMS & CONDITIONS",
+    linkText: "Terms & conditions",
     hrefLocation: "",
   },
   {
     linkIcon: PaymentIcon,
-    linkText: "PAYMENT",
+    linkText: "Payment",
     hrefLocation: "",
   },
   {
     linkIcon: QuestionnaireIcon,
-    linkText: "QUESTIONNAIRE",
+    linkText: "Questionnaire",
     hrefLocation: "",
   },
   {
     linkIcon: AcceptIcon,
-    linkText: "ACCEPTANCE DECISION",
+    linkText: "Acceptance decision",
     hrefLocation: "",
   },
   {
     linkIcon: ProgramIcon,
-    linkText: "PROGRAM TERMS & CONDITIONS",
+    linkText: "Program terms & conditions",
     hrefLocation: "",
   },
   {
     linkIcon: ProgramPaymentIcon,
-    linkText: "PROGRAM PAYMENT",
+    linkText: "Program payment",
     hrefLocation: "",
   },
   {
@@ -55,7 +55,7 @@ export const onBoardingNavItems = [
   },
   {
     linkIcon: TermsIcon,
-    linkText: "Snap Shot",
+    linkText: "Snap shot",
     hrefLocation: "",
   },
 ]

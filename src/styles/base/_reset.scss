@@ -80,3 +80,16 @@ ul,
 ol {
   list-style: none;
 }
+
+a {
+  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: inherit; /* Keep the same color on hover, focus, and active states */
+  text-decoration: none; /* Maintain no underline */
+}
