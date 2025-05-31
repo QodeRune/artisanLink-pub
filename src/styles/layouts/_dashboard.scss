@@ -115,3 +115,18 @@ video {
   display: grid;
   gap: var(--size-md);
 }
+
+// payment
+.payment {
+  @include _abs.content-block();
+}
+
+// product
+.product-item {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.promo-input {
+  display: flex;
+}
