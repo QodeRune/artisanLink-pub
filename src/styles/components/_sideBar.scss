@@ -6,4 +6,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: var(--size-md);
+
+  @media only screen and (max-width: 50em) {
+    display: none;
+  }
 }

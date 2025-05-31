@@ -1,8 +1,8 @@
 // src/pages/onboarding/onboarding.tsx
 import type { FC } from "react"
-import { DashBoardLayout } from "@/layouts/Dashboard"
 import { onBoardingNavItems } from "./onboardingNavList"
 import { Nav, SideBar } from "@/components"
+import { WatchVideo } from "@/views"
 
 export const OnBoarding: FC = () => {
   const _leftSidebar = (
@@ -12,6 +12,15 @@ export const OnBoarding: FC = () => {
       bottomEl={<p>Profile</p>}
     />
   )
-  const _mainContent = <main className="mainContent">"main content"</main>
-  return <DashBoardLayout leftSidebar={_leftSidebar} mainContent={_mainContent} />
+  const _mainContent = (
+    <main className="main_content watch_video_main">
+      {/* <p className="test_container">"main body content"</p> */}
+      <WatchVideo />
+    </main>
+  )
+  return (
+    <section className="dashboard">
+      {_leftSidebar} {_mainContent}
+    </section>
+  )
 }

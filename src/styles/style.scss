@@ -1,4 +1,6 @@
-@use "./abstracts/" as _abstracts;
+// src/styles/style.scss
 @use "./base/" as _base;
-@use "./components/" as _components;
+@use "./abstracts/" as _abstracts;
+@use "./utilities/" as _utilities;
 @use "./layouts/" as _layouts;
+@use "./components/" as _components;

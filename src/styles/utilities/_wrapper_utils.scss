@@ -1,0 +1,9 @@
+// src/styles/utilities/_wrapper_utils.scss
+.flex_wrapper {
+  display: flex;
+  gap: var(--size-md);
+}
+
+.flex_row {
+  align-items: center;
+}
