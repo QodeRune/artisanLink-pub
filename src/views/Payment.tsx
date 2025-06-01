@@ -60,7 +60,7 @@ export const Payment: FC = () => {
           <p className="summary-list-item">Total</p>
           <p className="summary-list-item">$90.00</p>
         </span>
-        <input type="button" value="Proceed TO Checkout" className="form_input submit_button" />
+        <input type="button" value="Confirm & Checkout" className="form_input submit_button" />
       </div>
     </section>
   )
