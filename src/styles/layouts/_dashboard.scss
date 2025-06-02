@@ -118,5 +118,5 @@ video {
 
 // payment
 .invoice {
-  @include _abs.content-block();
+  @include _abs.content-block($max-height: 96%);
 }

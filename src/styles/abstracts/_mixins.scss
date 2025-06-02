@@ -54,12 +54,11 @@
   $bg: hsl(var(--clr-primary-400)),
   $width: min(#{sz.get-ui(container-md)}, 100%),
   $shadow: true,
-  $margin: auto,
   $max-height: 100%,
   $overflow-y: auto,
-  $margin-block: 1rem
+  $margin-inline: auto,
+  $margin-block: auto
 ) {
-  margin: $margin;
   display: grid;
   gap: $gap;
   padding: $padding;
@@ -68,6 +67,7 @@
   width: $width;
   max-height: $max-height;
   overflow-y: $overflow-y;
+  margin-inline: $margin-inline;
   margin-block: $margin-block;
 
   @if $shadow {
