@@ -120,3 +120,8 @@ video {
 .invoice {
   @include _abs.content-block($max-height: 96%);
 }
+
+// acceptance-decision
+.acceptance-decision {
+  @include _abs.content-block();
+}

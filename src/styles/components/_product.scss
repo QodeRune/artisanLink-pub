@@ -146,3 +146,16 @@
   display: grid;
   gap: var(--size-md-4);
 }
+
+.payment-response {
+  border-top: solid 2px rgb(214, 208, 208);
+  margin-top: var(--size-md-2);
+}
+
+.payment-Response-icon {
+  color: blue; // Inherit from context or override directly
+  width: var(--size-lg-5);
+  aspect-ratio: 1;
+  margin-block: var(--size-md);
+  place-self: center;
+}
