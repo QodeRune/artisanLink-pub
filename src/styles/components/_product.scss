@@ -2,6 +2,7 @@
 .invoice [class$="-section"] {
   padding-inline: var(--size-xs);
 }
+
 .product-item {
   display: grid;
   grid-template-columns: 20% 1fr 20%;
@@ -21,24 +22,28 @@
   gap: var(--size-sm);
 }
 
+.product-price {
+  padding-inline: var(--size-sm);
+}
+
 .product-qty {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem; // or var(--size-xs) if defined
+  gap: var(--size-sm-2); // or var(--size-xs) if defined
 }
 
 .promo-section {
   border-top: solid 2px rgb(214, 208, 208);
   border-bottom: solid 2px rgb(214, 208, 208);
   padding-block: var(--size-md-2_22);
-  margin-block: 0.125rem;
+  margin-block: var(--size-sm-1);
   display: grid;
-  gap: 0.5rem;
+  gap: var(--size-sm-4);
 }
 
 .promo-input {
   display: flex;
-  gap: 1rem;
+  gap: var(--size-sm-6);
   align-items: flex-end;
 
   .submit_button {
@@ -52,7 +57,7 @@
 
 .order-summary-section {
   h2 {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--size-sm-4);
   }
   border-bottom: dashed 2px rgb(214, 208, 208);
   padding-bottom: var(--size-md-2_22);
@@ -61,7 +66,7 @@
 .summary-list {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--size-sm-6);
 }
 
 .quantity-button {
@@ -72,6 +77,7 @@
   transition: background-color 0.2s ease, color 0.2s ease;
   height: auto;
   width: var(--size-md-2_22);
+  border-radius: var(--size-xs);
 }
 
 .quantity-button:hover {
@@ -92,14 +98,27 @@
 }
 
 .quantity-input {
-  padding-inline: 0.375rem;
+  /* Remove spinner buttons for all browsers */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none; /* Standard */
+
+  /* For Webkit browsers (Chrome, Safari) */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Important to remove any default margin */
+  }
+
+  /* Dynamic width and centering */
+  width: auto; /* Allow content to dictate width initially */
+  min-width: 2ch; /* 2 characters */
+  max-width: 4ch; /* 4 characters */
   text-align: center;
-  border: none; /* Remove default input border */
-  font-size: 1em;
-  -moz-appearance: textfield; /* Remove spinner buttons for Firefox */
-  appearance: textfield; /* Remove spinner buttons for other browsers */
+  padding-inline: var(--size-xs);
+  font-size: inherit;
   color: #333;
   border: 1px solid rgb(214, 208, 208);
+  border-radius: var(--size-xs);
 }
 
 .product-image-wrapper {
@@ -121,4 +140,9 @@
   height: 100%;
   object-fit: cover; /* This is crucial: it covers the area without distorting the image */
   border-radius: 8px; /* Match wrapper's border-radius */
+}
+
+.payment-details {
+  display: grid;
+  gap: var(--size-md-4);
 }
