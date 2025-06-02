@@ -2,7 +2,7 @@
 import type { FC } from "react"
 import { onBoardingNavItems } from "./onboardingNavList"
 import { Nav, SideBar } from "@/components"
-import { Payment } from "@/views"
+import { Invoice } from "@/views"
 
 export const OnBoarding: FC = () => {
   const _leftSidebar = (
@@ -15,7 +15,7 @@ export const OnBoarding: FC = () => {
   const _mainContent = (
     <main className="main_content watch_video_main">
       {/* <p className="test_container">"main body content"</p> */}
-      <Payment />
+      <Invoice />
     </main>
   )
   return (

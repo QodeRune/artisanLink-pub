@@ -117,57 +117,6 @@ video {
 }
 
 // payment
-.payment {
+.invoice {
   @include _abs.content-block();
-}
-
-// !product
-.product-item {
-  display: grid;
-  grid-template-columns: 5rem 1fr 4rem;
-}
-
-.product-qty {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.product-price {
-  text-align: center;
-}
-
-.promo-section {
-  border-top: solid 2px rgb(214, 208, 208);
-  border-bottom: solid 2px rgb(214, 208, 208);
-  padding-block: 1.35rem;
-  margin-block: 0.125rem;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.promo-input {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-end;
-
-  .submit_button {
-    width: 30%;
-  }
-}
-
-.enter-promo {
-  width: 100%;
-}
-
-.order-summary-section {
-  h2 {
-    margin-bottom: 0.5rem;
-  }
-  border-bottom: dashed 2px rgb(214, 208, 208);
-  padding-bottom: 1.35rem;
-}
-.summary-list {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
 }

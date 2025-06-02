@@ -44,6 +44,9 @@ select {
   font: inherit;
 }
 
+button:hover {
+  cursor: pointer;
+}
 /* 8. Avoid text overflows */
 p,
 h1,

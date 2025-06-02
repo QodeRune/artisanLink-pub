@@ -1,0 +1,115 @@
+// src/styles/components/_product.scss
+.invoice [class$="-section"] {
+  padding-inline: var(--size-xs);
+}
+.product-item {
+  display: grid;
+  grid-template-columns: 6rem 1fr 6rem;
+  gap: var(--size-md);
+}
+
+.product-qty {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-price {
+  text-align: center;
+}
+
+.promo-section {
+  border-top: solid 2px rgb(214, 208, 208);
+  border-bottom: solid 2px rgb(214, 208, 208);
+  padding-block: var(--size-md-2_22);
+  margin-block: 0.125rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.promo-input {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+
+  .submit_button {
+    width: 30%;
+  }
+}
+
+.enter-promo {
+  width: 100%;
+}
+
+.order-summary-section {
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+  border-bottom: dashed 2px rgb(214, 208, 208);
+  padding-bottom: var(--size-md-2_22);
+}
+.summary-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.product-const {
+  background-color: red;
+  align-self: baseline;
+}
+.quantity-button {
+  background-color: #fff;
+  border: 1px solid rgb(214, 208, 208);
+  display: flex;
+  padding: var(--size-sm-4);
+  color: #333;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.quantity-button:hover {
+  background-color: #f0f0f0;
+}
+
+.plus-button {
+  background-color: #333; /* Dark background for plus button */
+  color: #fff; /* White text for plus button */
+}
+
+.plus-button:hover {
+  background-color: #555;
+}
+
+.minus-button {
+  border-right: 1px solid #e0e0e0; /* Separator for minus button */
+}
+
+.quantity-input {
+  width: 40px; /* Fixed width for the input field */
+  text-align: center;
+  border: none; /* Remove default input border */
+  font-size: 1em;
+  -moz-appearance: textfield; /* Remove spinner buttons for Firefox */
+  appearance: textfield; /* Remove spinner buttons for other browsers */
+  color: #333;
+}
+
+.product-image-wrapper {
+  flex-shrink: 0; /* Prevent the image wrapper from shrinking */
+  width: 100px; /* Fixed width for the image container */
+  height: 0; /* Important for the padding-top trick */
+  padding-top: 100px; /* This creates a 1:1 aspect ratio (equal to width) */
+  position: relative; /* For absolute positioning of the image */
+  border-radius: 8px; /* Slightly rounded corners for the image container */
+  overflow: hidden; /* Ensures image doesn't spill out if it goes beyond rounded corners */
+  background-color: #f8f8f8; /* Light background for the image area */
+}
+
+.product-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is crucial: it covers the area without distorting the image */
+  border-radius: 8px; /* Match wrapper's border-radius */
+}

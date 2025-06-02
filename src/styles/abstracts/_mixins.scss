@@ -54,7 +54,10 @@
   $bg: hsl(var(--clr-primary-400)),
   $width: min(#{sz.get-ui(container-md)}, 100%),
   $shadow: true,
-  $margin: auto
+  $margin: auto,
+  $max-height: 100%,
+  $overflow-y: auto,
+  $margin-block: 1rem
 ) {
   margin: $margin;
   display: grid;
@@ -63,6 +66,9 @@
   border-radius: $radius;
   background-color: $bg;
   width: $width;
+  max-height: $max-height;
+  overflow-y: $overflow-y;
+  margin-block: $margin-block;
 
   @if $shadow {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
