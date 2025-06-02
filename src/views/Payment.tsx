@@ -35,6 +35,7 @@ export const Invoice: FC = () => {
             <p className="product-price">$100.00</p>
             <span className="product-qty">
               <button className="quantity-button minus-button"> - </button>
+              {/* TODO:: make this and input */}
               <p className="qty quantity-input">1</p>
               <button className="quantity-button plus-button"> + </button>
             </span>

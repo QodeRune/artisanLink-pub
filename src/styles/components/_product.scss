@@ -4,17 +4,27 @@
 }
 .product-item {
   display: grid;
-  grid-template-columns: 6rem 1fr 6rem;
+  grid-template-columns: 20% 1fr 20%;
   gap: var(--size-md);
+  align-items: start;
+}
+
+.product-details,
+.product-cost {
+  padding-block: var(--size-sm);
+}
+
+.product-cost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--size-sm);
 }
 
 .product-qty {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.product-price {
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem; // or var(--size-xs) if defined
 }
 
 .promo-section {
@@ -47,23 +57,21 @@
   border-bottom: dashed 2px rgb(214, 208, 208);
   padding-bottom: var(--size-md-2_22);
 }
+
 .summary-list {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.product-const {
-  background-color: red;
-  align-self: baseline;
-}
 .quantity-button {
   background-color: #fff;
   border: 1px solid rgb(214, 208, 208);
-  display: flex;
-  padding: var(--size-sm-4);
+  place-content: center;
   color: #333;
   transition: background-color 0.2s ease, color 0.2s ease;
+  height: auto;
+  width: var(--size-md-2_22);
 }
 
 .quantity-button:hover {
@@ -84,24 +92,25 @@
 }
 
 .quantity-input {
-  width: 40px; /* Fixed width for the input field */
+  padding-inline: 0.375rem;
   text-align: center;
   border: none; /* Remove default input border */
   font-size: 1em;
   -moz-appearance: textfield; /* Remove spinner buttons for Firefox */
   appearance: textfield; /* Remove spinner buttons for other browsers */
   color: #333;
+  border: 1px solid rgb(214, 208, 208);
 }
 
 .product-image-wrapper {
   flex-shrink: 0; /* Prevent the image wrapper from shrinking */
-  width: 100px; /* Fixed width for the image container */
-  height: 0; /* Important for the padding-top trick */
+  width: 100%; /* Fixed width for the image container */
+  height: 100%; /* Important for the padding-top trick */
   padding-top: 100px; /* This creates a 1:1 aspect ratio (equal to width) */
   position: relative; /* For absolute positioning of the image */
   border-radius: 8px; /* Slightly rounded corners for the image container */
   overflow: hidden; /* Ensures image doesn't spill out if it goes beyond rounded corners */
-  background-color: #f8f8f8; /* Light background for the image area */
+  background-color: green; /* Light background for the image area */
 }
 
 .product-image-wrapper img {
