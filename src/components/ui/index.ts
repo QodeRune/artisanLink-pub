@@ -2,3 +2,4 @@
 export { FormInput } from "./FormInput"
 export { Nav } from "./Nav"
 export { SideBar } from "./SideBar"
+export { ArticleItemCard } from "./ArticleItemCard"

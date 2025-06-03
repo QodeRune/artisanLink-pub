@@ -125,3 +125,28 @@ video {
 .acceptance-decision {
   @include _abs.content-block();
 }
+
+// article item card
+.article_item_card {
+  @include _abs.content-block(
+    $width: 100%,
+    $padding: var(--size-md),
+    $gap: var(--size-md),
+    $shadow: true,
+    $margin-block: 0,
+    $margin-inline: 0
+  );
+}
+
+.flex-main {
+  display: flex;
+}
+
+.row-flex {
+  --min-column-size: 30rem;
+  display: grid;
+  gap: var(--size-lg);
+  padding-inline: var(--size-lg);
+  margin-top: 20%;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--min-column-size), 100%), 1fr));
+}
