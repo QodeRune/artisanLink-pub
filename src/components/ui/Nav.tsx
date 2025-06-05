@@ -10,13 +10,14 @@ export const Nav: FC<{ navItems: INavProps[] }> = ({ navItems }) => {
         const { linkIcon, linkText, ariaLabel, hrefLocation } = item
         const _key = `nav_${index}_${linkText}`
 
+        // const isParentActive = location.pathname.startsWith(hrefLocation)
+
         return (
           <li key={_key} className="nav_link_li">
             <NavLink
               to={hrefLocation}
               aria-label={ariaLabel || linkText}
               className={({ isActive }) => `nav_link_a ${isActive ? "active" : ""}`}
-              end
             >
               <span className="nav_link_icon">{linkIcon}</span>
               <p className="nav_link_text">{linkText}</p>
