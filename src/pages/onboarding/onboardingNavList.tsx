@@ -28,23 +28,8 @@ export const onBoardingNavItems = [
   },
   {
     linkIcon: QuestionnaireIcon,
-    linkText: "Questionnaire",
-    hrefLocation: "",
-  },
-  {
-    linkIcon: AcceptIcon,
-    linkText: "Acceptance decision",
-    hrefLocation: "",
-  },
-  {
-    linkIcon: ProgramIcon,
-    linkText: "Program terms & conditions",
-    hrefLocation: RoutePaths.ONBOARDING_PROGRAM_TERMS,
-  },
-  {
-    linkIcon: ProgramPaymentIcon,
-    linkText: "Program payment",
-    hrefLocation: RoutePaths.ONBOARDING_ENROLLMENT_PAYMENT,
+    linkText: "Assessments",
+    hrefLocation: RoutePaths.ONBOARDING_ASSESSMENTS,
   },
   {
     linkIcon: ProgramIcon,
@@ -53,7 +38,22 @@ export const onBoardingNavItems = [
   },
   {
     linkIcon: TermsIcon,
-    linkText: "Snap shot",
-    hrefLocation: "",
+    linkText: "Career Tapestry Snapshot",
+    hrefLocation: RoutePaths.CAREER_SNAP_SHOT,
+  },
+  {
+    linkIcon: AcceptIcon,
+    linkText: "Acceptance decision",
+    hrefLocation: RoutePaths.ONBOARDING_ACCEPTANCE_STATUS,
+  },
+  {
+    linkIcon: ProgramIcon,
+    linkText: "Program terms & conditions",
+    hrefLocation: RoutePaths.ONBOARDING_PROGRAM_TERMS,
+  },
+  {
+    linkIcon: ProgramPaymentIcon,
+    linkText: "Enrollment payment",
+    hrefLocation: RoutePaths.ONBOARDING_ENROLLMENT_PAYMENT,
   },
 ]

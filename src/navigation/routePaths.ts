@@ -3,7 +3,7 @@ export const RoutePaths = {
   HOME: "/",
   ONBOARDING_WATCH_VIDEO: "/onboarding/watch-video",
   ONBOARDING_TERMS_AND_CONDITIONS: "/onboarding/terms-and-conditions",
-  SNAP_SHOT: "/onboarding/snap-shot",
+  CAREER_SNAP_SHOT: "/onboarding/career-tapestry-snapshot",
   ONBOARDING_PAYMENT: "/onboarding/payment",
   ONBOARDING_PAYMENT_SUCCESS: "/onboarding/payment/success",
   ONBOARDING_PAYMENT_CANCEL: "/onboarding/payment/cancel",
@@ -11,16 +11,16 @@ export const RoutePaths = {
   ONBOARDING_BIO_DATA: "/onboarding/bio-data",
 
   // !ENROLLMENT
-  ONBOARDING_ENROLLMENT_PAYMENT: "/onboarding/enrollment/payment",
-  ONBOARDING_ENROLLMENT_SUCCESS: "/onboarding/enrollment/success",
-  ONBOARDING_ENROLLMENT_CANCEL: "/onboarding/enrollment/cancel",
-  ONBOARDING_ENROLLMENT_ERROR: "/onboarding/enrollment/error",
+  ONBOARDING_ENROLLMENT_PAYMENT: "/onboarding/enrollment-payment",
+  ONBOARDING_ENROLLMENT_SUCCESS: "/onboarding/enrollment-payment/success",
+  ONBOARDING_ENROLLMENT_CANCEL: "/onboarding/enrollment-payment/cancel",
+  ONBOARDING_ENROLLMENT_ERROR: "/onboarding/enrollment-payment/error",
 
-  // !questionnaire
-  ONBOARDING_QUESTIONNAIRE: "/onboarding/questionnaire",
-  ONBOARDING_QUESTIONNAIRE_TEST: "/onboarding/questionnaire/test",
-  ONBOARDING_ACCEPTANCE_DECISION: "/onboarding/acceptance-decision",
-  ONBOARDING_PROGRAM_TERMS: "/onboarding/program-terms",
+  // !assessments
+  ONBOARDING_ASSESSMENTS: "/onboarding/assessments",
+  ONBOARDING_ASSESSMENTS_TEST: "/onboarding/assessments/test",
+  ONBOARDING_ACCEPTANCE_STATUS: "/onboarding/acceptance-status",
+  ONBOARDING_PROGRAM_TERMS: "/onboarding/program-terms-and-conditions",
   ONBOARDING_PROGRAM_PAYMENT: "/onboarding/program-payment",
 
   // !auth

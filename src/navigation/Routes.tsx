@@ -1,8 +1,7 @@
 // src/navigation/routes.ts
 import type { RouteObject } from "react-router-dom"
-// import { WatchVideo } from "../views"
 import { OnBoarding } from "../pages/onboarding/onboarding"
-import { ProductPayment, TermsAndConditions, WatchVideo } from "@/views"
+import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
 
 export const Routes: RouteObject[] = [
   {
@@ -38,10 +37,18 @@ export const Routes: RouteObject[] = [
         ],
       },
       // TODO:: Questionnaire
-      { path: "assessment", element: "" },
+      { path: "assessments", element: <AssessmentList /> },
+      {
+        path: "career-tapestry-snapshot",
+        element: <AssessmentList />,
+      },
+      {
+        path: "acceptance-status",
+        element: <PaymentResponse status={"success"} onProceed={() => console.log("TODO:: acceptance status")} />,
+      },
       { path: "program-terms-and-conditions", element: <TermsAndConditions /> },
       {
-        path: "enrollment",
+        path: "enrollment-payment",
         element: <ProductPayment />,
         children: [
           // TODO:: will take props

@@ -3,7 +3,7 @@ import { ArticleItemCard } from "@/components"
 
 export const AssessmentList: FC = () => {
   return (
-    <section className="row-flex">
+    <section className="grid-autofill">
       <ArticleItemCard />
       <ArticleItemCard />
     </section>
