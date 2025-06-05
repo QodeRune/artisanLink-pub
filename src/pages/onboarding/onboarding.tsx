@@ -1,9 +1,10 @@
 // src/pages/onboarding/onboarding.tsx
 import type { FC } from "react"
+import { Outlet } from "react-router-dom"
 import { onBoardingNavItems } from "./onboardingNavList"
 import { Nav, SideBar } from "@/components"
 // import { AcceptanceDecision } from "@/views"
-import { ArticleItemCard } from "@/components"
+// import { ArticleItemCard } from "@/components"
 
 export const OnBoarding: FC = () => {
   const _leftSidebar = (
@@ -15,11 +16,7 @@ export const OnBoarding: FC = () => {
   )
   const _mainContent = (
     <main className="main_content watch_video_main">
-      {/* <p className="test_container">"main body content"</p> */}
-      <section className="row-flex">
-        <ArticleItemCard />
-        <ArticleItemCard />
-      </section>
+      <Outlet />
     </main>
   )
   return (

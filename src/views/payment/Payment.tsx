@@ -16,7 +16,7 @@ const _promo = {
   helperText: "Please enter your Promo Code",
 }
 
-export const Invoice: FC = () => {
+export const ProductPayment: FC = () => {
   const _productSection = (
     <div className="grid-section product-section">
       {/* item 1 */}

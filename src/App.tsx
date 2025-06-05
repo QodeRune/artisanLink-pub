@@ -1,10 +1,12 @@
 // src/App.tsx
 import type { FC } from "react"
-// import { AuthPage } from "@/core"
-import { OnBoarding } from "@/pages"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { Routes } from "@/navigation"
+
+const router = createBrowserRouter(Routes)
 
 export const App: FC = () => {
-  return <OnBoarding />
+  return <RouterProvider router={router} />
 }
 
 export default App
