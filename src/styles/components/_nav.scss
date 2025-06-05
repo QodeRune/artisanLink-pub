@@ -13,24 +13,25 @@
   gap: var(--size-sm-5);
   align-items: start;
   padding-block: var(--size-sm-5);
-  padding-inline: var(--size-sm-5_14);
+  padding-inline: var(--size-sm-5_13);
   border-radius: var(--size-sm-4);
   transition: hsl(var(--clr-secondary-600)) 0.2s ease, box-shadow 0.2s ease;
   border-radius: var(--size-sm-3);
+
+  &.active {
+    border-left: var(--size-xs) solid hsl(var(--clr-secondary-600));
+    background-color: hsl(var(--clr-primary-600));
+    font-weight: 600;
+    padding-inline-start: var(--size-sm-4);
+  }
+
+  &:hover {
+    background-color: hsl(var(--clr-primary-500));
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding-inline-start: 0.5rem;
+  }
 }
 .nav_link_text {
   text-transform: capitalize;
   font-size: 14px;
-}
-
-.nav_link_a:hover {
-  background-color: hsl(var(--clr-secondary-600));
-  color: hsl(var(--clr-primary-200));
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.nav_link_a.active {
-  border-left: 3px solid hsl(var(--clr-secondary-600));
-  background-color: hsl(var(--clr-primary-200));
-  font-weight: 600;
 }

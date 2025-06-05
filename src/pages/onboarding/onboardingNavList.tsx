@@ -1,3 +1,6 @@
+// src/pages/onboarding/onboardingNavList.tsx
+import { RoutePaths } from "@/navigation/routePaths"
+
 // Placeholder icons (replace with actual icons)
 const VideoIcon = <span>📹</span>
 const TermsIcon = <span>📜</span>
@@ -11,22 +14,17 @@ export const onBoardingNavItems = [
   {
     linkIcon: VideoIcon,
     linkText: "Watch video",
-    hrefLocation: "",
-  },
-  {
-    linkIcon: VideoIcon,
-    linkText: "Watch video",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_WATCH_VIDEO,
   },
   {
     linkIcon: TermsIcon,
     linkText: "Terms & conditions",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_TERMS_AND_CONDITIONS,
   },
   {
     linkIcon: PaymentIcon,
     linkText: "Payment",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_PAYMENT,
   },
   {
     linkIcon: QuestionnaireIcon,
@@ -41,12 +39,12 @@ export const onBoardingNavItems = [
   {
     linkIcon: ProgramIcon,
     linkText: "Program terms & conditions",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_PROGRAM_TERMS,
   },
   {
     linkIcon: ProgramPaymentIcon,
     linkText: "Program payment",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_ENROLLMENT_PAYMENT,
   },
   {
     linkIcon: ProgramIcon,
