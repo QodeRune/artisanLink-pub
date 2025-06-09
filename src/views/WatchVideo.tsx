@@ -6,8 +6,8 @@ export const WatchVideo: FC = () => {
   return (
     <section className="watch_video">
       <span className="intro_info">
-        <h1 className="section_heading">your tech journey starts here</h1>
-        <p className="body_text">
+        <h1 className="u-text-heading-lg u-sentence-case">your tech journey starts here</h1>
+        <p className="u-text-body-lg">
           Create your account to access industry ready courses, live sessions and hands-on projects
         </p>
       </span>

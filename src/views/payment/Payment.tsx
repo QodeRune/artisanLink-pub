@@ -115,7 +115,7 @@ export const ProductPayment: FC = () => {
 
   return (
     <section className="invoice">
-      <h1 className="section_heading">Invoice</h1>
+      <h1 className="u-text-heading-lg">Invoice</h1>
       {_productSection}
       {/* TODO:: success or failed responses will replace the _paymentDetails */}
       {_paymentDetails}

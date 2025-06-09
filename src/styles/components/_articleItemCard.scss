@@ -25,12 +25,10 @@
     align-items: center;
     margin-bottom: var(--size-sm-5);
   }
-
-  .card_heading {
-    font-size: var(--size-md);
-  }
 }
-
+.card_heading {
+  font-size: var(--size-md);
+}
 .header_icon {
   --icon-accent-color: hsl(var(--clr-secondary-500));
   color: var(--icon-accent-color);

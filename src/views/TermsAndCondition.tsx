@@ -8,7 +8,7 @@ export const TermsAndConditions: FC = () => {
     return (
       <div key={sectionHeading} className="grid-section tc-section">
         {/* Use h2 for section headings, as h1 is already used for the page title */}
-        <h2 className="tc-section-heading">{sectionHeading}</h2>
+        <h2 className="u-text-heading-lg u-text-center">{sectionHeading}</h2>
         <ol className="grid-section tc-section-list">
           {/* Iterate over the key-value pairs within each section's content */}
           {Object.entries(sectionContent).map(([itemNumber, itemText]) => (
@@ -23,7 +23,7 @@ export const TermsAndConditions: FC = () => {
 
   return (
     <section className="terms_and_conditions">
-      <h1 className="section_heading">Terms and conditions</h1>
+      {/* <h1 className="u-text-heading-lg">Terms and conditions</h1> */}
 
       {/* Render all the dynamically generated sections */}
       {sectionsToRender}

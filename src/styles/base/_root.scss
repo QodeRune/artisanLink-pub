@@ -1,6 +1,7 @@
 @use "../abstracts" as abs;
 
 :root {
+  --clr-primary: 0deg, 0%, 97%;
   @include abs.generate-theme-colors(abs.$light-colors);
 
   @each $scale, $sz in abs.$sizing {
@@ -20,6 +21,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --clr-primary: 0deg, 0%, 97%;
     @include abs.generate-theme-colors(abs.$dark-colors);
   }
 }
@@ -29,10 +31,12 @@ body {
   scroll-behavior: smooth;
   height: 100%;
   font-family: var(--ff-primary);
-  background-color: hsl(var(--clr-primary-500));
+  // background-color: hsl(var(--clr-primary-500));
+  background-color: hsl(var(--clr-primary));
 }
 #root {
   height: inherit;
 }
 
 // TODO:: Scroll and scroll ux cue
+// hsl 0 12 96 1

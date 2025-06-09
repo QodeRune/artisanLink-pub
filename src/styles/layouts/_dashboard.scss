@@ -15,7 +15,8 @@
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-  background-color: hsl(var(--clr-primary-500));
+  // background-color: hsl(var(--clr-primary-500));
+  background-color: hsla(var(--clr-primary));
   padding-inline: var(--size-xs);
 
   @media only screen and (max-width: 50em) {
@@ -133,8 +134,9 @@ video {
 .grid-autofill {
   --min-column-size: 30rem;
   display: grid;
-  gap: var(--size-lg);
-  padding-inline: var(--size-lg);
-  margin-top: 20%;
+  gap: var(--size-md-5);
+  // padding-inline: var(--size-lg);
+  // padding-block: var(--size-md);
+  // margin-top: 20%;
   grid-template-columns: repeat(auto-fill, minmax(min(var(--min-column-size), 100%), 1fr));
 }
