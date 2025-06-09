@@ -7,3 +7,9 @@
 .flex_row {
   align-items: center;
 }
+
+.scroll-y {
+  max-height: 100%;
+  overflow-y: auto;
+  padding-bottom: var(--size-lg);
+}

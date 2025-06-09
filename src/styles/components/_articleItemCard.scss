@@ -1,4 +1,19 @@
 // src/styles/components/_articleItemCard.scss
+@use "../abstracts/" as _abs;
+
+.article_item_card {
+  @include _abs.content-block(
+    $width: 100%,
+    $padding: var(--size-md),
+    $gap: var(--size-md),
+    $shadow: true,
+    $margin-block: 0,
+    $margin-inline: 0,
+    $overflow-y: visible,
+    $max-height: 25rem
+  );
+}
+
 .card_highlight {
   padding-inline: var(--size-sm);
   padding-bottom: var(--size-sm);
@@ -30,7 +45,10 @@
 
 .article-meta {
   padding-inline: var(--size-sm);
+  max-height: 10.5rem;
+  overflow-y: auto;
 }
+
 .article-meta-list {
   --min-meta-col-size: 12rem;
   display: grid;
