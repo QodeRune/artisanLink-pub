@@ -1,0 +1,10 @@
+// src/styles/utilities/_layout.scss
+.u-w-full {
+  width: 100%;
+}
+.u-max-w-md {
+  max-width: var(--size-md-6);
+}
+.u-h-screen {
+  height: 100vh;
+}

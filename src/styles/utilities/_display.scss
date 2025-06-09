@@ -1,0 +1,23 @@
+// src/styles/utilities/_display.scss
+.u-flex {
+  display: flex;
+}
+.u-grid {
+  display: grid;
+}
+.u-inline {
+  display: inline;
+}
+.u-hidden {
+  display: none;
+}
+.u-block {
+  display: block;
+}
+
+.u-items-center {
+  align-items: center;
+}
+.u-justify-between {
+  justify-content: space-between;
+}

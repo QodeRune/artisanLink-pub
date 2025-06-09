@@ -1,0 +1,39 @@
+// src/styles/utilities/_text.scss
+.u-text-heading-xl {
+  font-size: var(--size-lg-2); // 5rem
+  font-weight: 700;
+}
+
+.u-text-heading-lg {
+  font-size: var(--size-md-5); // 3rem
+  font-weight: 600;
+}
+
+.u-text-heading-md {
+  font-size: var(--size-md-4); // 2rem
+  font-weight: 500;
+}
+
+.u-text-body-lg {
+  font-size: var(--size-md-2); // 1.25rem
+}
+
+.u-text-body-md {
+  font-size: var(--size-md-1); // 1rem
+}
+
+.u-text-body-sm {
+  font-size: var(--size-sm-5); // 0.75rem
+}
+
+.u-text-muted {
+  color: var(--clr-primary-600);
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-sentence-case {
+  text-transform: capitalize;
+}

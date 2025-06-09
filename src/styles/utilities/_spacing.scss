@@ -1,0 +1,51 @@
+// src/styles/utilities/_spacing.scss
+
+.padding-inline-lg {
+  padding-inline: var(--size-md-4);
+}
+.padding-block-lg {
+  padding-block: var(--size-md-4);
+}
+
+.padding-inline-md {
+  padding-inline: var(--size-md);
+}
+.padding-block-md {
+  padding-block: var(--size-md);
+}
+
+// Padding
+.u-padding-top-md {
+  padding-top: var(--size-md);
+}
+.u-padding-bottom-md {
+  padding-bottom: var(--size-md);
+}
+
+.u-padding-bottom-sm {
+  padding-bottom: var(--size-md-sm);
+}
+
+.u-padding-start-md {
+  padding-inline-start: var(--size-md);
+}
+.u-padding-end-md {
+  padding-inline-end: var(--size-md);
+}
+.u-padding-inline-md {
+  padding-inline: var(--size-md);
+}
+.u-padding-block-md {
+  padding-block: var(--size-md);
+}
+
+// Margin
+.u-margin-top-lg {
+  margin-top: var(--size-lg);
+}
+.u-margin-block-lg {
+  margin-bottom: var(--size-lg);
+}
+.u-margin-inline-auto {
+  margin-inline: auto;
+}
