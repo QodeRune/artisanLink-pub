@@ -1,3 +1,4 @@
+// src/types/coreTypes/index.ts
 export type {
   IErrorBoundaryProps,
   IErrorBoundaryState,

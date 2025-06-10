@@ -1,5 +1,4 @@
 // src/core/feature/theme/ThemeProvider.tsx
-
 import type { IThemeProviderProps, TTheme, TThemeMode } from "@/types"
 import { useEffect, useState, type FC } from "react"
 import { ThemeContext } from "./theme.context"

@@ -1,5 +1,4 @@
 // src/types/coreTypes/theme.type.ts
-
 export type TThemeMode = "light" | "dark"
 export type TTheme = TThemeMode | "system"
 
