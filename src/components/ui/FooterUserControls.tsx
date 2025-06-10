@@ -4,7 +4,7 @@ import type { FC } from "react"
 
 export const FooterUserControls: FC = () => {
   return (
-    <div className="footer-user-controls u-flex u-justify-between">
+    <div className="footer-user-controls u-flex u-justify-between u-items-center">
       <p className="logout-button">Log Out</p>
       <ThemeToggle />
       <p className="get-support">Get Support</p>

@@ -31,13 +31,14 @@ export const ThemeToggle: FC<IToggleThemeProps> = () => {
 
   const themeToggleButton = (
     <>
-      <label className="theme-toggle-label" htmlFor="theme-toggle"></label>
       <input
+        className="theme-toggle-checkbox"
         type="checkbox"
         id="theme-toggle"
-        onClick={toggleTheme}
+        onChange={toggleTheme}
         aria-label={`Toggle theme to ${effectiveTheme === "light" ? "dark" : "light"} mode`}
       />
+      <label className="theme-toggle-label" htmlFor="theme-toggle"></label>
     </>
   )
   return themeToggleButton
