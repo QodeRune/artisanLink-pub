@@ -1,0 +1,11 @@
+// src/styles/components/_themeToggle.scss
+.theme-toggle-label {
+  width: auto;
+  height: 200px;
+  position: relative;
+  display: inline-block;
+  background-color: hsl(var(--clr-primary));
+  border-radius: 200px;
+  box-shadow: inset 0px, 5px, 15px, rgba(0, 0, 0, 0.4), inset 0px, -5px, 15px, rgba(225, 225, 225, 0.4);
+  cursor: pointer;
+}

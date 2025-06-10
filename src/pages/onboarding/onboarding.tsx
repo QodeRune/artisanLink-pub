@@ -2,7 +2,7 @@
 import type { FC } from "react"
 import { Outlet } from "react-router-dom"
 import { onBoardingNavItems } from "./onboardingNavList"
-import { Nav, SideBar } from "@/components"
+import { FooterUserControls, Nav, SideBar } from "@/components"
 // import { AcceptanceDecision } from "@/views"
 // import { ArticleItemCard } from "@/components"
 
@@ -11,7 +11,7 @@ export const OnBoarding: FC = () => {
     <SideBar
       topEl={<p>Evolve with tech</p>}
       centerEl={<Nav navItems={onBoardingNavItems} />}
-      bottomEl={<p>Profile</p>}
+      bottomEl={<FooterUserControls />}
     />
   )
   const _mainContent = (

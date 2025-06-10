@@ -1,5 +1,5 @@
 // src/types/ui/iconText.ts
-import type { AriaDecision, IStrictAriaProps } from "@/core"
+import type { AriaDecision, IStrictAriaProps } from "@/types"
 import type { ElementType, ReactNode } from "react"
 
 export interface IClickableProps<TArgs = void, TReturn = void> {
