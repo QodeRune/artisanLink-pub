@@ -7,10 +7,10 @@
   --thumb-dark: linear-gradient(180deg, #777, #3a3a3a);
   --toggle-width: 3rem;
   --toggle-height: 1.5rem;
-  --thumb-size: 1.125rem;
-  --thumb-offset: 0.1875rem;
+  --thumb-size: 1.25rem;
+  --thumb-offset: 0.125rem;
   --shadow-subtle-inset: inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
-  --shadow-thumb: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-thumb: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   margin-block: auto;
   width: var(--toggle-width);
@@ -34,10 +34,45 @@
     border-radius: 50%;
     box-shadow: var(--shadow-thumb);
     transition: 0.3s ease;
+    z-index: 1;
   }
 
   &:active:after {
-    width: calc(var(--thumb-size) + 0.5rem);
+    width: calc(var(--thumb-size) + 0.25rem);
+  }
+
+  .theme-toggle-thumb {
+    position: absolute;
+    top: var(--thumb-offset);
+    left: var(--thumb-offset);
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+
+    .theme-icon-wrapper {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.5) rotate(-30deg);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .show {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .theme-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 }
 
@@ -55,4 +90,8 @@
 .theme-toggle-checkbox:checked + .theme-toggle-label::after {
   left: calc(var(--toggle-width) - var(--thumb-size) - var(--thumb-offset));
   background: var(--thumb-dark);
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label .theme-toggle-thumb {
+  left: calc(var(--toggle-width) - var(--thumb-size) - var(--thumb-offset));
 }

@@ -52,6 +52,7 @@ export const ProductPayment: FC = () => {
               -{" "}
             </button>
             <input
+              onChange={() => console.log("Payment to be done")}
               type="number"
               className="qty quantity-input"
               value="1" // This should ideally be controlled by state
