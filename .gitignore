@@ -1,3 +1,5 @@
+# Custom
+*.sample.*
 # Logs
 logs
 *.log

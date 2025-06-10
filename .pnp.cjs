@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:22.15.21"],\
           ["@types/react", "npm:19.1.5"],\
           ["@types/react-dom", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:19.1.5"],\
+          ["@types/uuid", "npm:10.0.0"],\
           ["@vitejs/plugin-react-swc", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:3.10.0"],\
           ["clsx", "npm:2.1.1"],\
           ["eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:9.27.0"],\
@@ -47,6 +48,7 @@ const RAW_RUNTIME_STATE =
           ["typedoc-plugin-markdown", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:4.6.4"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["typescript-eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:8.32.1"],\
+          ["uuid", "npm:11.1.0"],\
           ["vite", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:6.3.5"],\
           ["vite-tsconfig-paths", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:5.1.4"]\
         ],\
@@ -1170,6 +1172,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/uuid", [\
+      ["npm:10.0.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-uuid-npm-10.0.0-9ac1066765-10c0.zip/node_modules/@types/uuid/",\
+        "packageDependencies": [\
+          ["@types/uuid", "npm:10.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@typescript-eslint/eslint-plugin", [\
       ["npm:8.32.1", {\
         "packageLocation": "../../.yarn/berry/cache/@typescript-eslint-eslint-plugin-npm-8.32.1-4a9716e105-10c0.zip/node_modules/@typescript-eslint/eslint-plugin/",\
@@ -1578,6 +1589,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:22.15.21"],\
           ["@types/react", "npm:19.1.5"],\
           ["@types/react-dom", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:19.1.5"],\
+          ["@types/uuid", "npm:10.0.0"],\
           ["@vitejs/plugin-react-swc", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:3.10.0"],\
           ["clsx", "npm:2.1.1"],\
           ["eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:9.27.0"],\
@@ -1593,6 +1605,7 @@ const RAW_RUNTIME_STATE =
           ["typedoc-plugin-markdown", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:4.6.4"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["typescript-eslint", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:8.32.1"],\
+          ["uuid", "npm:11.1.0"],\
           ["vite", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:6.3.5"],\
           ["vite-tsconfig-paths", "virtual:76a7f152ff5152457a82d3a876eb59ee570124d858da142b038f7e14e39efbcfb95227e45de44e8ef4f265ff386374b117e53baa6684fefbd3e2e2d3318867f0#npm:5.1.4"]\
         ],\
@@ -4775,6 +4788,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["uri-js", "npm:4.4.1"],\
           ["punycode", "npm:2.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["uuid", [\
+      ["npm:11.1.0", {\
+        "packageLocation": "../../.yarn/berry/cache/uuid-npm-11.1.0-61d0d08928-10c0.zip/node_modules/uuid/",\
+        "packageDependencies": [\
+          ["uuid", "npm:11.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\

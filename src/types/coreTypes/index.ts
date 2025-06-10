@@ -16,4 +16,12 @@ export type {
   IToggleThemeProps,
   IThemeDropDownProps,
 } from "./theme.type"
+export type {
+  TNotificationPosition,
+  TNotificationType,
+  IPopupNotificationItemProps,
+  TToastState,
+  IToastContext,
+} from "./popup.type"
+export { defaultToastContext } from "./popup.type"
 export type { AriaDecision, IStrictAriaProps } from "./aria.type"

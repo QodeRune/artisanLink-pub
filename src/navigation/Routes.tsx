@@ -2,6 +2,8 @@
 import type { RouteObject } from "react-router-dom"
 import { OnBoarding } from "../pages/onboarding/onboarding"
 import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
+// TODO:: Remove test toast
+// import { TestToast } from "@/core"
 
 export const Routes: RouteObject[] = [
   {
@@ -24,6 +26,7 @@ export const Routes: RouteObject[] = [
     children: [
       { path: "watch-video", element: <WatchVideo /> },
       { path: "terms-and-conditions", element: <TermsAndConditions /> },
+      // { path: "test-toast", element: <TestToast /> },
 
       // protected routes
       {
