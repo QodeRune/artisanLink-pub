@@ -11,7 +11,6 @@ export const themeOptions: Array<{ value: TTheme; label: string }> = [
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 
 export const useTheme = () => {
-  // set context
   const context = useContext(ThemeContext)
   if (!context) {
     throw new Error("useTheme must be used withing a ThemeProvider")
