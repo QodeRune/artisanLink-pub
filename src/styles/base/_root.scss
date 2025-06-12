@@ -38,6 +38,7 @@
 
 html,
 body {
+  color: hsl(var(--clr-on-surface));
   scroll-behavior: smooth;
   height: 100%;
   font-family: var(--ff-primary);

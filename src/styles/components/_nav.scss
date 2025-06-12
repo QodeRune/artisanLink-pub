@@ -8,27 +8,27 @@
 }
 
 .nav_link_a {
-  --light-btn-bg: rgb(246, 243, 247);
   display: flex;
   gap: var(--size-sm-5);
   align-items: start;
   padding-block: var(--size-sm-5);
   padding-inline: var(--size-sm-5_13);
   border-radius: var(--size-sm-4);
-  transition: hsl(var(--clr-secondary-600)) 0.2s ease, box-shadow 0.2s ease;
+  transition: hsl(var(--clr-primary-600)) 0.2s ease, box-shadow 0.2s ease;
   border-radius: var(--size-sm-3);
 
   &.active {
-    border-left: var(--size-xs) solid hsl(var(--clr-secondary-600));
-    background-color: hsl(var(--clr-primary-600));
+    border-left: var(--size-sm-3) solid hsl(var(--clr-primary-500));
+    background-color: hsl(var(--clr-surface-alt));
     font-weight: 600;
     padding-inline-start: var(--size-sm-4);
   }
 
   &:hover {
-    background-color: hsl(var(--clr-primary-500));
+    background-color: hsl(var(--clr-surface-alt));
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     padding-inline-start: var(--size-sm-4);
+    border-left: var(--size-sm-1) solid hsl(var(--clr-primary-500));
   }
 }
 .nav_link_text {

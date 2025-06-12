@@ -139,14 +139,14 @@ $dark-colors-warm2: (
 );
 
 $light-colors-ed: (
-  primary: hsl(259, 100%, 65%),
+  primary: hsl(259, 90%, 60%),
   dark: hsl(270, 15%, 24%),
   light: hsl(250, 25%, 98%),
   success: hsl(142, 76%, 36%),
   danger: hsl(0, 84%, 60%),
 );
 $dark-colors-ed: (
-  primary: hsl(259, 90%, 60%),
+  primary: hsl(259, 80%, 50%),
   success: hsl(142, 70%, 32%),
   danger: hsl(0, 75%, 55%),
 );
@@ -171,28 +171,39 @@ $dark-colors: $dark-colors-ed;
   - on-surface-muted: Optional alias for text-muted
 */
 $semantic-colors-light: (
-  bg: var(--clr-light-100),
-  surface-alt: var(--clr-light-200),
+  bg: var(--clr-primary-100) / 0.4,
+  bg-alt: var(--clr-primary-200) / 0.6,
   bg-invert: var(--clr-dark-900),
+  // text-icons
   text: var(--clr-dark-900),
   text-muted: var(--clr-dark-600),
   text-invert: var(--clr-light-100),
-  surface: var(--clr-light-100),
   // optional alias
+  surface: var(--clr-primary-100) / 0.4,
+  surface-alt: var(--clr-primary-200) / 0.6,
+  surface-invert: var(--clr-dark-900),
+  // optional alias for text
   on-surface: var(--clr-dark-900),
   on-surface-muted: var(--clr-dark-600),
+  on-surface-invert: var(--clr-light-100),
 );
 
 $semantic-colors-dark: (
-  bg: var(--clr-dark-500),
-  surface-alt: var(--clr-dark-800),
+  bg: var(--clr-dark-700) / 0.8,
+  bg-alt: var(--clr-dark-800),
   bg-invert: var(--clr-light-100),
+  // text - icons
   text: var(--clr-light-100),
   text-muted: var(--clr-light-500),
   text-invert: var(--clr-dark-900),
-  surface: var(--clr-dark-500),
-  on-surface: var(--clr-light-100),
-  on-surface-muted: var(--clr-light-500),
+  // optional alias
+  surface: var(--clr-dark-700) / 0.8,
+  surface-alt: var(--clr-dark-800),
+  surface-invert: var(--clr-light-100),
+  // optional alias for text
+  on-surface: var(--clr-light-700),
+  on-surface-muted: var(--clr-dark-500),
+  on-surface-invert: var(--clr-dark-900),
 );
 
 // Additional color names for 4-5 color projects:
@@ -205,4 +216,6 @@ $semantic-colors-dark: (
 // TODO:: add this to vars
 $shadows: (
   light-grey: rgb(214, 208, 208),
+  --shadow-soft-200: 0 0 0.75rem hsl(var(--clr-surface-alt) / 0.5),
+  --shadow-soft-300: 0 0 0.175rem hsl(var(--clr-primary-300)),
 );
