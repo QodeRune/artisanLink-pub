@@ -15,6 +15,10 @@
 }
 
 // Padding
+.u-padding-block-start-sm {
+  padding-block-start: var(--size-sm);
+}
+
 .u-padding-top-md {
   padding-top: var(--size-md);
 }

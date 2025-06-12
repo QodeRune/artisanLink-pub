@@ -11,9 +11,9 @@ export const AssessmentList: FC = () => {
     )
   }
   return (
-    <section className="grid-section scroll-y u-padding-top-md .u-padding-bottom-sm article-card-item-list-page">
+    <section className="grid-section scroll-y u-padding-block-start-sm .u-padding-bottom-sm article-card-item-list-page">
       <PageIntro />
-      <section className="grid-autofill padding-inline-lg scroll-y">
+      <section className="grid-autofill u-padding-block-md padding-inline-lg scroll-y">
         <ArticleItemCard />
         <ArticleItemCard />
         <ArticleItemCard />

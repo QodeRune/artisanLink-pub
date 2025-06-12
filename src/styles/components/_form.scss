@@ -83,23 +83,25 @@
 
   padding: var(--size-md-5);
   margin: auto;
-  background-color: hsl(var(--clr-primary-300));
+  background-color: hsl(var(--clr-surface-alt));
 }
 
 .submit_button {
   font-size: var(--size-md-1);
   text-transform: capitalize;
-  background-color: hsl(var(--clr-secondary-700));
-  color: hsl(var(--clr-primary-500));
+  background-color: hsl(var(--clr-on-surface));
+  color: hsl(var(--clr-on-surface-invert));
   text-align: center;
   padding-inline: var(--size-md);
   // transition: width 0.4s ease-in-out;
 }
 
 .submit_button:hover {
-  color: hsl(var(--clr-accent-500));
+  color: hsl(var(--clr-on-surface-muted));
   cursor: pointer;
   font-size: var(--size-md-1);
+  width: 95%;
+  margin-inline: auto;
 }
 
 label {
