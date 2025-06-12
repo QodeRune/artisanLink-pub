@@ -1,6 +1,6 @@
 // src/styles/components/_sideBar.scss
 .sideBar {
-  box-shadow: 0 0 0.175rem hsl(var(--clr-primary-300));
+  box-shadow: var(--soft-shadow);
   width: 18rem;
   height: inherit;
   display: grid;

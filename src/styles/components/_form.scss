@@ -19,18 +19,21 @@
   --auth-form-font-size: var(--size-sm-5_15);
 
   width: 100%;
+  margin-inline: 0.25rem;
   border: 1px solid hsl(var(--clr-secondary-300));
   border-radius: var(--input-radius);
   height: var(--input-height);
   outline: none;
   font-size: var(--auth-form-font-size);
+  background-color: hsl(var(--clr-light-500) / 0.5);
 
   padding-inline-start: var(--padding-left, var(--default-auth-input-padding));
   padding-inline-end: var(--padding-right, var(--default-auth-input-padding));
 }
 
 .form_input:focus {
-  border: var(--size-sm-1) solid hsl(var(--clr-accent-500));
+  box-shadow: var(--soft-shadow);
+  background-color: hsl(var(--clr-light-500) / 0.75);
 }
 
 .has_left_icon {
@@ -81,30 +84,34 @@
   gap: var(--size-md);
   width: min(var(--auth-form-width), 100%);
 
-  padding: var(--size-md-5);
+  padding: var(--size-md-4);
   margin: auto;
   background-color: hsl(var(--clr-surface-alt));
 }
 
+.submit_button:focus,
 .submit_button {
+  width: 100%;
+  margin-inline: 0;
   font-size: var(--size-md-1);
   text-transform: capitalize;
-  background-color: hsl(var(--clr-on-surface));
+  background-color: hsl(var(--clr-surface-invert));
   color: hsl(var(--clr-on-surface-invert));
   text-align: center;
   padding-inline: var(--size-md);
   // transition: width 0.4s ease-in-out;
 }
-
+.submit_button:focus,
 .submit_button:hover {
   color: hsl(var(--clr-on-surface-muted));
   cursor: pointer;
   font-size: var(--size-md-1);
-  width: 95%;
+  width: 99%;
   margin-inline: auto;
 }
 
-label {
+.user-entry-input-classes {
+  margin-inline-start: 0.5rem;
   font-size: var(--size-sm-5_15);
   display: block;
   margin-bottom: var(--size-sm-2);

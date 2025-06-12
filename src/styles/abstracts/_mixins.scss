@@ -93,7 +93,8 @@
   // border: 1px solid hsl(var(--clr-primary-700));
 
   @if $shadow {
-    box-shadow: 0 0 0.175rem hsl(var(--clr-primary-300));
+    // TODO:: shadows
+    box-shadow: var(--soft-shadow);
   }
 }
 

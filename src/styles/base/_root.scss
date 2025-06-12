@@ -17,6 +17,9 @@
   --ff-primary: #{abs.$ff-primary};
   --ff-secondary: #{abs.$ff-secondary};
   --ff-accent: #{abs.$ff-accent};
+
+  // TODO:: shadows
+  --soft-shadow: 0 0 0.175rem hsl(var(--clr-primary-300));
 }
 
 @media (prefers-color-scheme: dark) {

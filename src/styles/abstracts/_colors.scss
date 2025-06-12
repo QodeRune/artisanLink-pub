@@ -181,7 +181,8 @@ $semantic-colors-light: (
   // optional alias
   surface: var(--clr-primary-100) / 0.4,
   surface-alt: var(--clr-primary-200) / 0.6,
-  surface-invert: var(--clr-dark-900),
+  surface-muted: var(--clr-primary-200) / 0.4,
+  surface-invert: var(--clr-dark-700),
   // optional alias for text
   on-surface: var(--clr-dark-900),
   on-surface-muted: var(--clr-primary-100),
@@ -199,11 +200,12 @@ $semantic-colors-dark: (
   // optional alias
   surface: var(--clr-dark-700) / 0.8,
   surface-alt: var(--clr-dark-800),
-  surface-invert: var(--clr-light-100),
+  surface-muted: var(--clr-light-500) / 0.2,
+  surface-invert: var(--clr-primary-300),
   // optional alias for text
   on-surface: var(--clr-light-700),
-  on-surface-muted: var(--clr-primary-500),
-  on-surface-invert: var(--clr-dark-900),
+  on-surface-muted: var(--clr-dark-600),
+  on-surface-invert: var(--clr-light-700),
 );
 
 // Additional color names for 4-5 color projects:

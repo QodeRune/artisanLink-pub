@@ -1,5 +1,5 @@
 // src/navigation/routes.ts
-import type { RouteObject } from "react-router-dom"
+import { Navigate, type RouteObject } from "react-router-dom"
 import { OnBoarding } from "../pages/onboarding/onboarding"
 import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
 import { AuthForm } from "@/core"
@@ -7,6 +7,10 @@ import { AuthForm } from "@/core"
 // import { TestToast } from "@/core"
 
 export const Routes: RouteObject[] = [
+  {
+    path: "/",
+    element: <Navigate to="auth" replace />,
+  },
   {
     path: "/auth",
     element: <AuthForm />,
@@ -25,6 +29,7 @@ export const Routes: RouteObject[] = [
     path: "onboarding",
     element: <OnBoarding />,
     children: [
+      { path: "", element: <WatchVideo /> },
       { path: "watch-video", element: <WatchVideo /> },
       { path: "terms-and-conditions", element: <TermsAndConditions /> },
       // { path: "test-toast", element: <TestToast /> },

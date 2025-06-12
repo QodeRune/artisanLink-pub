@@ -33,6 +33,8 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
       `${containerClassName || ""}`,
     )
 
+    const labelClasses = clsx("user-entry-input-classes", `${labelClassName}`)
+
     const inputClasses = clsx(
       "form_input",
       `${inputClassName || ""}`,
@@ -50,7 +52,7 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
 
     return (
       <div className={containerClasses}>
-        <label htmlFor={id} className={labelClassName}>
+        <label htmlFor={id} className={labelClasses}>
           {labelText}
         </label>
         <div className="input_wrapper">
