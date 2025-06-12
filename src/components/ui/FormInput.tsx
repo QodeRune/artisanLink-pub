@@ -7,6 +7,7 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
   (
     {
       id,
+      autoComplete,
       type = "text",
       inputClassName,
       containerClassName,
@@ -62,7 +63,14 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
             </span>
           )}
 
-          <input id={id} ref={ref} type={type} className={inputClasses} {...rest} autoComplete="" />
+          <input
+            id={id}
+            ref={ref}
+            type={type}
+            className={inputClasses}
+            {...rest}
+            autoComplete={autoComplete || "off"}
+          />
 
           {rightIcon && (
             <span onClick={onRightIconClick} className={rightIconClasses}>

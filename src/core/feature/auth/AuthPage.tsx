@@ -1,7 +1,7 @@
 // src/core/feature/auth/AuthPage.tsx
 import type { FC } from "react"
 import { AuthForm } from "./AuthForm"
-import { FooterUserControls, SideBar } from "@/components"
+import { SideBar } from "@/components"
 import { ThemeToggle } from "@/core/feature/theme"
 
 export const AuthPage: FC = () => {

@@ -5,6 +5,7 @@ export const signInFields: FormField[] = [
   {
     id: "email",
     name: "email",
+    autoComplete: "email",
     labelText: "Email Address",
     type: "email",
     placeholder: "your@email.com",
@@ -15,6 +16,7 @@ export const signInFields: FormField[] = [
   {
     id: "password",
     name: "password",
+    autoComplete: "current-password",
     labelText: "Password",
     type: "password",
     placeholder: "Choose a strong password",
@@ -29,6 +31,7 @@ export const signUpFields: FormField[] = [
   {
     id: "first_name",
     name: "first_name",
+    autoComplete: "given-name",
     labelText: "First Name",
     type: "text",
     readOnly: false,
@@ -41,6 +44,7 @@ export const signUpFields: FormField[] = [
   {
     id: "last_name",
     name: "last_name",
+    autoComplete: "family-name",
     labelText: "Last Name",
     type: "text",
     readOnly: false,
@@ -53,6 +57,7 @@ export const signUpFields: FormField[] = [
   {
     id: "email",
     name: "email",
+    autoComplete: "email",
     labelText: "Email",
     type: "email",
     placeholder: "email",
@@ -64,6 +69,7 @@ export const signUpFields: FormField[] = [
   {
     id: "password",
     name: "password",
+    autoComplete: "new-password",
     labelText: "Password",
     type: "password",
     placeholder: "Password",
@@ -84,6 +90,7 @@ export const signUpFields: FormField[] = [
   {
     id: "confirm-password",
     name: "confirmPassword",
+    autoComplete: "new-password",
     labelText: "Confirm Password",
     type: "password",
     placeholder: "Confirm password",

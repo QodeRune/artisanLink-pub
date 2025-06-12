@@ -27,6 +27,7 @@ export interface IImageProperties {
 
 export interface FormField extends Partial<IInputProps> {
   id: string
+  autoComplete: string
   name: string
   labelText: string
   type: FormFieldType

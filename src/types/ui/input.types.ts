@@ -1,5 +1,6 @@
 // src/types/ui/input.types.ts
 export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string
   id: string
   type?: string
   leftIcon?: React.ReactNode
