@@ -7,7 +7,7 @@ export type {
   IErrorInfo,
   IAppErrorParams,
   IHandleErrorParams,
-} from "./error.type"
+} from "./error.types"
 export type {
   TThemeMode,
   TTheme,
@@ -15,13 +15,14 @@ export type {
   IThemeProviderProps,
   IToggleThemeProps,
   IThemeDropDownProps,
-} from "./theme.type"
+} from "./theme.types"
 export type {
   TNotificationPosition,
   TNotificationType,
   IPopupNotificationItemProps,
   TToastState,
   IToastContext,
-} from "./popup.type"
-export { defaultToastContext } from "./popup.type"
-export type { AriaDecision, IStrictAriaProps } from "./aria.type"
+} from "./popup.types"
+export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorageParams } from "./indexDB.types"
+export { defaultToastContext } from "./popup.types"
+export type { AriaDecision, IStrictAriaProps } from "./aria.types"
