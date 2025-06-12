@@ -96,15 +96,104 @@ $light-colors-minimal: (
 
 $dark-colors-minimal: (
   // Almost white
-  primary: hsl(210, 11%, 93%),
+  primary: hsl(211, 100%, 95%),
   // Dark gray
   secondary: hsl(210, 16%, 25%),
   accent: hsl(47, 100%, 65%)
 );
 
-// Default to minimal scheme
-$light-colors: $light-colors-minimal;
-$dark-colors: $dark-colors-minimal;
+// Color schemes with sleek, modern aesthetic
+$light-colors-sleek: (
+  // Rich dark blue-gray (sophisticated, not pure black)
+  primary: hsl(215, 25%, 27%),
+  // Warm neutral gray (softer than pure gray)
+  secondary: hsl(220, 9%, 78%),
+  // Your purple accent
+  accent: hsl(268, 82%, 38%)
+);
+
+$dark-colors-sleek: (
+  // Soft off-white with slight warmth (easier on eyes than pure white)
+  primary: hsl(220, 15%, 95%),
+  // Rich dark gray with blue undertones (matches Claude's aesthetic)
+  secondary: hsl(215, 20%, 20%),
+  // Lighter purple for dark mode (better contrast)
+  accent: hsl(268, 75%, 58%)
+);
+
+// Alternative warmer scheme if you want something cozier
+$light-colors-warm2: (
+  // Deep charcoal with warm undertones
+  primary: hsl(25, 15%, 20%),
+  // Warm beige-gray
+  secondary: hsl(30, 8%, 75%),
+  accent: hsl(268, 82%, 38%)
+);
+
+$dark-colors-warm2: (
+  // Warm off-white
+  primary: hsl(30, 10%, 95%),
+  // Rich warm dark gray
+  secondary: hsl(25, 15%, 18%),
+  accent: hsl(268, 75%, 58%)
+);
+
+$light-colors-ed: (
+  primary: hsl(259, 100%, 65%),
+  dark: hsl(270, 15%, 24%),
+  light: hsl(250, 25%, 98%),
+  success: hsl(142, 76%, 36%),
+  danger: hsl(0, 84%, 60%),
+);
+$dark-colors-ed: (
+  primary: hsl(259, 90%, 60%),
+  success: hsl(142, 70%, 32%),
+  danger: hsl(0, 75%, 55%),
+);
+
+// Use the sleek version as default
+$light-colors: $light-colors-ed;
+$dark-colors: $dark-colors-ed;
+
+/*
+  Semantic color tokens for theme-aware design
+
+  - bg:           Main background of the application
+  - surface-alt:  Alternate surface for contrast (cards, sidebars, inputs)
+  - bg-invert:    Opposite of current bg; used for inverse UI elements (e.g. dark banners in light mode)
+
+  - text:             Primary text color
+  - text-muted:       Low-emphasis content (e.g. helper text, disabled buttons)
+  - text-invert:      Text placed on bg-invert (e.g. white text on dark bg)
+
+  - surface:          Optional alias for bg (used in component libraries)
+  - on-surface:       Optional alias for text (used in component libraries)
+  - on-surface-muted: Optional alias for text-muted
+*/
+$semantic-colors-light: (
+  bg: var(--clr-light-100),
+  surface-alt: var(--clr-light-200),
+  bg-invert: var(--clr-dark-900),
+  text: var(--clr-dark-900),
+  text-muted: var(--clr-dark-600),
+  text-invert: var(--clr-light-100),
+  surface: var(--clr-light-100),
+  // optional alias
+  on-surface: var(--clr-dark-900),
+  on-surface-muted: var(--clr-dark-600),
+);
+
+$semantic-colors-dark: (
+  bg: var(--clr-dark-500),
+  surface-alt: var(--clr-dark-800),
+  bg-invert: var(--clr-light-100),
+  text: var(--clr-light-100),
+  text-muted: var(--clr-light-500),
+  text-invert: var(--clr-dark-900),
+  surface: var(--clr-dark-500),
+  on-surface: var(--clr-light-100),
+  on-surface-muted: var(--clr-light-500),
+);
 
 // Additional color names for 4-5 color projects:
 // - success: Positive actions (save, confirm, complete)

@@ -1,8 +1,8 @@
 @use "../abstracts" as abs;
 
 :root {
-  --clr-primary: 0deg, 0%, 97%;
   @include abs.generate-theme-colors(abs.$light-colors);
+  @include abs.generate-semantic-tokens(abs.$semantic-colors-light);
 
   @each $scale, $sz in abs.$sizing {
     @each $index, $size in $sz {
@@ -20,10 +20,20 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --clr-primary: 0deg, 0%, 97%;
+  :root:not([data-theme]) {
     @include abs.generate-theme-colors(abs.$dark-colors);
+    @include abs.generate-semantic-tokens(abs.$semantic-colors-dark);
   }
+}
+
+[data-theme="light"] {
+  @include abs.generate-theme-colors(abs.$light-colors);
+  @include abs.generate-semantic-tokens(abs.$semantic-colors-light);
+}
+
+[data-theme="dark"] {
+  @include abs.generate-theme-colors(abs.$dark-colors);
+  @include abs.generate-semantic-tokens(abs.$semantic-colors-dark);
 }
 
 html,
@@ -31,12 +41,8 @@ body {
   scroll-behavior: smooth;
   height: 100%;
   font-family: var(--ff-primary);
-  // background-color: hsl(var(--clr-primary-500));
-  background-color: hsl(var(--clr-primary));
+  background-color: hsl(var(--clr-surface));
 }
 #root {
   height: inherit;
 }
-
-// TODO:: Scroll and scroll ux cue
-// hsl 0 12 96 1

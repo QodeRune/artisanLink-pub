@@ -47,6 +47,25 @@
   }
 }
 
+// TODO:: study later for good use cases
+@mixin theme($color-map, $theme-name) {
+  @each $name, $value in $color-map {
+    @if map.has-key($light-colors-ed, $name) and map.has-key($dark-colors-ed, $name) == false {
+      // Only generate if it's not overridden in dark theme
+      // fallbacks to light version in dark theme
+      --clr-#{$theme-name}-#{$name}: #{map.get($light-colors-ed, $name)};
+    } @else {
+      --clr-#{$theme-name}-#{$name}: #{$value};
+    }
+  }
+}
+
+@mixin generate-semantic-tokens($tokens) {
+  @each $key, $value in $tokens {
+    --clr-#{$key}: #{$value};
+  }
+}
+
 @mixin content-block(
   $padding: var(--size-lg),
   $gap: var(--size-md-4),
@@ -74,5 +93,34 @@
 
   @if $shadow {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Mixin for custom background colors that don't fit the generated scheme
+@mixin custom-bg-colors($light-bg, $dark-bg, $light-accent: null, $dark-accent: null) {
+  :root {
+    --clr-bg: #{$light-bg};
+    --clr-bg-accent: #{if($light-accent, $light-accent, adjust-color($light-bg, $lightness: -3%))};
+    --clr-bg-invert: #{hsl(0, 0%, 8%)}; // Almost black for light mode
+  }
+
+  [data-theme="light"] {
+    --clr-bg: #{$light-bg};
+    --clr-bg-accent: #{if($light-accent, $light-accent, adjust-color($light-bg, $lightness: -3%))};
+    --clr-bg-invert: #{hsl(0, 0%, 8%)};
+  }
+
+  [data-theme="dark"] {
+    --clr-bg: #{$dark-bg};
+    --clr-bg-accent: #{if($dark-accent, $dark-accent, adjust-color($dark-bg, $lightness: 3%))};
+    --clr-bg-invert: #{hsl(0, 0%, 98%)}; // Almost white for dark mode
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --clr-bg: #{$dark-bg};
+      --clr-bg-accent: #{if($dark-accent, $dark-accent, adjust-color($dark-bg, $lightness: 3%))};
+      --clr-bg-invert: #{hsl(0, 0%, 98%)};
+    }
   }
 }
