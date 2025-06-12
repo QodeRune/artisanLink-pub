@@ -12,6 +12,10 @@
   padding: 0;
 }
 
+.sr-only {
+  display: none;
+}
+
 /* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
   html {

@@ -31,11 +31,3 @@ export const AuthForm: FC<{ formFields?: FormField[] }> = ({ formFields = signUp
     </form>
   )
 }
-
-export const AuthPage: FC = () => {
-  return (
-    <div className="auth_page">
-      <AuthForm />
-    </div>
-  )
-}

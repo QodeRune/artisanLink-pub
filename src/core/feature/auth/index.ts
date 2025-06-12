@@ -1,2 +1,3 @@
 // src/core/feature/auth/index.ts
-export { AuthForm, AuthPage } from "./AuthForm"
+export { AuthForm } from "./AuthForm"
+export { AuthPage } from "./AuthPage"

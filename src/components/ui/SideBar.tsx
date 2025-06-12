@@ -2,7 +2,7 @@
 import type { FC, ReactNode } from "react"
 import { IconText } from "@/components/ui/IconText"
 
-export const SideBar: FC<{ topEl: ReactNode; centerEl: ReactNode; bottomEl: ReactNode }> = ({
+export const SideBar: FC<{ topEl: ReactNode; centerEl?: ReactNode; bottomEl?: ReactNode }> = ({
   topEl,
   centerEl,
   bottomEl,

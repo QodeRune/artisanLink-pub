@@ -35,6 +35,7 @@ export const ThemeToggle: FC<IToggleThemeProps> = () => {
         aria-label={`Toggle theme to ${effectiveTheme === "light" ? "dark" : "light"} mode`}
       />
       <label className="theme-toggle-label" htmlFor="theme-toggle">
+        <span className="sr-only">Toggle theme</span>
         <span className="theme-toggle-thumb">
           <span className={clsx("theme-icon-wrapper", { show: effectiveTheme === "light" })}>{lightThemeIcon}</span>
           <span className={clsx("theme-icon-wrapper", { show: effectiveTheme === "dark" })}>{darkThemeIcon}</span>
