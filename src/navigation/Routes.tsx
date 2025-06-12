@@ -2,7 +2,7 @@
 import { Navigate, type RouteObject } from "react-router-dom"
 import { OnBoarding } from "../pages/onboarding/onboarding"
 import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
-import { AuthPage } from "@/core"
+import { AuthForm, AuthPage } from "@/core"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
 
@@ -15,10 +15,18 @@ export const Routes: RouteObject[] = [
     path: "/auth",
     element: <AuthPage />,
     children: [
-      { path: "signin", element: <AuthPage /> },
-      { path: "signup", element: <AuthPage /> },
-      { path: "verify-email", element: "" },
-      { path: "", element: "" },
+      {
+        path: "login",
+        element: <AuthForm login={true} />,
+      },
+      {
+        path: "signup",
+        element: <AuthForm login={false} />,
+      },
+      {
+        path: "verify-email",
+        element: <div>Email verification</div>,
+      },
     ],
   },
   {

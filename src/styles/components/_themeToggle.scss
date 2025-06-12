@@ -1,15 +1,15 @@
 // src/styles/components/_themeToggle.scss
 .theme-toggle-label {
   // TODO:: Use var properties for the colors
-  --toggle-bg: #ebebeb;
-  --toggle-bg-dark: #3a3a3a;
-  --thumb-light: linear-gradient(180deg, #ffcc89, #d8860b);
-  --thumb-dark: linear-gradient(180deg, #777, #3a3a3a);
+  --toggle-bg: hsl(var(--clr-surface-alt));
+  // --toggle-bg-dark: #3a3a3a;
+  --thumb-light: hsl(var(--clr-primary-500) / 0.9);
+  --thumb-dark: hsl(var(--clr-surface-invert));
   --toggle-width: 3rem;
   --toggle-height: 1.5rem;
   --thumb-size: 1.25rem;
   --thumb-offset: 0.125rem;
-  --shadow-subtle-inset: inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
+  --shadow-subtle-inset: inset 0 1px 3px hsl(var(--clr-surface-alt)), inset 0 -1px 3px hsl(var(--clr-surface-alt));
   --shadow-thumb: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   margin-block: auto;
@@ -70,6 +70,7 @@
     }
 
     .theme-icon {
+      color: hsl(var(--clr-light-500));
       width: 1.25rem;
       height: 1.25rem;
     }
@@ -83,9 +84,9 @@
   display: none;
 }
 
-.theme-toggle-checkbox:checked + .theme-toggle-label {
-  background: var(--toggle-bg-dark);
-}
+// .theme-toggle-checkbox:checked + .theme-toggle-label {
+//   background: var(--toggle-bg-dark);
+// }
 
 .theme-toggle-checkbox:checked + .theme-toggle-label::after {
   left: calc(var(--toggle-width) - var(--thumb-size) - var(--thumb-offset));
