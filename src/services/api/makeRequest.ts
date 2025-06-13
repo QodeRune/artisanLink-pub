@@ -97,6 +97,3 @@ export const makeRequest = async <T>({ config }: { config: IRequestConfig }): Pr
     }
   }
 }
-
-// !Public API functions
-

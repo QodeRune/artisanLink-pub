@@ -104,4 +104,6 @@ export const setTokens = (params: ITokenStorageParams) => {
     valueDict: { access_token: accessToken, refresh_token: refreshToken, ...extraTokens },
     useSessionStorage,
   })
+
+  return true
 }
