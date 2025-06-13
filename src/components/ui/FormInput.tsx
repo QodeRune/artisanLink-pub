@@ -46,10 +46,26 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
       `${rightIcon ? "has_right_icon" : ""}`,
     )
 
-    // Fixed: Correct class names for left and right icons
     const leftIconClasses = clsx("icon_left", "input_icon", `${onLeftIconClick ? "clickable" : ""}`)
 
     const rightIconClasses = clsx("icon_right", "input_icon", `${onRightIconClick ? "clickable" : ""}`)
+
+    // Enhanced event handlers that work for both mouse and touch
+    const handleLeftIconInteraction = (e: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (onLeftIconClick) {
+        onLeftIconClick(e as React.MouseEvent<HTMLSpanElement>)
+      }
+    }
+
+    const handleRightIconInteraction = (e: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (onRightIconClick) {
+        onRightIconClick(e as React.MouseEvent<HTMLSpanElement>)
+      }
+    }
 
     return (
       <div className={containerClasses}>
@@ -58,7 +74,14 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
         </label>
         <div className="input_wrapper">
           {leftIcon && (
-            <span onClick={onLeftIconClick} className={leftIconClasses}>
+            <span
+              onClick={handleLeftIconInteraction}
+              onTouchEnd={handleLeftIconInteraction}
+              className={leftIconClasses}
+              role={onLeftIconClick ? "button" : undefined}
+              tabIndex={onLeftIconClick ? 0 : undefined}
+              aria-label={onLeftIconClick ? "Left icon action" : undefined}
+            >
               {leftIcon}
             </span>
           )}
@@ -73,7 +96,14 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
           />
 
           {rightIcon && (
-            <span onClick={onRightIconClick} className={rightIconClasses}>
+            <span
+              onClick={handleRightIconInteraction}
+              onTouchEnd={handleRightIconInteraction}
+              className={rightIconClasses}
+              role={onRightIconClick ? "button" : undefined}
+              tabIndex={onRightIconClick ? 0 : undefined}
+              aria-label={onRightIconClick ? "Right icon action" : undefined}
+            >
               {rightIcon}
             </span>
           )}

@@ -1,7 +1,7 @@
 // src/core/feature/auth/FormFields.ts
-import type { FormField } from "@/types/ui"
+import type { IFormField } from "@/types/ui"
 
-export const signInFields: FormField[] = [
+export const signInFields: IFormField[] = [
   {
     id: "email",
     name: "email",
@@ -24,10 +24,14 @@ export const signInFields: FormField[] = [
     minLength: 8,
     helperText: "Password should be at least 8 characters",
     readOnly: false,
+    iconRight: {
+      url: "/svg/eyeVisible.svg",
+      alt: "toggle password visibility",
+    },
   },
 ]
 
-export const signUpFields: FormField[] = [
+export const signUpFields: IFormField[] = [
   {
     id: "first_name",
     name: "first_name",
@@ -80,11 +84,7 @@ export const signUpFields: FormField[] = [
     iconLeft: { url: "/svg/passwordClosed.svg", alt: "password" },
     iconRight: {
       url: "/svg/eyeVisible.svg",
-      alt: "toggle hide password",
-      onClick: () => {
-        console.log("password")
-        return true
-      },
+      alt: "toggle password visibility",
     },
   },
   {
@@ -99,11 +99,7 @@ export const signUpFields: FormField[] = [
     iconLeft: { url: "/svg/passwordClosed.svg", alt: "confirm password" },
     iconRight: {
       url: "/svg/eyeVisible.svg",
-      alt: "toggle hide password",
-      onClick: () => {
-        console.log("password")
-        return true
-      },
+      alt: "toggle password visibility",
     },
   },
 ]

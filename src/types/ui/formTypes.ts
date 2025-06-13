@@ -1,4 +1,4 @@
-import type { IInputProps } from "@/types/ui"
+// import type { IInputProps } from "@/types/ui"
 
 // src/core/coreTypes/formTypes.ts
 export type FormFieldType =
@@ -25,35 +25,35 @@ export interface IImageProperties {
   onClick?: () => boolean
 }
 
-export interface FormField extends Partial<IInputProps> {
+export interface IFormField {
   id: string
-  autoComplete: string
   name: string
-  labelText: string
-  type: FormFieldType
+  type?: string
+  labelText?: string
   placeholder?: string
-  options?: IFormFieldOption[]
   required?: boolean
-  disabled?: boolean
-  readOnly: boolean
-  min?: number | string
-  max?: number | string
   minLength?: number
   maxLength?: number
-  pattern?: string
-  error?: string
-  className?: string
   helperText?: string
-  // TODO:: find a way to use jsx passed in string or pass the asset url
-  iconLeft?: IImageProperties
-  iconRight?: IImageProperties
+  readOnly?: boolean
+  autoComplete?: string
+  iconLeft?: {
+    url: string
+    alt?: string
+    onClick?: () => void
+  }
+  iconRight?: {
+    url: string
+    alt?: string
+    onClick?: () => void
+  }
 }
 
 export interface FormProps<T = Record<string, unknown>>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
   title?: string
   instructions?: string
-  fields: FormField[]
+  fields: IFormField[]
   isEditable?: boolean
   onSubmit: (data: T) => boolean
   submitButtonText?: string

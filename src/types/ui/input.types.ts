@@ -17,6 +17,6 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   containerSizeVariant?: "sm" | "md" | "lg"
   containerClassName?: string
 
-  onLeftIconClick?: (event: React.MouseEvent<HTMLSpanElement>) => boolean
-  onRightIconClick?: (event: React.MouseEvent<HTMLSpanElement>) => boolean
+  onLeftIconClick?: (event: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => void
+  onRightIconClick?: (event: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => void
 }

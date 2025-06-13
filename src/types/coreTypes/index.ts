@@ -26,3 +26,4 @@ export type {
 export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorageParams } from "./indexDB.types"
 export { defaultToastContext } from "./popup.types"
 export type { AriaDecision, IStrictAriaProps } from "./aria.types"
+export type { IFormState, IFormErrors } from "./authForm.types"
