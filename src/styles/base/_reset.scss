@@ -48,6 +48,8 @@ select {
   font: inherit;
 }
 
+input[type="checkbox"],
+.u-clickable,
 button:hover {
   cursor: pointer;
 }

@@ -6,6 +6,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   labelText?: string
+  displayLabel?: boolean
   value?: string
   error?: string
   helperText?: string

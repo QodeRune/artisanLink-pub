@@ -15,6 +15,7 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
   const [formErrors, setFormErrors] = useState<IFormErrors>({})
   const [passwordVisibility, setPasswordVisibility] = useState<{ [key: string]: boolean }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [termDecisionChoice, setTermDecisionChoice] = useState(false)
 
   const { handleLogin, handleSignup } = useAuthHook()
 
@@ -24,6 +25,7 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
     setFormData({})
     setFormErrors({})
     setPasswordVisibility({})
+    setTermDecisionChoice(false)
   }, [propLogin])
 
   // Derive values from the 'isLogin' state
@@ -141,6 +143,26 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
     }
   }
 
+  const termsDecision = isLogin ? null : (
+    <div
+      className="input-container u-clickable u-padding-inline-sm"
+      onClick={() => setTermDecisionChoice(!termDecisionChoice)}
+    >
+      <label htmlFor="terms-decision" />
+      <input
+        checked={termDecisionChoice}
+        onChange={() => setTermDecisionChoice(!termDecisionChoice)}
+        type="checkbox"
+        id="terms-decision"
+        className="u-margin-inline-end-sm u-margin-block-auto"
+        required
+      />
+      <p className="terms-decision-prompt u-inline u-margin-block-auto">
+        I understand & accept terms of service and privacy policy
+      </p>
+    </div>
+  )
+
   return (
     <form className="auth_form" onSubmit={handleSubmit}>
       <h1 className="u-text-heading-md">{actionText}</h1>
@@ -185,9 +207,12 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
             onRightIconClick={handleRightIconClick}
             onChange={handleInputChange}
             isLoading={isSubmitting}
+            displayLabel={false}
           />
         )
       })}
+
+      {termsDecision}
 
       <button type="submit" className="form_input submit_button" disabled={isSubmitting}>
         {isSubmitting ? "Submitting..." : "Submit"}

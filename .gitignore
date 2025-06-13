@@ -1,5 +1,6 @@
 # Custom
 *.sample.*
+.env
 # Logs
 logs
 *.log

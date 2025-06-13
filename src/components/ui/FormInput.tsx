@@ -14,6 +14,7 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
       leftIcon,
       rightIcon,
       labelText = "",
+      displayLabel = true,
       error,
       helperText,
       isLoading,
@@ -70,7 +71,7 @@ export const FormInput = forwardRef<HTMLInputElement, IInputProps>(
     return (
       <div className={containerClasses}>
         <label htmlFor={id} className={labelClasses}>
-          {labelText}
+          <p className={displayLabel ? "" : "sr-only"}>{labelText}</p>
         </label>
         <div className="input_wrapper">
           {leftIcon && (

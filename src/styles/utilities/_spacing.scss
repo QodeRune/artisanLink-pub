@@ -39,6 +39,9 @@
 .u-padding-inline-md {
   padding-inline: var(--size-md);
 }
+.u-padding-inline-sm {
+  padding-inline: var(--size-sm);
+}
 .u-padding-block-md {
   padding-block: var(--size-md);
 }
@@ -52,4 +55,12 @@
 }
 .u-margin-inline-auto {
   margin-inline: auto;
+}
+
+.u-margin-block-auto {
+  margin-block: auto;
+}
+
+.u-margin-inline-end-sm {
+  margin-inline-end: var(--size-sm);
 }

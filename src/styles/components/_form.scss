@@ -25,7 +25,7 @@
   height: var(--input-height);
   outline: none;
   font-size: var(--auth-form-font-size);
-  background-color: hsl(var(--clr-light-500) / 0.5);
+  background-color: hsl(var(--clr-light-500) / 0.45);
 
   padding-inline-start: var(--padding-left, var(--default-auth-input-padding));
   padding-inline-end: var(--padding-right, var(--default-auth-input-padding));
@@ -33,7 +33,8 @@
 
 .form_input:focus {
   box-shadow: var(--soft-shadow);
-  background-color: hsl(var(--clr-light-500) / 0.75);
+  background-color: hsl(var(--clr-light-500) / 0.65);
+  color: hsl(var(--clr-dark-900));
 }
 
 .has_left_icon {
@@ -163,4 +164,48 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.form_input::placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
+  opacity: 1; /* Override Firefox's default lower opacity */
+}
+
+/* For older WebKit browsers (Chrome, Safari, older Edge) */
+.form_input::-webkit-input-placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+/* For Firefox 19+ */
+.form_input::-moz-placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
+  opacity: 1; /* Important for Firefox */
+}
+
+/* For Firefox 4-18 */
+.form_input:-moz-placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
+  opacity: 1; /* Important for Firefox */
+}
+
+/* For Internet Explorer 10-11 */
+.form_input:-ms-input-placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+/* For Microsoft Edge (newer versions might use ::placeholder) */
+.form_input::-ms-input-placeholder {
+  color: hsl(var(--clr-dark-600));
+  font-style: italic;
+  font-size: 0.875rem;
 }
