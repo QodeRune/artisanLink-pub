@@ -8,11 +8,11 @@ import type { IErrorFallbackProps } from "@/types"
  */
 
 // Higher Order Component to wrap any component with an ErrorBoundary
-export function withErrorBoundary(
-  WrappedComponent: ComponentType<any>,
+export function withErrorBoundary<P extends object>(
+  WrappedComponent: ComponentType<P>,
   fallback?: FC<IErrorFallbackProps>,
-): ComponentType<any> {
-  const WithErrorBoundary: FC<any> = (props: any) => (
+): FC<P> {
+  const WithErrorBoundary: FC<P> = (props: P) => (
     <ErrorBoundary fallback={fallback}>
       <WrappedComponent {...props} />
     </ErrorBoundary>

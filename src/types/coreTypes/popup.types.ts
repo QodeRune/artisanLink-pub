@@ -21,7 +21,7 @@ export interface IPopupNotificationItemProps {
   type?: TNotificationType
   size: string
   title?: string
-  onClose?: () => boolean
+  onClose?: () => boolean | void
   className?: string
   overlayClass?: string
   actionButtons?: ReactNode
