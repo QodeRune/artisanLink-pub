@@ -11,6 +11,7 @@ export type {
   IPostRequestArgs,
   IAuthenticatedGetArgs,
   IAuthenticatedPostArgs,
+  IComponentFetchResponse,
 } from "./api.types"
 export type { NestedEnvStructure, MixedEnvStructure } from "./env.types.ts"
 export type { IAuthResponseBody } from "./auth.service.types.ts"

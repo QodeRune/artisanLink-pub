@@ -55,3 +55,9 @@ export interface IAuthenticatedGetArgs extends IGetRequestArgs {
 export interface IAuthenticatedPostArgs extends IPostRequestArgs {
   tokens?: Record<string, string>
 }
+
+export interface IComponentFetchResponse<T = Record<string, any>> {
+  success: boolean
+  message?: string
+  ResponseData?: T
+}

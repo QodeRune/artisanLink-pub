@@ -5,6 +5,8 @@ import { signUpFields, signInFields } from "./FormFields"
 import type { IFormField } from "@/types/ui"
 import { useAuthHook } from "@/store"
 import type { IAuthCredentials, IFormErrors, IFormState, ISignUpData } from "@/types"
+import { useToast } from "@/core/feature/notification"
+import { SuccessMessageConsts } from "@/core/constants"
 
 export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
   formFields,
@@ -18,6 +20,7 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
   const [termDecisionChoice, setTermDecisionChoice] = useState(false)
 
   const { handleLogin, handleSignup } = useAuthHook()
+  const { addToast } = useToast()
 
   useEffect(() => {
     setIsLogin(propLogin)
@@ -125,7 +128,17 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
           email: formData.email as string,
           password: formData.password as string,
         }
-        await handleLogin(credentials)
+        const loggedIn = await handleLogin(credentials)
+        if (loggedIn.success) {
+          addToast({
+            title: "Success!",
+            message: loggedIn.message || SuccessMessageConsts.LOGIN_SUCCESS,
+            type: "success",
+            size: "md",
+            position: "top-right",
+            duration: 3000,
+          })
+        }
       } else {
         const signupData: ISignUpData = {
           first_name: formData.first_name as string,
@@ -133,11 +146,29 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
           email: formData.email as string,
           password: formData.password as string,
         }
-        await handleSignup(signupData)
+        const signedUp = await handleSignup(signupData)
+        if (signedUp.success) {
+          addToast({
+            title: "Success!",
+            message: signedUp.message || SuccessMessageConsts.SIGNUP_SUCCESS,
+            type: "success",
+            size: "md",
+            position: "top-right",
+            duration: 3000,
+          })
+        }
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      // Handle submission errors here
+      const _errorMessage = error instanceof Error ? error.message : "Operation Failed"
+      addToast({
+        title: "Error!",
+        message: _errorMessage,
+        type: "error",
+        size: "md",
+        position: "top-right",
+        duration: 3000,
+      })
     } finally {
       setIsSubmitting(false)
     }

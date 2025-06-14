@@ -1,7 +1,7 @@
 /**
  * Constants for standardized app wide success messages
  */
-export const SuccessMessages = {
+export const SuccessMessageConsts = {
   SUCCESS: "Success.",
   UPDATE_SUCCESS: "Update Successful.",
   SIGNUP_SUCCESS: "Welcome on board",
@@ -10,9 +10,9 @@ export const SuccessMessages = {
 }
 
 /**
- * Constants for standardized error messages across the application
+ * Constants for standardized error messageConsts across the application
  */
-export const ErrorMessages = {
+export const ErrorMessageConsts = {
   GENERAL: "Something went wrong. Please try again later",
   NOT_FOUND: "The requested resource was not found",
   UNAUTHORIZED: "Authentication required. Please log in",
