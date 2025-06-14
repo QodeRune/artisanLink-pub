@@ -3,6 +3,7 @@ import { Component, type ErrorInfo, type FC, type ReactNode } from "react"
 import { AppError } from "./AppError"
 import { ErrorType, ErrorTypeResponse } from "@/core/constants"
 import type { IErrorBoundaryProps, IErrorBoundaryState, IErrorFallbackProps } from "@/types"
+import { ErrorBoundaryFeedBack } from "@/core/feature/appError/ErrorBoundaryFeedBack"
 
 /**
  * ErrorBoundary component to catch JavaScript errors in child component tree
@@ -40,24 +41,27 @@ export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundary
   }
 
   render(): ReactNode {
-    if (this.state.hasError && this.state.error) {
-      // Use custom fallback if provided, otherwise render default error UI
-      if (this.props.fallback) {
-        const FallbackComponent = this.props.fallback
-        return <FallbackComponent error={this.state.error} resetError={this.resetError} />
+    const { hasError, error } = this.state
+    const { fallback, children } = this.props
+
+    if (hasError && error) {
+      if (fallback) {
+        const FallbackComponent = fallback // Explicitly assign to avoid type confusion
+        return <FallbackComponent error={error} resetError={this.resetError} />
       }
 
       // Default fallback UI
       return (
-        <div className="error-boundary-fallback">
-          <h2>Something went wrong</h2>
-          <p>We're sorry, but there was a problem loading this part of the page.</p>
-          <button onClick={this.resetError}>Try again</button>
-        </div>
+        // <div className="error-boundary-fallback">
+        //   <h2>Something went wrong</h2>
+        //   <p>We're sorry, but there was a problem loading this part of the page.</p>
+        //   <button onClick={this.resetError}>Try again</button>
+        // </div>
+        <ErrorBoundaryFeedBack error={error} clearError={this.resetError} />
       )
     }
 
-    return this.props.children
+    return children
   }
 }
 
