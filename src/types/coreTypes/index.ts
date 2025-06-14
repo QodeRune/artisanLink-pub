@@ -7,6 +7,7 @@ export type {
   IErrorInfo,
   IAppErrorParams,
   IHandleErrorParams,
+  IApiResponseError,
 } from "./error.types"
 export type {
   TThemeMode,

@@ -1,6 +1,6 @@
 // src/core/constants/errorConstants.ts
 
-import { ErrorMessages } from "./responseMessageConstants"
+import { ErrorMessageConsts } from "./responseMessageConstants"
 
 /**
  * Types of errors that can occur in the application
@@ -24,91 +24,91 @@ export const ErrorType = {
  * Maps HTTP status codes to user-friendly error messages
  */
 export const StatusCodeMessages: Record<number, string> = {
-  400: ErrorMessages.CLIENT,
-  401: ErrorMessages.UNAUTHORIZED,
-  403: ErrorMessages.FORBIDDEN,
-  404: ErrorMessages.NOT_FOUND,
-  408: ErrorMessages.TIMEOUT,
-  422: ErrorMessages.VALIDATION,
-  429: ErrorMessages.TOO_MANY_REQUESTS,
-  500: ErrorMessages.SERVER,
-  502: ErrorMessages.SERVER,
-  503: ErrorMessages.SERVER,
-  504: ErrorMessages.TIMEOUT,
+  400: ErrorMessageConsts.CLIENT,
+  401: ErrorMessageConsts.UNAUTHORIZED,
+  403: ErrorMessageConsts.FORBIDDEN,
+  404: ErrorMessageConsts.NOT_FOUND,
+  408: ErrorMessageConsts.TIMEOUT,
+  422: ErrorMessageConsts.VALIDATION,
+  429: ErrorMessageConsts.TOO_MANY_REQUESTS,
+  500: ErrorMessageConsts.SERVER,
+  502: ErrorMessageConsts.SERVER,
+  503: ErrorMessageConsts.SERVER,
+  504: ErrorMessageConsts.TIMEOUT,
 }
 
 /**
  * Get a user-friendly message for a given status code
  */
 export function getMessageForStatusCode(statusCode: number): string {
-  return StatusCodeMessages[statusCode] || ErrorMessages.GENERAL
+  return StatusCodeMessages[statusCode] || ErrorMessageConsts.GENERAL
 }
 
 export const ErrorTypeResponse = {
   GENERAL: {
     errorType: ErrorType.GENERAL,
     statusCode: 404,
-    feedbackMessage: ErrorMessages.GENERAL,
+    feedbackMessage: ErrorMessageConsts.GENERAL,
     isLoggable: false,
   },
   NOT_FOUND: {
     errorType: "NOT_FOUND",
     statusCode: 401,
-    feedbackMessage: ErrorMessages.NOT_FOUND,
+    feedbackMessage: ErrorMessageConsts.NOT_FOUND,
     isLoggable: true,
   },
   UNAUTHORIZED: {
     errorType: "UNAUTHORIZED",
     statusCode: 403,
-    feedbackMessage: ErrorMessages.UNAUTHORIZED,
+    feedbackMessage: ErrorMessageConsts.UNAUTHORIZED,
     isLoggable: true,
   },
   FORBIDDEN: {
     errorType: "FORBIDDEN",
     statusCode: 0, // Network errors don't have HTTP status codes
-    feedbackMessage: ErrorMessages.FORBIDDEN,
+    feedbackMessage: ErrorMessageConsts.FORBIDDEN,
     isLoggable: true,
   },
   NETWORK: {
     errorType: "NETWORK",
     statusCode: 408,
-    feedbackMessage: ErrorMessages.NETWORK,
+    feedbackMessage: ErrorMessageConsts.NETWORK,
     isLoggable: true,
   },
   TIMEOUT: {
     errorType: "TIMEOUT",
     statusCode: 500,
-    feedbackMessage: ErrorMessages.TIMEOUT,
+    feedbackMessage: ErrorMessageConsts.TIMEOUT,
     isLoggable: true,
   },
   SERVER: {
     errorType: "SERVER",
     statusCode: 400,
-    feedbackMessage: ErrorMessages.SERVER,
+    feedbackMessage: ErrorMessageConsts.SERVER,
     isLoggable: false,
   },
   CLIENT: {
     errorType: "CLIENT",
     statusCode: 422,
-    feedbackMessage: ErrorMessages.CLIENT,
+    feedbackMessage: ErrorMessageConsts.CLIENT,
     isLoggable: false, // Value errors typically don't need logging
   },
   VALUE: {
     errorType: "VALUE",
     statusCode: 400,
-    feedbackMessage: ErrorMessages.VALUE,
+    feedbackMessage: ErrorMessageConsts.VALUE,
     isLoggable: true,
   },
   SYNTAX: {
     errorType: "SYNTAX",
     statusCode: 500,
-    feedbackMessage: ErrorMessages.SYNTAX,
+    feedbackMessage: ErrorMessageConsts.SYNTAX,
     isLoggable: true,
   },
   REFERENCE: {
     errorType: "REFERENCE",
     statusCode: 200, // Not an actual error, just flow control
-    feedbackMessage: ErrorMessages.REFERENCE,
+    feedbackMessage: ErrorMessageConsts.REFERENCE,
     isLoggable: false,
   },
   CONTROL_FLOW: {

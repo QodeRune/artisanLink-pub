@@ -1,7 +1,6 @@
 // src/core/feature/appError/AppError.ts
-import type { TErrorType, IErrorInfo, IAppErrorParams, IHandleErrorParams } from "@/core/coreTypes"
+import type { TErrorType, IErrorInfo, IAppErrorParams, IHandleErrorParams, IApiResponseError } from "@/types"
 import { ErrorTypeResponse, ErrorType, StatusCodeKeys } from "@/core/constants/errorConstants"
-import type { IApiResponseError } from "@/core/coreTypes/ErrorType"
 
 /**
  * Custom error class to standardize application error handling
@@ -33,12 +32,17 @@ export class AppError extends Error {
     // Ensure the prototype chain is properly maintained in TypeScript
     Object.setPrototypeOf(this, AppError.prototype)
   }
-  // Even more concise version using optional chaining and nullish coalescing
+
   /**
-   * Most concise version using modern JS features
+   * Type guard approach to extracting statusCode (most type-safe)
    */
   private static extractStatusCode(error: IApiResponseError): number {
-    const getValue = (obj: unknown, key: string) => obj?.[key]
+    const getValue = (obj: unknown, key: string): number | undefined => {
+      if (!obj || typeof obj !== "object") return undefined
+      const typedObj = obj as Record<string, unknown>
+      const value = typedObj[key]
+      return typeof value === "number" ? value : undefined
+    }
 
     return (
       StatusCodeKeys.map((key) => getValue(error, key) || getValue(error.response, key)).find(
@@ -260,7 +264,7 @@ export class AppError extends Error {
         statusCode,
         message: error instanceof Error ? error.message : String(error),
         timestamp: new Date().toISOString(),
-        // Add other relevant info without PII
+        !Add other relevant info without PII
       };
 
       telemetryService.logError(telemetryData);

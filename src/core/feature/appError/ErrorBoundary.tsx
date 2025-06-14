@@ -2,7 +2,7 @@
 import { Component, type ErrorInfo, type FC, type ReactNode } from "react"
 import { AppError } from "./AppError"
 import { ErrorType, ErrorTypeResponse } from "@/core/constants"
-import type { IErrorBoundaryProps, IErrorBoundaryState } from "@/core/coreTypes"
+import type { IErrorBoundaryProps, IErrorBoundaryState } from "@/types"
 
 /**
  * ErrorBoundary component to catch JavaScript errors in child component tree
