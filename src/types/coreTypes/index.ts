@@ -1,13 +1,17 @@
 // src/types/coreTypes/index.ts
 export type {
-  IErrorBoundaryProps,
-  IErrorBoundaryState,
-  IErrorTypeResponse,
   TErrorType,
+  TErrorCodes,
+  TStatusCodeKey,
+  IErrorTypeResponse,
   IErrorInfo,
   IAppErrorParams,
   IHandleErrorParams,
+  I_ApiResponseError,
   IApiResponseError,
+  IErrorFallbackProps,
+  IErrorBoundaryProps,
+  IErrorBoundaryState,
 } from "./error.types"
 export type {
   TThemeMode,

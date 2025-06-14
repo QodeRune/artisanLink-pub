@@ -1,6 +1,6 @@
 // src/core/feature/appError/coreTypes/ErrorType.ts
-
 import type { ErrorTypeResponse, StatusCodeKeys, StatusCodeMessages } from "@/core/constants/errorConstants"
+import type { FC, ReactNode } from "react"
 
 export type TErrorType = keyof typeof ErrorTypeResponse
 export type TErrorCodes = keyof typeof StatusCodeMessages
@@ -12,6 +12,7 @@ export interface IErrorTypeResponse {
   feedbackMessage: string
   isLoggable: boolean
 }
+
 /**
  * Structure for standardized error information
  */
@@ -59,10 +60,16 @@ export interface I_ApiResponseError extends Error {
 }
 
 export type IApiResponseError = I_ApiResponseError & StatusCodeProperties
-// Error boundary
+
+// Error boundary interfaces
+export interface IErrorFallbackProps {
+  error: Error
+  resetError: () => void
+}
+
 export interface IErrorBoundaryProps {
-  children: React.ReactNode
-  fallback?: React.ComponentType<{ error: Error; resetError: () => void }>
+  children: ReactNode
+  fallback?: FC<IErrorFallbackProps>
 }
 
 export interface IErrorBoundaryState {

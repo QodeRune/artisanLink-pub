@@ -1,24 +1,27 @@
-// TODO:: revisit
-// import { Component, type ComponentType, type FC } from "react"
-// import { ErrorBoundary } from "./ErrorBoundary" // Adjust path as needed
+// src/core/feature/appError/errorBoundaryutil.ts
+import { type ComponentType, type FC } from "react"
+import { ErrorBoundary } from "./ErrorBoundary" // Adjust path as needed
+import type { IErrorFallbackProps } from "@/types"
 
-// /**
-//  * Higher Order Component to wrap any component with an ErrorBoundary
-//  */
-// export function withErrorBoundary(
-//   WrappedComponent: ComponentType<any>,
-//   fallback?: ComponentType<{ error: Error; resetError: () => void }>,
-// ): ComponentType<any> {
-//   const WithErrorBoundary: FC<any> = (props: any) => (
-//     <ErrorBoundary fallback={fallback}>
-//       <WrappedComponent {...props} />
-//     </ErrorBoundary>
-//   )
+/**
+ * Higher Order Component to wrap any component with an ErrorBoundary
+ */
 
-//   // Set display name for better debugging
-//   WithErrorBoundary.displayName = `WithErrorBoundary(${
-//     WrappedComponent.displayName || WrappedComponent.name || "Component"
-//   })`
+// Higher Order Component to wrap any component with an ErrorBoundary
+export function withErrorBoundary(
+  WrappedComponent: ComponentType<any>,
+  fallback?: FC<IErrorFallbackProps>,
+): ComponentType<any> {
+  const WithErrorBoundary: FC<any> = (props: any) => (
+    <ErrorBoundary fallback={fallback}>
+      <WrappedComponent {...props} />
+    </ErrorBoundary>
+  )
 
-//   return WithErrorBoundary
-// }
+  // Set display name for better debugging
+  WithErrorBoundary.displayName = `WithErrorBoundary(${
+    WrappedComponent.displayName || WrappedComponent.name || "Component"
+  })`
+
+  return WithErrorBoundary
+}

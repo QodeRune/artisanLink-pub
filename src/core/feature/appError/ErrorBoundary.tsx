@@ -2,7 +2,7 @@
 import { Component, type ErrorInfo, type FC, type ReactNode } from "react"
 import { AppError } from "./AppError"
 import { ErrorType, ErrorTypeResponse } from "@/core/constants"
-import type { IErrorBoundaryProps, IErrorBoundaryState } from "@/types"
+import type { IErrorBoundaryProps, IErrorBoundaryState, IErrorFallbackProps } from "@/types"
 
 /**
  * ErrorBoundary component to catch JavaScript errors in child component tree
@@ -64,10 +64,7 @@ export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundary
 /**
  * A reusable fallback component that can be customized
  */
-export const DefaultErrorFallback: FC<{
-  error: Error
-  resetError: () => void
-}> = ({ error, resetError }) => {
+export const DefaultErrorFallback: FC<IErrorFallbackProps> = ({ error, resetError }) => {
   return (
     <div className="error-fallback">
       <h2>Something went wrong</h2>
@@ -76,5 +73,3 @@ export const DefaultErrorFallback: FC<{
     </div>
   )
 }
-
-export default ErrorBoundary
