@@ -5,8 +5,7 @@ import { signUpFields, signInFields } from "./FormFields"
 import type { IFormField } from "@/types/ui"
 import { useAuthHook } from "@/store"
 import type { IAuthCredentials, IFormErrors, IFormState, ISignUpData } from "@/types"
-import { useToast } from "@/core/feature/notification"
-import { SuccessMessageConsts } from "@/core/constants"
+import { useToast, AppError, ErrorMessageConsts, SuccessMessageConsts } from "@/core"
 
 export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
   formFields,
@@ -132,7 +131,7 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
         if (loggedIn.success) {
           addToast({
             title: "Success!",
-            message: loggedIn.message || SuccessMessageConsts.LOGIN_SUCCESS,
+            message: loggedIn.feedbackMessage || SuccessMessageConsts.LOGIN_SUCCESS,
             type: "success",
             size: "md",
             position: "top-right",
@@ -150,7 +149,7 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
         if (signedUp.success) {
           addToast({
             title: "Success!",
-            message: signedUp.message || SuccessMessageConsts.SIGNUP_SUCCESS,
+            message: signedUp.feedbackMessage || SuccessMessageConsts.SIGNUP_SUCCESS,
             type: "success",
             size: "md",
             position: "top-right",
@@ -159,11 +158,14 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
         }
       }
     } catch (error) {
-      console.error("Form submission error:", error)
-      const _errorMessage = error instanceof Error ? error.message : "Operation Failed"
+      const _error = AppError.handle({
+        error: error,
+      })
+
+      const message = _error.feedbackMessage || ErrorMessageConsts.GENERAL
       addToast({
         title: "Error!",
-        message: _errorMessage,
+        message,
         type: "error",
         size: "md",
         position: "top-right",

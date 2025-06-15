@@ -1,10 +1,6 @@
 // src/core/constants/errorConstants.ts
-
 import { ErrorMessageConsts } from "./responseMessageConstants"
 
-/**
- * Types of errors that can occur in the application
- */
 export const ErrorType = {
   GENERAL: "GENERAL",
   NOT_FOUND: "NOT_FOUND",
@@ -18,11 +14,9 @@ export const ErrorType = {
   SYNTAX: "SYNTAX",
   REFERENCE: "REFERENCE",
   CONTROL_FLOW: "CONTROL_FLOW",
+  TOO_MANY_REQUESTS: "TOO_MANY_REQUESTS",
 } as const
 
-/**
- * Maps HTTP status codes to user-friendly error messages
- */
 export const StatusCodeMessages: Record<number, string> = {
   400: ErrorMessageConsts.CLIENT,
   401: ErrorMessageConsts.UNAUTHORIZED,
@@ -37,9 +31,6 @@ export const StatusCodeMessages: Record<number, string> = {
   504: ErrorMessageConsts.TIMEOUT,
 }
 
-/**
- * Get a user-friendly message for a given status code
- */
 export function getMessageForStatusCode(statusCode: number): string {
   return StatusCodeMessages[statusCode] || ErrorMessageConsts.GENERAL
 }
@@ -47,74 +38,80 @@ export function getMessageForStatusCode(statusCode: number): string {
 export const ErrorTypeResponse = {
   GENERAL: {
     errorType: ErrorType.GENERAL,
-    statusCode: 404,
+    statusCode: 500,
     feedbackMessage: ErrorMessageConsts.GENERAL,
-    isLoggable: false,
+    isLoggable: true,
   },
   NOT_FOUND: {
-    errorType: "NOT_FOUND",
-    statusCode: 401,
+    errorType: ErrorType.NOT_FOUND,
+    statusCode: 404,
     feedbackMessage: ErrorMessageConsts.NOT_FOUND,
     isLoggable: true,
   },
   UNAUTHORIZED: {
-    errorType: "UNAUTHORIZED",
-    statusCode: 403,
+    errorType: ErrorType.UNAUTHORIZED,
+    statusCode: 401,
     feedbackMessage: ErrorMessageConsts.UNAUTHORIZED,
     isLoggable: true,
   },
   FORBIDDEN: {
-    errorType: "FORBIDDEN",
-    statusCode: 0, // Network errors don't have HTTP status codes
+    errorType: ErrorType.FORBIDDEN,
+    statusCode: 403,
     feedbackMessage: ErrorMessageConsts.FORBIDDEN,
     isLoggable: true,
   },
   NETWORK: {
-    errorType: "NETWORK",
-    statusCode: 408,
+    errorType: ErrorType.NETWORK,
+    statusCode: 0, // No HTTP status for network errors
     feedbackMessage: ErrorMessageConsts.NETWORK,
     isLoggable: true,
   },
   TIMEOUT: {
-    errorType: "TIMEOUT",
-    statusCode: 500,
+    errorType: ErrorType.TIMEOUT,
+    statusCode: 408,
     feedbackMessage: ErrorMessageConsts.TIMEOUT,
     isLoggable: true,
   },
   SERVER: {
-    errorType: "SERVER",
-    statusCode: 400,
+    errorType: ErrorType.SERVER,
+    statusCode: 500,
     feedbackMessage: ErrorMessageConsts.SERVER,
-    isLoggable: false,
-  },
-  CLIENT: {
-    errorType: "CLIENT",
-    statusCode: 422,
-    feedbackMessage: ErrorMessageConsts.CLIENT,
-    isLoggable: false, // Value errors typically don't need logging
-  },
-  VALUE: {
-    errorType: "VALUE",
-    statusCode: 400,
-    feedbackMessage: ErrorMessageConsts.VALUE,
     isLoggable: true,
   },
+  CLIENT: {
+    errorType: ErrorType.CLIENT,
+    statusCode: 400,
+    feedbackMessage: ErrorMessageConsts.CLIENT,
+    isLoggable: false,
+  },
+  VALUE: {
+    errorType: ErrorType.VALUE,
+    statusCode: 422,
+    feedbackMessage: ErrorMessageConsts.VALUE,
+    isLoggable: false,
+  },
   SYNTAX: {
-    errorType: "SYNTAX",
-    statusCode: 500,
+    errorType: ErrorType.SYNTAX,
+    statusCode: 400,
     feedbackMessage: ErrorMessageConsts.SYNTAX,
     isLoggable: true,
   },
   REFERENCE: {
-    errorType: "REFERENCE",
-    statusCode: 200, // Not an actual error, just flow control
+    errorType: ErrorType.REFERENCE,
+    statusCode: 500,
     feedbackMessage: ErrorMessageConsts.REFERENCE,
-    isLoggable: false,
+    isLoggable: true,
   },
   CONTROL_FLOW: {
-    errorType: "CONTROL_FLOW",
-    statusCode: 500,
-    feedbackMessage: "Something went wrong. Please try again later",
+    errorType: ErrorType.CONTROL_FLOW,
+    statusCode: 200, // Not a failure
+    feedbackMessage: ErrorMessageConsts.GENERAL,
+    isLoggable: false,
+  },
+  TOO_MANY_REQUESTS: {
+    errorType: ErrorType.TOO_MANY_REQUESTS,
+    statusCode: 429,
+    feedbackMessage: ErrorMessageConsts.TOO_MANY_REQUESTS,
     isLoggable: true,
   },
 }

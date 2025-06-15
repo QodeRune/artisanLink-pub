@@ -2,29 +2,34 @@
 import type { StateCreator } from "zustand"
 import type { IAuthCredentials, ISignUpData, TAuthSlice, TAuthStore } from "@/types"
 import { authService } from "@/services"
-import { getAccessToken, getRefreshToken } from "@/core/utils"
-import { AppError } from "@/core/feature/appError/AppError"
+import { getAccessToken, getRefreshToken, AppError, ErrorType, ErrorMessageConsts } from "@/core"
 
 export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (set, get) => ({
-  isLoggedIn: true,
-  isAuthLoading: true,
+  isLoggedIn: false,
+  isAuthLoading: false,
   authError: null,
 
-  // set tokens then update state
   login: async (credentials: IAuthCredentials) => {
     try {
-      set({ isAuthLoading: true })
+      set({ isAuthLoading: true, authError: null })
       const responseData = await authService.login(credentials)
       const { success, message, data } = responseData
+
       if (!data || !success) {
         throw AppError.handleControlFlowError({
-          error: "",
-          feedbackMessage: "Login Failed",
+          error: new Error("Invalid login response"),
+          feedbackMessage: ErrorMessageConsts.INVALID_CREDENTIALS,
         })
-        // throw new Error("Login failed")
       }
 
-      const { user, access_token, refresh_token } = data ?? {}
+      const { user, access_token, refresh_token } = data
+      if (!access_token || !refresh_token) {
+        throw AppError.handleControlFlowError({
+          error: new Error("Missing tokens"),
+          feedbackMessage: "Login failed due to missing tokens",
+        })
+      }
+
       authService.setTokens({ accessToken: access_token, refreshToken: refresh_token })
 
       set({
@@ -33,35 +38,42 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
         authError: null,
         user,
       })
-      return { success, message }
+      return { success: success, feedbackMessage: message }
     } catch (error) {
-      const _errorMessage = error instanceof Error ? error.message : "Login failed"
-      set({ isAuthLoading: false, authError: _errorMessage })
-      throw AppError.handle({
-        error: error,
+      const appError = AppError.handle({
+        error,
+        errorType: error instanceof AppError ? error.errorType : ErrorType.GENERAL,
+        feedbackMessage: error instanceof AppError ? error.feedbackMessage : ErrorMessageConsts.GENERAL,
       })
+      set({ isAuthLoading: false, authError: appError.feedbackMessage })
+      throw appError
     }
   },
 
   signup: async (signupData: ISignUpData) => {
     try {
-      set({ isAuthLoading: true, authError: null }) // Initial loading state
+      set({ isAuthLoading: true, authError: null })
       const responseData = await authService.signup(signupData)
 
-      // TODO:: use generic error handling
       if (!responseData) {
-        throw new Error("Error processing signup")
+        throw AppError.handleControlFlowError({
+          error: new Error("No response from signup"),
+          feedbackMessage: "Signup failed due to invalid response",
+        })
       }
 
       const { success, message, data } = responseData
       const { user, access_token, refresh_token } = data ?? {}
 
-      if (access_token && refresh_token) {
-        authService.setTokens({ accessToken: access_token, refreshToken: refresh_token })
-
-        // Wait a tiny bit to ensure storage is updated
-        await new Promise((resolve) => setTimeout(resolve, 10))
+      if (!success || !access_token || !refresh_token) {
+        throw AppError.handleControlFlowError({
+          error: new Error("Invalid signup response"),
+          feedbackMessage: "Signup failed",
+        })
       }
+
+      authService.setTokens({ accessToken: access_token, refreshToken: refresh_token })
+      await new Promise((resolve) => setTimeout(resolve, 10))
 
       set({
         isLoggedIn: true,
@@ -69,22 +81,32 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
         authError: null,
         user,
       })
-
-      return { success, message }
+      return { success: success, feedbackMessage: message }
     } catch (error) {
-      const _errorMessage = error instanceof Error ? error.message : "Signup failed"
-      set({ isAuthLoading: false, authError: _errorMessage })
-      return { success: false, message: _errorMessage }
+      const appError = AppError.handle({
+        error,
+        errorType: error instanceof AppError ? error.errorType : ErrorType.GENERAL,
+        feedbackMessage: error instanceof AppError ? error.feedbackMessage : ErrorMessageConsts.GENERAL,
+      })
+      set({ isAuthLoading: false, authError: appError.feedbackMessage })
+      throw appError
     }
   },
 
   logout: () => {
-    set({
-      isLoggedIn: false,
-      user: null,
-    })
-    authService.clearTokens() // Ensure tokens are cleared
-    return { success: true }
+    try {
+      set({ isLoggedIn: false, user: null, authError: null })
+      authService.clearTokens()
+      return { success: true }
+    } catch (error) {
+      const appError = AppError.handle({
+        error,
+        errorType: ErrorType.GENERAL,
+        feedbackMessage: "Logout failed",
+      })
+      set({ authError: appError.feedbackMessage })
+      throw appError
+    }
   },
 
   updateTokens: ({ refresh_token, access_token, useSessionStorage = true }) => {
@@ -96,9 +118,12 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
       })
       return { success: true }
     } catch (error) {
-      // TODO:: log or handle error
-      // TODO:: also look into update storage utils to return boolean instead of void
-      return { success: false }
+      const appError = AppError.handle({
+        error,
+        errorType: ErrorType.GENERAL,
+        feedbackMessage: "Failed to update tokens",
+      })
+      throw appError
     }
   },
 
@@ -106,52 +131,64 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
   setAuthState: (state) => set(state),
 
   isUserPresent: () => {
-    // Check for tokens first,
-    const accessToken = getAccessToken()
-    const refreshToken = getRefreshToken()
-    const _user = authService.get_stored_user()
+    try {
+      const accessToken = getAccessToken()
+      const refreshToken = getRefreshToken()
+      const _user = authService.get_stored_user()
 
-    console.log(
-      "isUserPresent - Token check:",
-      accessToken ? "access exists" : "access missing",
-      refreshToken ? "refresh exists" : "refresh missing",
-    )
+      console.log(
+        "isUserPresent - Token check:",
+        accessToken ? "access exists" : "access missing",
+        refreshToken ? "refresh exists" : "refresh missing",
+      )
 
-    if ((!accessToken && !refreshToken) || !_user?.id) {
-      return { success: false }
+      if ((!accessToken && !refreshToken) || !_user?.id) {
+        return { success: false }
+      }
+
+      return { success: true, ResponseData: { userId: _user.id } }
+    } catch (error) {
+      const appError = AppError.handle({
+        error,
+        errorType: ErrorType.GENERAL,
+        feedbackMessage: "Failed to check user presence",
+      })
+      throw appError
     }
-
-    return { success: true, data: { userId: _user.id } }
   },
 
   init: async () => {
-    const { success, ResponseData } = get().isUserPresent()
-
-    if (!success || !ResponseData?.userId) {
-      set({ isLoggedIn: false, isAuthLoading: false })
-      return { success: false }
-    }
-
-    set({ isAuthLoading: true })
-
     try {
-      const responseData = await authService.refresh(ResponseData?.userId)
+      const { success, resData } = get().isUserPresent()
+
+      if (!success || !resData?.userId) {
+        set({ isLoggedIn: false, isAuthLoading: false })
+        return { success: false, message: "No user session found" }
+      }
+
+      set({ isAuthLoading: true })
+
+      const responseData = await authService.refresh(resData.userId)
       if (!responseData?.data) {
-        throw new Error("Error validating user")
+        throw AppError.handleControlFlowError({
+          error: new Error("Invalid refresh response"),
+          feedbackMessage: "Failed to validate user session",
+        })
       }
 
       const { refresh_token, access_token } = responseData.data
       authService.setTokens({ refreshToken: refresh_token, accessToken: access_token })
 
-      set({ isLoggedIn: true, isAuthLoading: false })
-
+      set({ isLoggedIn: true, isAuthLoading: false, authError: null })
       return { success: true, message: responseData.message }
     } catch (error) {
-      console.error("Token refresh failed:", error)
-      // TODO:: state error should probably be the full errors for telemetry purposes
-      const _errorMessage = error instanceof Error ? error.message : "Auth Error"
-      set({ isLoggedIn: false, isAuthLoading: false, authError: _errorMessage })
-      return { success: false, message: _errorMessage }
+      const appError = AppError.handle({
+        error,
+        errorType: error instanceof AppError ? error.errorType : ErrorType.GENERAL,
+        feedbackMessage: error instanceof AppError ? error.feedbackMessage : ErrorMessageConsts.SESSION_EXPIRED,
+      })
+      set({ isLoggedIn: false, isAuthLoading: false, authError: appError.feedbackMessage })
+      throw appError
     }
   },
 })

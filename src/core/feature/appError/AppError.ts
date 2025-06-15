@@ -108,39 +108,47 @@ export class AppError extends Error {
    * Determines the error type based on the error instance
    */
   private static determineErrorType(error: unknown): TErrorType {
+    // Handle custom error types
+    if (typeof error === "object" && error !== null && "type" in error && typeof error.type === "string") {
+      if (Object.values(ErrorType).includes(error.type as TErrorType)) {
+        return error.type as TErrorType
+      }
+    }
+
+    // JavaScript errors
     if (error instanceof TypeError) return ErrorType.VALUE
     if (error instanceof SyntaxError) return ErrorType.SYNTAX
     if (error instanceof ReferenceError) return ErrorType.REFERENCE
 
-    // Check for network-related errors
+    // Network and timeout errors
     if (error instanceof Error) {
       if (error.name === "AbortError") return ErrorType.TIMEOUT
-
-      // Handle fetch errors
-      if (
-        error.message.includes("NetworkError") ||
-        error.message.includes("Failed to fetch") ||
-        error.message.toLowerCase().includes("network")
-      ) {
+      if (error.message.includes("Failed to fetch") || error.message.toLowerCase().includes("network")) {
         return ErrorType.NETWORK
       }
-
       if (error.message.includes("timeout") || error.message.includes("timed out")) {
         return ErrorType.TIMEOUT
       }
+      if ("cause" in error && error.cause) {
+        return this.determineErrorType(error.cause)
+      }
     }
 
-    // Handle HTTP errors using the new flexible approach
+    // HTTP errors
     if (this.isApiResponseError(error)) {
       const status = this.extractStatusCode(error)
-
       if (status === 404) return ErrorType.NOT_FOUND
       if (status === 401) return ErrorType.UNAUTHORIZED
       if (status === 403) return ErrorType.FORBIDDEN
+      if (status === 408) return ErrorType.TIMEOUT
+      if (status === 422) return ErrorType.VALUE
+      if (status === 429) return ErrorType.TOO_MANY_REQUESTS
       if (status >= 500) return ErrorType.SERVER
       if (status >= 400) return ErrorType.CLIENT
     }
 
+    // Log unrecognized errors for debugging
+    console.warn("Unrecognized error in determineErrorType:", error)
     return ErrorType.GENERAL
   }
 

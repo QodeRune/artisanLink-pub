@@ -58,6 +58,6 @@ export interface IAuthenticatedPostArgs extends IPostRequestArgs {
 
 export interface IComponentFetchResponse<T = Record<string, any>> {
   success: boolean
-  message?: string
-  ResponseData?: T
+  feedbackMessage?: string
+  resData?: T
 }
