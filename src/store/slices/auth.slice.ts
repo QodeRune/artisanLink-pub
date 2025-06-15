@@ -137,6 +137,7 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
       const _user = authService.get_stored_user()
 
       console.log(
+        //TODO:: Remove console.log
         "isUserPresent - Token check:",
         accessToken ? "access exists" : "access missing",
         refreshToken ? "refresh exists" : "refresh missing",
@@ -146,7 +147,7 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
         return { success: false }
       }
 
-      return { success: true, ResponseData: { userId: _user.id } }
+      return { success: true, resData: { userId: _user.id } }
     } catch (error) {
       const appError = AppError.handle({
         error,

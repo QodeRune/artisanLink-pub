@@ -38,7 +38,7 @@ export const useAuthHook = () => {
     return await init()
   }, [init])
 
-  const handleUserPresent = useCallback(async () => {
+  const handleUserPresent = useCallback(() => {
     return isUserPresent()
   }, [isUserPresent])
 
@@ -46,7 +46,7 @@ export const useAuthHook = () => {
     async (params: ITokenStorageParams) => {
       return updateTokens(params)
     },
-    [isUserPresent],
+    [updateTokens],
   )
 
   return {
