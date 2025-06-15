@@ -3,6 +3,7 @@ import { Navigate, type RouteObject } from "react-router-dom"
 import { OnBoarding } from "../pages/onboarding/onboarding"
 import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
 import { AuthForm, AuthPage } from "@/core"
+import { NotFoundPage } from "@/pages"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
 
@@ -76,4 +77,5 @@ export const Routes: RouteObject[] = [
       },
     ],
   },
+  { path: "*", element: <NotFoundPage /> },
 ]

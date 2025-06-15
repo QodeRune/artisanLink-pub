@@ -3,6 +3,7 @@ import type { StateCreator } from "zustand"
 import type { IAuthCredentials, ISignUpData, TAuthSlice, TAuthStore } from "@/types"
 import { authService } from "@/services"
 import { getAccessToken, getRefreshToken } from "@/core/utils"
+import { AppError } from "@/core/feature/appError/AppError"
 
 export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (set, get) => ({
   isLoggedIn: true,
@@ -14,11 +15,15 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
     try {
       set({ isAuthLoading: true })
       const responseData = await authService.login(credentials)
-      if (!responseData?.data) {
-        throw new Error("Login failed")
+      const { success, message, data } = responseData
+      if (!data || !success) {
+        throw AppError.handleControlFlowError({
+          error: "",
+          feedbackMessage: "Login Failed",
+        })
+        // throw new Error("Login failed")
       }
 
-      const { success, message, data } = responseData
       const { user, access_token, refresh_token } = data ?? {}
       authService.setTokens({ accessToken: access_token, refreshToken: refresh_token })
 
@@ -32,7 +37,9 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
     } catch (error) {
       const _errorMessage = error instanceof Error ? error.message : "Login failed"
       set({ isAuthLoading: false, authError: _errorMessage })
-      return { success: false, message: _errorMessage }
+      throw AppError.handle({
+        error: error,
+      })
     }
   },
 
