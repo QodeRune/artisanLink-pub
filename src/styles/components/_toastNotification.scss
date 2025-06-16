@@ -7,8 +7,8 @@
   gap: var(--size-sm-3);
   padding: var(--size-sm-5);
   border-radius: var(--size-sm-4);
-  background-color: hsl(var(--clr-primary-400));
-  color: white;
+  background-color: hsl(var(--clr-surface-alt));
+  color: hsl(var(--clr-on-surface));
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   position: relative;
 
@@ -37,7 +37,6 @@
 
   .toast-body {
     font-size: var(--size-sm-5_14);
-    color: hsl(var(--clr-primary-200));
   }
 
   .toast-actions {
@@ -54,6 +53,7 @@
     align-self: start;
     justify-self: end;
     font-size: 1.2rem;
+    color: red;
   }
 }
 
@@ -80,7 +80,7 @@
     "icon actions close";
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto auto;
-  background-color: white;
+  background-color: hsl(var(--clr-surface-alt));
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   pointer-events: all;
@@ -93,19 +93,19 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-.toast.success {
+.toast-notification-success {
   --toast-color: #28a745;
 }
-.toast.error {
+.toast-notification-error {
   --toast-color: #dc3545;
 }
-.toast.info {
+.toast-notification-info {
   --toast-color: #17a2b8;
 }
-.toast.warning {
+.toast-notification-warning {
   --toast-color: #ffc107;
 }
-.toast.default {
+.toast-notification-default {
   --toast-color: #6c757d;
 }
 

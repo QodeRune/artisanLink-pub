@@ -28,6 +28,7 @@ export interface IAuthActions {
   setAuthState: (state: Partial<IAuthState>) => void
   updateTokens: (params: ITokenStorageParams) => IComponentFetchResponse
   isUserPresent: () => IComponentFetchResponse<{ userId: string }>
+  authUpdateUserData: ({ userId }: { userId: string }) => Promise<IComponentFetchResponse<{}>>
 }
 
 export type TAuthSlice = IAuthState & IAuthActions

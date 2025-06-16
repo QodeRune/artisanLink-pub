@@ -15,6 +15,7 @@ export const useAuthHook = () => {
   const setAuthState = useAppStore((state: IAppState) => state.setAuthState)
   const isUserPresent = useAppStore((state: IAppState) => state.isUserPresent)
   const updateTokens = useAppStore((state: IAppState) => state.updateTokens)
+  const authUpdateUserData = useAppStore((state: IAppState) => state.authUpdateUserData)
 
   const handleLogin = useCallback(
     async (credentials: IAuthCredentials) => {
@@ -48,6 +49,12 @@ export const useAuthHook = () => {
     },
     [updateTokens],
   )
+  const handleAuthUpdateUserData = useCallback(
+    async (params: { userId: string }) => {
+      return authUpdateUserData(params)
+    },
+    [authUpdateUserData],
+  )
 
   return {
     handleInit,
@@ -58,6 +65,7 @@ export const useAuthHook = () => {
     handleLogout,
     setAuthState,
     isUserPresent,
+    handleAuthUpdateUserData,
     isLoggedIn,
     isAuthLoading,
     isLoading,

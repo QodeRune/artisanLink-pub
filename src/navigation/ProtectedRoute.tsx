@@ -1,18 +1,18 @@
 // src/navigation/ProtectedRoute.tsx
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { RoutePaths } from "@/navigation/routePaths"
 import { useAuthHook } from "@/store"
-import { Navigate, Outlet } from "react-router-dom"
 
-// ProtectedRoute component to guard routes
 export const ProtectedRoute: React.FC = () => {
   const { isLoggedIn, isAuthLoading } = useAuthHook()
+  const location = useLocation()
 
   if (isAuthLoading) {
-    return <div>Loading...</div> // Replace with your loading component
+    return <div>Loading...</div> // TODO:: Replace with <LoadingSpinner />
   }
 
   if (!isLoggedIn) {
-    return <Navigate to={RoutePaths.AUTH} replace />
+    return <Navigate to={RoutePaths.AUTH} state={{ from: location }} replace />
   }
 
   return <Outlet />

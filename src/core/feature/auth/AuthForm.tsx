@@ -6,11 +6,16 @@ import type { IFormField } from "@/types/ui"
 import { useAuthHook } from "@/store"
 import type { IAuthCredentials, IFormErrors, IFormState, ISignUpData } from "@/types"
 import { useToast, AppError, ErrorMessageConsts, SuccessMessageConsts } from "@/core"
+import { RoutePaths } from "@/navigation"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
   formFields,
   login: propLogin = true,
 }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const [isLogin, setIsLogin] = useState(propLogin)
   const [formData, setFormData] = useState<IFormState>({})
   const [formErrors, setFormErrors] = useState<IFormErrors>({})
@@ -157,6 +162,8 @@ export const AuthForm: FC<{ formFields?: IFormField[]; login?: boolean }> = ({
           })
         }
       }
+      const from = location.state?.from?.pathname || RoutePaths.ONBOARDING_WATCH_VIDEO
+      navigate(from, { replace: true })
     } catch (error) {
       const _error = AppError.handle({
         error: error,

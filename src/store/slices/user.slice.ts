@@ -1,5 +1,4 @@
 // src/store/slices/user.slice.ts
-// src/store/slices/user/user.slice.ts
 import type { StateCreator } from "zustand"
 import type { TUserSlice, TAuthStore, IUser } from "@/types"
 import { userService } from "@/services"

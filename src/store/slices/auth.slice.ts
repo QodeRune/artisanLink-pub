@@ -1,7 +1,7 @@
 // src/store/auth.slice.ts
 import type { StateCreator } from "zustand"
 import type { IAuthCredentials, ISignUpData, TAuthSlice, TAuthStore } from "@/types"
-import { authService } from "@/services"
+import { authService, userService } from "@/services"
 import { getAccessToken, getRefreshToken, AppError, ErrorType, ErrorMessageConsts } from "@/core"
 
 export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (set, get) => ({
@@ -158,6 +158,28 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
     }
   },
 
+  authUpdateUserData: async ({ userId }) => {
+    const responseData = await authService.refresh(userId)
+    console.log(responseData)
+
+    if (!responseData?.data) {
+      throw AppError.handleControlFlowError({
+        error: new Error("Invalid refresh response"),
+        feedbackMessage: "Failed to validate user session",
+      })
+    }
+
+    console.log(responseData)
+    const { refresh_token, access_token, user } = responseData.data
+    get().updateTokens({ refreshToken: refresh_token, accessToken: access_token })
+
+    const updatedUser = await userService.updateMe({ user_id: userId, userUpdates: user })
+    if (!updatedUser) {
+      throw new Error("Error updating user data") // TODO:: user AppError
+    }
+    return { success: true, responseData: updatedUser }
+  },
+
   init: async () => {
     try {
       const { success, resData } = get().isUserPresent()
@@ -177,8 +199,9 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
         })
       }
 
+      console.log(responseData)
       const { refresh_token, access_token } = responseData.data
-      authService.setTokens({ refreshToken: refresh_token, accessToken: access_token })
+      get().updateTokens({ refreshToken: refresh_token, accessToken: access_token })
 
       set({ isLoggedIn: true, isAuthLoading: false, authError: null })
       return { success: true, message: responseData.message }
