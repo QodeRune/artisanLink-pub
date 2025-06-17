@@ -9,3 +9,4 @@ export type {
   TAuthStore,
 } from "./auth.slice.types"
 export type { IAppState } from "./app.store.types"
+export type { IProductSlice } from "./product.slice.types"
