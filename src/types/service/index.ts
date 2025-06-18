@@ -16,5 +16,11 @@ export type {
 export type { NestedEnvStructure, MixedEnvStructure } from "./env.types"
 export type { IAuthResponseBody } from "./auth.service.types"
 export type { IUpdateUserProps } from "./user.service.types"
-export type { TPaymentStatus, IFetchProductArgs } from "./product.service.types"
+export type {
+  TPaymentStatus,
+  IFetchProductArgs,
+  IPaymentResponse,
+  IStripePaymentArgs,
+  IStripeSessionDetails,
+} from "./product.service.types"
 export { KPaymentStatus } from "./product.service.types"

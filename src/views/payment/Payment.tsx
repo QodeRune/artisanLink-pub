@@ -1,6 +1,10 @@
 // src/views/Payment.tsx
-import type { FC } from "react"
+import { useEffect, useState, type FC } from "react"
 import { FormInput } from "@/components"
+import { useProductHook, useUserHook } from "@/store"
+import { KPaymentStatus, type IFetchProductArgs, type IPaymentResponse } from "@/types"
+import { stripePaymentService } from "@/services"
+import clsx from "clsx"
 // import { PaymentResponse } from "./PaymentResponse"
 // import { Outlet } from "react-router-dom"
 
@@ -16,7 +20,57 @@ const _promo = {
   helperText: "Please enter your Promo Code",
 }
 
-export const ProductPayment: FC = () => {
+export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
+  productName = "CAREER_TAPESTRY_SNAPSHOT",
+  paymentStatus = KPaymentStatus.checkout,
+  responseComponent,
+}) => {
+  const { fetchProduct, getProductData, isProductLoading } = useProductHook()
+  const { user: _user } = useUserHook()
+  const user = Array.isArray(_user) ? _user[0] : _user
+  const [canPay, setCanPay] = useState<boolean>(false)
+
+  useEffect(() => {
+    setCanPay(paymentStatus !== KPaymentStatus.success)
+    fetchProduct({ productName })
+  }, [productName])
+
+  const productData = getProductData()
+  const price = parseFloat(productData?.price ?? "0")
+  const discount = typeof productData?.discount === "string" ? parseFloat(productData.discount) : 0
+  const total = (price - discount).toFixed(2)
+  const currency = (productData?.currency ?? "USD").toUpperCase()
+
+  const pay = () => {
+    // console.log(`productData:\n ${productData}, \n, user: \n ${user}`)
+    if (!canPay) {
+      // TODO:: add toast here
+      return
+    }
+
+    try {
+      if (!productData || !user) {
+        throw new Error("Product data or user information is missing")
+      }
+
+      if (!productData.id || !user.id || !user.email) {
+        throw new Error("Required fields missing in product or user data")
+      }
+
+      stripePaymentService({
+        product_id: productData.id,
+        user: {
+          id: user.id,
+          email: user.email,
+        },
+      })
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const invoiceClasses = clsx(["invoice", `${isProductLoading ? "u-loading" : ""}`])
+
   const _productSection = (
     <div className="grid-section product-section">
       {/* item 1 */}
@@ -32,18 +86,14 @@ export const ProductPayment: FC = () => {
           />
         </span>
         <span className="product-details">
-          <h2 className="product-name">Career Tapestry Snap shot</h2>
-          <p className="product-about">
-            This will contain details about the product This will contain details about the product This will contain
-            details about the product
-          </p>
+          <h2 className="product-name">{productData?.product_name}</h2>
+          <p className="product-about">{productData?.product_description}</p>
         </span>
         <span className="product-cost">
           <p className="product-price">
-            <strong>$100.00</strong>
+            <strong>{`${currency} ${price}`}</strong>
           </p>
           <span className="product-qty">
-            {/* Added aria-label for buttons, changed p to input type="number" */}
             <button
               className="quantity-button minus-button"
               aria-label="Decrease quantity of Career Tapestry Snap shot"
@@ -104,29 +154,23 @@ export const ProductPayment: FC = () => {
           <strong>Total</strong>
         </li>
         <li className="summary-list-item">
-          <strong>$90.00</strong>
+          <strong>{`${currency} ${total}`}</strong>
         </li>
       </ul>
       {/* Changed to button for better semantic meaning, especially if not directly submitting a form */}
-      <button type="button" className="form_input submit_button">
+      <button type="button" className="form_input submit_button" onClick={pay} disabled={canPay}>
         Confirm & Checkout
       </button>
     </div>
   )
 
+  const lastEl = responseComponent || _paymentDetails
+
   return (
-    <section className="invoice">
+    <section className={invoiceClasses}>
       <h1 className="u-text-heading-lg">Invoice</h1>
       {_productSection}
-      {/* TODO:: success or failed responses will replace the _paymentDetails */}
-      {_paymentDetails}
-      {/* <PaymentResponse
-        status="success"
-        onProceed={() => {
-          console.log("proceed to next route")
-          // navigate("/somewhere") or trigger Zustand action
-        }}
-      /> */}
+      {lastEl}
     </section>
   )
 }
