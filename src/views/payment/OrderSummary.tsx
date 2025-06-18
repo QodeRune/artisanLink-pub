@@ -6,7 +6,7 @@ export const OrderSummary: FC<{
   totalCost?: string | number
   price?: string | number
   discount?: string | number
-  quantity: string | number
+  quantity?: string | number
 }> = ({ currency = "usd", totalCost = 90, price = 100, discount = 10, quantity = 1 }) => {
   return (
     <>

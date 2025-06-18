@@ -3,8 +3,8 @@ import type { ReactNode } from "react"
 export const KPaymentStatus = {
   checkout: "Confirm & Checkout",
   success: "Payment Successful",
-  cancelled: "Cancelled",
-  error: "Error Confirming Payment",
+  cancelled: "Payment Cancelled",
+  error: "Error - Retry Payment",
 } as const
 
 export type TPaymentStatus = (typeof KPaymentStatus)[keyof typeof KPaymentStatus]

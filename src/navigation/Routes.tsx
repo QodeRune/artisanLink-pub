@@ -1,15 +1,22 @@
 // src/navigation/routes.ts
 import { Navigate, type RouteObject } from "react-router-dom"
 import { OnBoarding, NotFoundPage } from "@/pages"
-import { AssessmentList, ProductPayment, TermsAndConditions, WatchVideo, PaymentResponse } from "@/views"
+import {
+  AssessmentList,
+  ProductPayment,
+  TermsAndConditions,
+  WatchVideo,
+  PaymentResponse,
+  PaymentDetails,
+} from "@/views"
 import { AuthForm, AuthPage } from "@/core"
 import { RoutePaths } from "./routePaths"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
 import { Logout } from "@/components"
 import { Initializer } from "./AppInit"
+import { KPaymentStatus } from "@/types"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
-import { ProductDetails } from "../views/payment/ProductDetails"
 
 export const Routes: RouteObject[] = [
   {
@@ -48,9 +55,19 @@ export const Routes: RouteObject[] = [
                 path: "payment",
                 element: <ProductPayment />,
                 children: [
-                  { path: "success", element: <ProductDetails /> },
-                  { path: "cancel", element: <ProductPayment /> },
-                  { path: "error", element: <ProductPayment /> },
+                  { index: true, element: <PaymentDetails /> }, // default view
+                  {
+                    path: "success",
+                    element: <PaymentResponse status={KPaymentStatus.success} onProceed={() => console.log("")} />,
+                  },
+                  {
+                    path: "error",
+                    element: <PaymentResponse status={KPaymentStatus.error} onProceed={() => console.log("")} />,
+                  },
+                  {
+                    path: "cancel",
+                    element: <PaymentResponse status={KPaymentStatus.cancelled} onProceed={() => console.log("")} />,
+                  }, // Optional alias
                 ],
               },
               { path: "assessments", element: <AssessmentList /> },
@@ -58,7 +75,10 @@ export const Routes: RouteObject[] = [
               {
                 path: "acceptance-status",
                 element: (
-                  <PaymentResponse status={"success"} onProceed={() => console.log("TODO:: acceptance status")} />
+                  <PaymentResponse
+                    status={KPaymentStatus.success}
+                    onProceed={() => console.log("TODO:: acceptance status")}
+                  />
                 ),
               },
               { path: "program-terms-and-conditions", element: <TermsAndConditions /> },

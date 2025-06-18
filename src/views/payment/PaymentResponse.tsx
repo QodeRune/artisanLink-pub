@@ -1,19 +1,20 @@
 // src/views/payment/PaymentResponse.tsx
 import { type FC } from "react"
 import { ErrorIcon, SuccessIcon } from "@/components"
-import { ProductDetails } from "./ProductDetails"
+import { OrderSummary } from "@/views/payment/OrderSummary"
+import { KPaymentStatus, type TPaymentStatus } from "@/types"
 
 type PaymentResponseProps = {
-  status: "success" | "error"
+  status: TPaymentStatus
   onProceed: () => void
 }
 
 export const PaymentResponse: FC<PaymentResponseProps> = ({ status, onProceed }) => (
   <div className="payment-response">
-    <ProductDetails />
-    {status === "success" ? <SuccessIcon /> : <ErrorIcon />}
+    <OrderSummary />
+    {status === KPaymentStatus.success ? <SuccessIcon /> : <ErrorIcon />}
     <button type="button" className="form_input submit_button" onClick={onProceed}>
-      {status === "success" ? "Proceed" : "Go To Invoice"}
+      {status}
     </button>
   </div>
 )
