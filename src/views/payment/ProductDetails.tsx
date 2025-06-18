@@ -1,30 +1,30 @@
 // src/views/payment/ProductDetails.tsx
 import type { FC } from "react"
 import { useProductHook } from "@/store"
-
-export interface IProductDetailsProps {
-  productPrice?: string
-  productName?: string
-  productDescription?: string
-  currency?: string
-}
+import clsx from "clsx"
+import type { IProductDetailsProps } from "@/types"
 
 export const ProductDetails: FC<IProductDetailsProps> = ({
   productPrice,
   productDescription,
   productName,
   currency,
+  classNames = [""],
 }) => {
   const { productData } = useProductHook()
+  const _className = clsx(["grid-section", "product-section", ...classNames!!])
 
   const price = parseFloat(productPrice || productData?.price || "0")
+  // TODO:: use _currency to get currency symbol
   const _currency = (currency || productData?.currency || "USD").toUpperCase()
 
   const name = productName || productData?.product_name
   const description = productDescription || productData?.product_description
 
+  // TODO:: loading state
+
   return (
-    <div className="grid-section product-section">
+    <div className={_className}>
       {/* item 1 */}
       <article className="product-item">
         <span className="product-image-wrapper">
@@ -43,10 +43,7 @@ export const ProductDetails: FC<IProductDetailsProps> = ({
         </span>
         <span className="product-cost">
           <p className="product-price">
-            <strong>
-              {`${_currency}${price}`}
-              {price}
-            </strong>
+            <strong>{`${_currency} ${price}`}</strong>
           </p>
           <span className="product-qty">
             <button

@@ -9,6 +9,7 @@ import { Logout } from "@/components"
 import { Initializer } from "./AppInit"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
+import { ProductDetails } from "../views/payment/ProductDetails"
 
 export const Routes: RouteObject[] = [
   {
@@ -47,7 +48,7 @@ export const Routes: RouteObject[] = [
                 path: "payment",
                 element: <ProductPayment />,
                 children: [
-                  { path: "success", element: <ProductPayment /> },
+                  { path: "success", element: <ProductDetails /> },
                   { path: "cancel", element: <ProductPayment /> },
                   { path: "error", element: <ProductPayment /> },
                 ],

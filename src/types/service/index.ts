@@ -22,5 +22,6 @@ export type {
   IPaymentResponse,
   IStripePaymentArgs,
   IStripeSessionDetails,
+  IProductDetailsProps,
 } from "./product.service.types"
 export { KPaymentStatus } from "./product.service.types"

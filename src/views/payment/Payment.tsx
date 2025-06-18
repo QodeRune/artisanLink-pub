@@ -1,9 +1,10 @@
 // src/views/Payment.tsx
-import { useEffect, useState, type FC } from "react"
+import { useEffect, type FC } from "react"
 import { FormInput } from "@/components"
 import { useProductHook, useUserHook } from "@/store"
 import { KPaymentStatus, type IFetchProductArgs, type IPaymentResponse } from "@/types"
 import { stripePaymentService } from "@/services"
+import { ProductDetails } from "./ProductDetails"
 import clsx from "clsx"
 // import { PaymentResponse } from "./PaymentResponse"
 // import { Outlet } from "react-router-dom"
@@ -28,11 +29,14 @@ export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
   const { fetchProduct, getProductData, isProductLoading } = useProductHook()
   const { user: _user } = useUserHook()
   const user = Array.isArray(_user) ? _user[0] : _user
-  const [canPay, setCanPay] = useState<boolean>(false)
+  const canPay = paymentStatus !== KPaymentStatus.success
 
   useEffect(() => {
-    setCanPay(paymentStatus !== KPaymentStatus.success)
-    fetchProduct({ productName })
+    const _fetchProduct = async () => {
+      await fetchProduct({ productName })
+    }
+
+    _fetchProduct()
   }, [productName])
 
   const productData = getProductData()
@@ -42,7 +46,7 @@ export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
   const currency = (productData?.currency ?? "USD").toUpperCase()
 
   const pay = () => {
-    // console.log(`productData:\n ${productData}, \n, user: \n ${user}`)
+    console.log(canPay)
     if (!canPay) {
       // TODO:: add toast here
       return
@@ -71,53 +75,7 @@ export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
 
   const invoiceClasses = clsx(["invoice", `${isProductLoading ? "u-loading" : ""}`])
 
-  const _productSection = (
-    <div className="grid-section product-section">
-      {/* item 1 */}
-      <article className="product-item">
-        <span className="product-image-wrapper">
-          {/* Added descriptive alt text */}
-          <img
-            src="/path/to/career-tapestry-snapshot.jpg"
-            width="3rem"
-            height="auto"
-            alt="Image of Career Tapestry Snap Shot product"
-            className="product-image"
-          />
-        </span>
-        <span className="product-details">
-          <h2 className="product-name">{productData?.product_name}</h2>
-          <p className="product-about">{productData?.product_description}</p>
-        </span>
-        <span className="product-cost">
-          <p className="product-price">
-            <strong>{`${currency} ${price}`}</strong>
-          </p>
-          <span className="product-qty">
-            <button
-              className="quantity-button minus-button"
-              aria-label="Decrease quantity of Career Tapestry Snap shot"
-            >
-              {" "}
-              -{" "}
-            </button>
-            <input
-              onChange={() => console.log("Payment to be done")}
-              type="number"
-              className="qty quantity-input"
-              value="1" // This should ideally be controlled by state
-              aria-label="Quantity of Career Tapestry Snap shot"
-              min="1" // Assuming minimum quantity is 1
-            />
-            <button className="quantity-button plus-button" aria-label="Increase quantity of Career Tapestry Snap shot">
-              {" "}
-              +{" "}
-            </button>
-          </span>
-        </span>
-      </article>
-    </div>
-  )
+  const _productSection = <ProductDetails />
 
   const _paymentDetails = (
     <div className="payment-details">
@@ -158,8 +116,8 @@ export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
         </li>
       </ul>
       {/* Changed to button for better semantic meaning, especially if not directly submitting a form */}
-      <button type="button" className="form_input submit_button" onClick={pay} disabled={canPay}>
-        Confirm & Checkout
+      <button type="button" className="form_input submit_button" onClick={pay} disabled={!canPay}>
+        {paymentStatus}
       </button>
     </div>
   )

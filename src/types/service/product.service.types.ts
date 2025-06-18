@@ -1,7 +1,7 @@
 // src/types/service/product.service.types.ts
 import type { ReactNode } from "react"
 export const KPaymentStatus = {
-  checkout: "Make Payment",
+  checkout: "Confirm & Checkout",
   success: "Payment Successful",
   cancelled: "Cancelled",
   error: "Error Confirming Payment",
@@ -30,4 +30,12 @@ export interface IStripeSessionDetails {
   isRecovered?: boolean
   sessionId?: string
   sessionUrl: string
+}
+
+export interface IProductDetailsProps {
+  productPrice?: string
+  productName?: string
+  productDescription?: string
+  currency?: string
+  classNames?: string[]
 }
