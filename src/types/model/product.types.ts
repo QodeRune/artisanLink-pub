@@ -8,6 +8,7 @@ export interface IProductData {
   stripe_product_id: string
   product_description: string
   id: string
+  discount: string
   [key: string]: unknown
 }
 

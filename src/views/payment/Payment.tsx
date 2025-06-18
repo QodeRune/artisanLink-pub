@@ -1,10 +1,11 @@
-// src/views/Payment.tsx
+// src/views/payment/Payment.tsx
 import { useEffect, type FC } from "react"
 import { FormInput } from "@/components"
 import { useProductHook, useUserHook } from "@/store"
 import { KPaymentStatus, type IFetchProductArgs, type IPaymentResponse } from "@/types"
 import { stripePaymentService } from "@/services"
 import { ProductDetails } from "./ProductDetails"
+import { PaymentDetails } from "@/views/payment/paymentDetails"
 import clsx from "clsx"
 // import { PaymentResponse } from "./PaymentResponse"
 // import { Outlet } from "react-router-dom"
@@ -77,50 +78,7 @@ export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
 
   const _productSection = <ProductDetails />
 
-  const _paymentDetails = (
-    <div className="payment-details">
-      <div className="promo-section">
-        <form action="" className="promo-input">
-          {/* FormInput component needs to correctly render label and input with for/id */}
-          <FormInput {..._promo} containerClassName="enter-promo" />
-          {/* Changed type to "submit" for better form semantics */}
-          <button type="submit" className="form_input submit_button">
-            Apply Code
-          </button>
-        </form>
-      </div>
-
-      <div className="order-summary-section">
-        <h2>Order summary</h2>
-        {/* Changed to ul/li for semantic list structure */}
-        <ul className="summary-list">
-          <li className="summary-list-item">1 item(s)</li>
-          <li className="summary-list-item">$100.00</li>
-        </ul>
-        <ul className="summary-list">
-          <li className="summary-list-item">
-            <strong>Discount</strong>
-          </li>
-          <li className="summary-list-item">
-            <strong>$10.00</strong>
-          </li>
-        </ul>
-      </div>
-      {/* Changed to ul/li for semantic list structure */}
-      <ul className="summary-list total-section">
-        <li className="summary-list-item">
-          <strong>Total</strong>
-        </li>
-        <li className="summary-list-item">
-          <strong>{`${currency} ${total}`}</strong>
-        </li>
-      </ul>
-      {/* Changed to button for better semantic meaning, especially if not directly submitting a form */}
-      <button type="button" className="form_input submit_button" onClick={pay} disabled={!canPay}>
-        {paymentStatus}
-      </button>
-    </div>
-  )
+  const _paymentDetails = <PaymentDetails />
 
   const lastEl = responseComponent || _paymentDetails
 
