@@ -8,7 +8,6 @@ export const OrderSummary: FC<{
   discount?: string | number
   quantity?: string | number
 }> = ({ currency = "usd", totalCost = 0, price = 0, discount = 0, quantity = 1 }) => {
-  console.log(totalCost, price, discount)
   return (
     <>
       <div className="order-summary-section">
