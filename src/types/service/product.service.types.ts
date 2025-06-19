@@ -39,3 +39,13 @@ export interface IProductDetailsProps {
   currency?: string
   classNames?: string[]
 }
+
+export interface ICouponData {
+  couponCode: string
+  productId: string
+}
+
+export interface IApplyCoupon<T = boolean> {
+  productId?: string
+  onSubmit?: ({ couponCode, productId }: ICouponData) => T
+}

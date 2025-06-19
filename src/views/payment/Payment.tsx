@@ -1,15 +1,12 @@
 // src/views/payment/Payment.tsx
 import { useEffect, type FC } from "react"
 import { useProductHook } from "@/store"
-import { KPaymentStatus, type IFetchProductArgs, type IPaymentResponse } from "@/types"
+import type { IFetchProductArgs } from "@/types"
 import { ProductDetails } from "./ProductDetails"
 import clsx from "clsx"
 import { Outlet } from "react-router-dom"
 
-export const ProductPayment: FC<IFetchProductArgs & IPaymentResponse> = ({
-  productName = "CAREER_TAPESTRY_SNAPSHOT",
-  paymentStatus = KPaymentStatus.checkout,
-}) => {
+export const ProductPayment: FC<IFetchProductArgs> = ({ productName = "CAREER_TAPESTRY_SNAPSHOT" }) => {
   const { fetchProduct, isProductLoading } = useProductHook()
 
   useEffect(() => {

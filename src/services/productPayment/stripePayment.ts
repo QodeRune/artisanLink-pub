@@ -1,5 +1,11 @@
 // src/services/productPayment/stripePayment.ts
-import type { IProductPaymentResponse, IResponseDTO, IStripePaymentArgs, IStripeSessionDetails } from "@/types"
+import type {
+  IProductPaymentResponse,
+  IResponseDTO,
+  IStripePaymentArgs,
+  IStripeSessionDetails,
+  ICouponData,
+} from "@/types"
 import { api, PaymentEndpoints } from "../api"
 
 export const stripePaymentService = async ({ product_id, quantity = 1, user }: IStripePaymentArgs) => {
@@ -36,4 +42,33 @@ export const confirmPayment = async ({ sessionId }: { sessionId: string }) => {
 
   console.log(paymentComplete)
   return paymentComplete.data
+}
+
+export const applyCoupon = async ({ couponCode, productId }: ICouponData) => {
+  // console.log(
+  //   "Endpoints",
+  //   PaymentEndpoints.CHECKOUT_SESSION,
+  //   PaymentEndpoints.CONFIRM_PAYMENT,
+  //   PaymentEndpoints.CONFIRM_PAYMENT_SUCCESS,
+  //   PaymentEndpoints.CONFIRM_PAYMENT_ERROR,
+  //   PaymentEndpoints.CONFIRM_PAYMENT_CANCEL,
+  //   PaymentEndpoints.APPLY_COUPON,
+  // )
+  try {
+    const _applyCoupon = await api.authenticatedPost<IResponseDTO>({
+      endpoint: PaymentEndpoints.APPLY_COUPON,
+      body: {
+        coupon_code: couponCode,
+        product_id: productId,
+      },
+    })
+
+    if (_applyCoupon.success) {
+      // TODO:: update product price details
+      console.log(_applyCoupon)
+      return true
+    }
+  } catch (error) {
+    throw error
+  }
 }

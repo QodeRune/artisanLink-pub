@@ -23,5 +23,7 @@ export type {
   IStripePaymentArgs,
   IStripeSessionDetails,
   IProductDetailsProps,
+  ICouponData,
+  IApplyCoupon,
 } from "./product.service.types"
 export { KPaymentStatus } from "./product.service.types"

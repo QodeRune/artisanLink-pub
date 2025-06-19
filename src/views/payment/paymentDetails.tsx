@@ -3,8 +3,10 @@ import { FormInput } from "@/components"
 import { stripePaymentService } from "@/services"
 import { useProductHook, useUserHook } from "@/store"
 import { KPaymentStatus, type TPaymentStatus } from "@/types"
+import { ApplyCoupon } from "@/views/payment/ApplyCoupon"
 import { OrderSummary } from "@/views/payment/OrderSummary"
 import { type FC } from "react"
+
 const _promo = {
   id: "prom_code",
   name: "prom_code",
@@ -70,18 +72,18 @@ export const PaymentDetails: FC<{
   const _paymentDetails = (
     <div className="payment-details">
       {/* Apply Promo Code */}
-      <div className="promo-section">
+      {/* <div className="promo-section">
         <form action="" className="promo-input">
           <FormInput {..._promo} containerClassName="enter-promo" />
           <button type="submit" className="form_input submit_button">
             Apply Code
           </button>
         </form>
-      </div>
+      </div> */}
+      <ApplyCoupon productId={productData?.id} />
 
       {/* Order Summary */}
       <OrderSummary currency={currency} price={price} discount={discount} totalCost={total} quantity={1} />
-
       <button type="button" className="form_input submit_button" onClick={handleSubmit} disabled={!canPay}>
         {paymentStatus}
       </button>
