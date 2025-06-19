@@ -1,4 +1,5 @@
 // src/types/service/product.service.types.ts
+import type { IComponentFetchResponse } from "./api.types"
 import type { ReactNode } from "react"
 export const KPaymentStatus = {
   checkout: "Confirm & Checkout",
@@ -45,7 +46,15 @@ export interface ICouponData {
   productId: string
 }
 
-export interface IApplyCoupon<T = boolean> {
+export interface IApplyCoupon<T = IComponentFetchResponse> {
   productId?: string
   onSubmit?: ({ couponCode, productId }: ICouponData) => T
+}
+
+export interface ICouponResponse {
+  price: string
+  discount: string
+  total_cost: string
+  coupon_code: string
+  message: string
 }

@@ -1,8 +1,9 @@
 // src/views/payment/ApplyCoupon.tsx
 import { FormInput } from "@/components"
-import { applyCoupon } from "@/services"
 import type { IFormErrors, IFormState, ICouponData, IApplyCoupon } from "@/types"
 import { useCallback, useState, type ChangeEvent, type FC, type FormEvent } from "react"
+import { useProductHook } from "@/store"
+import { useToast } from "@/core"
 
 const _promo = {
   id: "couponCode",
@@ -17,8 +18,10 @@ const _promo = {
 }
 
 export const ApplyCoupon: FC<IApplyCoupon> = ({ onSubmit, productId }) => {
+  const { handleApplyProductCoupon } = useProductHook()
   const [formData, setFormData] = useState<IFormState>({})
   const [formErrors, setFormErrors] = useState<IFormErrors>({})
+  const { addToast } = useToast()
 
   const handleInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,20 +49,22 @@ export const ApplyCoupon: FC<IApplyCoupon> = ({ onSubmit, productId }) => {
       throw new Error("missing product details")
     }
 
-    let response
-
     const couponData: ICouponData = {
       productId: productId,
       couponCode: formData.couponCode as string,
     }
 
-    // if (onSubmit) {
-    //   response = onsubmit({ couponData })
-    // }
-
-    response = await applyCoupon(couponData)
-    // TODO:: will add toast
-    return response
+    const submit = onSubmit || handleApplyProductCoupon
+    const { success, feedbackMessage } = await submit(couponData)
+    addToast({
+      // title: "Success!",
+      message: feedbackMessage,
+      type: "success",
+      size: "md",
+      position: "top-right",
+      duration: 3000,
+    })
+    return success
   }
 
   return (

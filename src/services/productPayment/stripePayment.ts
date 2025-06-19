@@ -5,6 +5,7 @@ import type {
   IStripePaymentArgs,
   IStripeSessionDetails,
   ICouponData,
+  ICouponResponse,
 } from "@/types"
 import { api, PaymentEndpoints } from "../api"
 
@@ -57,7 +58,7 @@ export const applyCoupon = async ({ couponCode, productId }: ICouponData) => {
   const _endpoint = "http://localhost:5002/v1/api/payment/apply-coupon" //PaymentEndpoints.APPLY_COUPON
   // const _endpoint = PaymentEndpoints.APPLY_COUPON
   try {
-    const _applyCoupon = await api.authenticatedPost<IResponseDTO>({
+    const _applyCoupon = await api.authenticatedPost<IResponseDTO<ICouponResponse>>({
       endpoint: _endpoint,
       body: {
         coupon_code: couponCode,
@@ -65,11 +66,12 @@ export const applyCoupon = async ({ couponCode, productId }: ICouponData) => {
       },
     })
 
-    if (_applyCoupon.success) {
+    if (!_applyCoupon.success) {
       // TODO:: update product price details
-      console.log(_applyCoupon)
-      return true
+      throw new Error("Error applying coupon")
     }
+
+    return _applyCoupon.data
   } catch (error) {
     throw error
   }

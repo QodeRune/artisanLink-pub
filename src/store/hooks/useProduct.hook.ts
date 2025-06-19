@@ -1,6 +1,7 @@
 // src/store/hooks/useProduct.hook.ts
 import { useAppStore } from "@/store/app.store"
-import type { IAppState } from "@/types"
+import type { IAppState, ICouponData, IFetchProductArgs } from "@/types"
+import { useCallback } from "react"
 
 export const useProductHook = () => {
   const productData = useAppStore((state: IAppState) => state.productData)
@@ -8,11 +9,32 @@ export const useProductHook = () => {
   const getProductData = useAppStore((state: IAppState) => state.getProductData)
   const isProductLoading = useAppStore((state: IAppState) => state.isProductLoading)
   const productError = useAppStore((state: IAppState) => state.productError)
+  const applyProductCoupon = useAppStore((state: IAppState) => state.applyProductCoupon)
+
+  const handleApplyProductCoupon = useCallback(
+    async (args: ICouponData) => {
+      return await applyProductCoupon(args)
+    },
+    [applyProductCoupon],
+  )
+
+  const handleFetchProduct = useCallback(
+    async (args: IFetchProductArgs) => {
+      return fetchProduct(args)
+    },
+    [fetchProduct],
+  )
+
+  const handleGetProductData = useCallback(() => {
+    return getProductData()
+  }, [getProductData])
 
   return {
-    productData,
-    fetchProduct,
     getProductData,
+    handleFetchProduct,
+    handleGetProductData,
+    handleApplyProductCoupon,
+    productData,
     isProductLoading,
     productError,
   }

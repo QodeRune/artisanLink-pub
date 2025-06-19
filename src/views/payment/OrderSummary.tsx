@@ -7,21 +7,22 @@ export const OrderSummary: FC<{
   price?: string | number
   discount?: string | number
   quantity?: string | number
-}> = ({ currency = "usd", totalCost = 90, price = 100, discount = 10, quantity = 1 }) => {
+}> = ({ currency = "usd", totalCost = 0, price = 0, discount = 0, quantity = 1 }) => {
+  console.log(totalCost, price, discount)
   return (
     <>
       <div className="order-summary-section">
         <h2>Order summary</h2>
         <ul className="summary-list">
           <li className="summary-list-item">{quantity} item(s)</li>
-          <li className="summary-list-item">${price}</li>
+          <li className="summary-list-item">$ {price}</li>
         </ul>
         <ul className="summary-list">
           <li className="summary-list-item">
             <strong>Discount</strong>
           </li>
           <li className="summary-list-item">
-            <strong>${discount}</strong>
+            <strong>$ {discount}</strong>
           </li>
         </ul>
       </div>{" "}
