@@ -21,6 +21,7 @@ export interface IPaymentResponse {
 export interface IStripePaymentArgs {
   product_id: string
   quantity?: number
+  coupon_code?: string
   user: {
     id: string
     email: string
@@ -49,12 +50,4 @@ export interface ICouponData {
 export interface IApplyCoupon<T = IComponentFetchResponse> {
   productId?: string
   onSubmit?: ({ couponCode, productId }: ICouponData) => T
-}
-
-export interface ICouponResponse {
-  price: string
-  discount: string
-  total_cost: string
-  coupon_code: string
-  message: string
 }

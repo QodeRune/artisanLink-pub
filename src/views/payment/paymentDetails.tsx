@@ -46,6 +46,7 @@ export const PaymentDetails: FC<{
 
       stripePaymentService({
         product_id: productData.id,
+        coupon_code: productData.coupon_code,
         user: {
           id: user.id,
           email: user.email,

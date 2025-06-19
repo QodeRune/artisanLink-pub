@@ -25,6 +25,5 @@ export type {
   IProductDetailsProps,
   ICouponData,
   IApplyCoupon,
-  ICouponResponse,
 } from "./product.service.types"
 export { KPaymentStatus } from "./product.service.types"

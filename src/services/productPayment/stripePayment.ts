@@ -9,7 +9,7 @@ import type {
 } from "@/types"
 import { api, PaymentEndpoints } from "../api"
 
-export const stripePaymentService = async ({ product_id, quantity = 1, user }: IStripePaymentArgs) => {
+export const stripePaymentService = async ({ product_id, coupon_code, quantity = 1, user }: IStripePaymentArgs) => {
   try {
     if (!user) {
       throw new Error("User not logged in")
@@ -20,6 +20,7 @@ export const stripePaymentService = async ({ product_id, quantity = 1, user }: I
       body: {
         product_id,
         quantity,
+        coupon_code,
         user_id: user.id,
         email: user.email,
       },
