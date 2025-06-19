@@ -5,8 +5,8 @@ import type { IFormErrors, IFormState, ICouponData, IApplyCoupon } from "@/types
 import { useCallback, useState, type ChangeEvent, type FC, type FormEvent } from "react"
 
 const _promo = {
-  id: "promo_code",
-  name: "promo_code",
+  id: "couponCode",
+  name: "couponCode",
   labelText: "Have a promo code?",
   type: "text",
   readOnly: false,

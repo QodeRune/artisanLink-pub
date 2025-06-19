@@ -45,18 +45,20 @@ export const confirmPayment = async ({ sessionId }: { sessionId: string }) => {
 }
 
 export const applyCoupon = async ({ couponCode, productId }: ICouponData) => {
-  // console.log(
-  //   "Endpoints",
-  //   PaymentEndpoints.CHECKOUT_SESSION,
-  //   PaymentEndpoints.CONFIRM_PAYMENT,
-  //   PaymentEndpoints.CONFIRM_PAYMENT_SUCCESS,
-  //   PaymentEndpoints.CONFIRM_PAYMENT_ERROR,
-  //   PaymentEndpoints.CONFIRM_PAYMENT_CANCEL,
-  //   PaymentEndpoints.APPLY_COUPON,
-  // )
+  console.log(
+    "Endpoints",
+    PaymentEndpoints.CHECKOUT_SESSION,
+    PaymentEndpoints.CONFIRM_PAYMENT,
+    PaymentEndpoints.CONFIRM_PAYMENT_SUCCESS,
+    PaymentEndpoints.CONFIRM_PAYMENT_ERROR,
+    PaymentEndpoints.CONFIRM_PAYMENT_CANCEL,
+    PaymentEndpoints.APPLY_COUPON,
+  )
+  const _endpoint = "http://localhost:5002/v1/api/payment/apply-coupon" //PaymentEndpoints.APPLY_COUPON
+  // const _endpoint = PaymentEndpoints.APPLY_COUPON
   try {
     const _applyCoupon = await api.authenticatedPost<IResponseDTO>({
-      endpoint: PaymentEndpoints.APPLY_COUPON,
+      endpoint: _endpoint,
       body: {
         coupon_code: couponCode,
         product_id: productId,
