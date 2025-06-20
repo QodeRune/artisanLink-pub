@@ -10,3 +10,13 @@ export type {
 } from "./auth.slice.types"
 export type { IAppState } from "./app.store.types"
 export type { IProductSlice } from "./product.slice.types"
+export type {
+  RequireOnly,
+  IUpdateResponseArgs,
+  IQuestionnaireResponseSlice,
+  ICalculateProgress,
+  IUpdateProgressTracking,
+  IQuestionnaireCategoryProgressTracking,
+  IQuestionnaireListSlice,
+  IQuestionnaireQuestionsSlice,
+} from "./questionnaire.slice.types"
