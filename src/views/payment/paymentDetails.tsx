@@ -21,8 +21,6 @@ export const PaymentDetails: FC<{
   const { getProductData } = useProductHook()
   const productData = getProductData()
 
-  console.log(productData)
-
   const _price = parseFloat(price || productData?.price || "0")
   const _discount = parseFloat(discount || productData?.discount || "0")
 

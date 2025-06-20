@@ -35,7 +35,7 @@ export const createProductSlice: StateCreator<IAppState, [], [], IProductSlice> 
     if (!response) {
       throw new Error("Error applying coupon")
     }
-    const { message, coupon_code, ...rest } = response
+    const { message, ...rest } = response
 
     const existingProductData = get().productData
     if (!existingProductData) {

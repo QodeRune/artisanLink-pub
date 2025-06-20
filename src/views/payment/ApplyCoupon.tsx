@@ -18,7 +18,7 @@ const _promo = {
 }
 
 export const ApplyCoupon: FC<IApplyCoupon> = ({ onSubmit, productId }) => {
-  const { handleApplyProductCoupon } = useProductHook()
+  const { handleApplyProductCoupon, getProductData } = useProductHook()
   const [formData, setFormData] = useState<IFormState>({})
   const [formErrors, setFormErrors] = useState<IFormErrors>({})
   const { addToast } = useToast()
