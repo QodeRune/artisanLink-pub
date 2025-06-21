@@ -1,4 +1,4 @@
-// Fixed PopupProvider with proper modal animation
+// src/core/feature/popup/popupProvider.tsx
 import { createContext, useContext, useState, useCallback, useEffect, type FC, type ReactNode } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { ToastNotification } from "./notification"
@@ -9,7 +9,6 @@ import {
   defaultToastContext,
   defaultModalContext,
 } from "@/types"
-import clsx from "clsx"
 
 const ToastContext = createContext<IToastContext>(defaultToastContext)
 const ModalContext = createContext<IModalContext>(defaultModalContext)
@@ -70,20 +69,16 @@ export const PopupProvider: FC<{ children: ReactNode; maxToasts?: number }> = ({
     }
   }, [toasts, removeToast])
 
-  // ------------------ MODAL STATE ------------------
+  // ------------------ MODAL STATE (SIMPLIFIED) ------------------
   const [modalContent, setModalContent] = useState<ReactNode | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false) // Add animation state
   const [onBeforeClose, setOnBeforeClose] = useState<(() => boolean | Promise<boolean>) | null>(null)
 
+  // Simple: isOpen is just based on whether we have content
+  const isOpen = !!modalContent
+
   const closeModal = useCallback(() => {
-    setIsAnimating(false)
-    // Delay the actual close to allow exit animation
-    setTimeout(() => {
-      setModalContent(null)
-      setOnBeforeClose(null)
-      setIsOpen(false)
-    }, 300) // Match your CSS transition duration
+    setModalContent(null)
+    setOnBeforeClose(null)
   }, [])
 
   const requestClose = useCallback(async () => {
@@ -98,9 +93,6 @@ export const PopupProvider: FC<{ children: ReactNode; maxToasts?: number }> = ({
     (component: ReactNode, options?: { onBeforeClose?: () => boolean | Promise<boolean> }) => {
       setModalContent(component)
       setOnBeforeClose(() => options?.onBeforeClose ?? null)
-      setIsOpen(true)
-      // Trigger enter animation after a small delay to ensure DOM is ready
-      setTimeout(() => setIsAnimating(true), 10)
     },
     [],
   )
@@ -125,13 +117,10 @@ export const PopupProvider: FC<{ children: ReactNode; maxToasts?: number }> = ({
           ))}
         </div>
 
-        {/* Modal Overlay */}
-        {isOpen && (
+        {/* Modal Overlay - Simple: Just show when we have content */}
+        {modalContent && (
           <div className="full-page-modal-overlay" onClick={requestClose}>
-            <div
-              className={clsx("full-page-modal-content", isAnimating ? "modal-enter" : "modal-exit")}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-            >
+            <div className="full-page-modal-content" onClick={(e) => e.stopPropagation()}>
               {modalContent}
             </div>
           </div>
