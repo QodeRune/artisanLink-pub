@@ -18,7 +18,7 @@ const _promo = {
 }
 
 export const ApplyCoupon: FC<IApplyCoupon> = ({ onSubmit, productId }) => {
-  const { handleApplyProductCoupon, getProductData } = useProductHook()
+  const { handleApplyProductCoupon } = useProductHook()
   const [formData, setFormData] = useState<IFormState>({})
   const [formErrors, setFormErrors] = useState<IFormErrors>({})
   const { addToast } = useToast()
@@ -57,7 +57,7 @@ export const ApplyCoupon: FC<IApplyCoupon> = ({ onSubmit, productId }) => {
     const submit = onSubmit || handleApplyProductCoupon
     const { success, feedbackMessage } = await submit(couponData)
     addToast({
-      // title: "Success!",
+      title: "Success!",
       message: feedbackMessage,
       type: "success",
       size: "md",

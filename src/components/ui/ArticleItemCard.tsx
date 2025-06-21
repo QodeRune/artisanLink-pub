@@ -1,41 +1,49 @@
 // src/components/ui/ArticleItemCard.tsx
-import type { FC } from "react"
+import type { FC, ReactNode } from "react"
 
-export const ArticleItemCard: FC = () => {
+export interface IArticleItemMeta {
+  title: string
+  body?: string
+}
+export interface IArticleItemCard {
+  title: string
+  subTitle?: string
+  headerIcon?: ReactNode
+  headerDescription?: string
+  metaList?: IArticleItemMeta[]
+}
+
+export const ArticleItemCard: FC<IArticleItemCard> = ({ title, subTitle, headerIcon, headerDescription, metaList }) => {
   return (
     <article className="article_item_card">
       <div className="card_highlight">
         <span className="header">
           <span>
-            <h2 className="card_heading">Questionnaire 1</h2>
-            <em className="card_heading_tag">Locked</em>
+            <h2 className="card_heading">{title}</h2>
+            <em className="card_heading_tag">{subTitle}</em>
           </span>
           <span className="header_icon">
-            <p className="icon_placeholder">I</p>
+            {headerIcon}
+            {/* <p className="icon_placeholder">I</p> */}
           </span>
         </span>
         <p className="header_description">
-          This is a short info about the header
+          {headerDescription}
           {/* short highlight text */}
         </p>
         {/* react node - can be img or text etc */}
       </div>
       <div className="article-meta">
-        <ul className="article-meta-list">
-          {/* more than 4 and it should scroll */}
-          <li className="article-meta-description">
-            <p>Access date</p>
-            <time>July 1st</time>
-          </li>
-          <li className="article-meta-description">
-            <p>Due date</p>
-            <time>July 31st</time>
-          </li>
-          <li className="article-meta-description">
-            <p>Estimated time</p>
-            <time>1hr 30mins</time>
-          </li>
-        </ul>
+        {metaList?.length ? (
+          <ul className="article-meta-list">
+            {metaList.map((meta, index) => (
+              <li key={index} className="article-meta-description">
+                <p>{meta.title}</p>
+                <time>{meta.body}</time>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </article>
   )
