@@ -1,4 +1,4 @@
-// src/types/coreTypes/popup.type.ts
+// src/types/coreTypes/popup.types.ts
 import type { ReactNode } from "react"
 
 export type TNotificationPosition =
@@ -46,4 +46,21 @@ export const defaultToastContext: IToastContext = {
   removeToast: () => {},
   clearToasts: () => {},
   maxToasts: 3, // default
+}
+
+// !------------------ MODAL TYPES ------------------
+export interface IModalContext {
+  openModal: (component: ReactNode, options?: { onBeforeClose?: () => boolean | Promise<boolean> }) => void
+  closeModal: () => void
+  requestClose: () => void
+  modalContent: ReactNode | null
+  isOpen: boolean
+}
+
+export const defaultModalContext: IModalContext = {
+  openModal: () => {},
+  closeModal: () => {},
+  requestClose: () => {},
+  modalContent: null,
+  isOpen: false,
 }

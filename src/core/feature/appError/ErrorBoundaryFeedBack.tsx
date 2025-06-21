@@ -1,6 +1,6 @@
 // src/core/feature/appError/ErrorBoundaryFeedBack.tsx
 import { useEffect, type FC } from "react"
-import { useToast } from "../notification"
+import { useToast } from "../popup/notification"
 import { AppError } from "@/core/feature/appError/AppError"
 import { ErrorMessageConsts } from "@/core/constants"
 

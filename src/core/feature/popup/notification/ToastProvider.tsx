@@ -1,4 +1,4 @@
-// src/core/feature/popups/ToastProvider.tsx
+// src/core/feature/popup/notification/ToastProvider.tsx
 import { createContext, useContext, useState, useCallback, useEffect, type FC, type ReactNode } from "react"
 import { defaultToastContext, type IToastContext, type TToastState } from "@/types"
 import { ToastNotification } from "./ToastNotification"
@@ -76,3 +76,5 @@ export const ToastProvider: FC<{ children: ReactNode; maxToasts?: number }> = ({
     </ToastContext.Provider>
   )
 }
+
+export default ToastProvider

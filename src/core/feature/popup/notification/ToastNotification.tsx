@@ -1,4 +1,4 @@
-// src/core/feature/popups/PopupNotificationItem.tsx
+// src/core/feature/popup/notification/ToastNotification.tsx
 import { useState, type FC } from "react"
 import type { IPopupNotificationItemProps } from "@/types"
 import { getIconForType, CloseIcon } from "./NotificationIcons"
@@ -11,7 +11,7 @@ export const ToastNotification: FC<IPopupNotificationItemProps> = ({
   type,
   size,
   title = "This is the toast Title",
-  onClose = "This is the toast body. can be success, info, warning, caution message etc",
+  onClose,
   className = "",
   overlayClass = "",
   actionButtons,
@@ -21,8 +21,8 @@ export const ToastNotification: FC<IPopupNotificationItemProps> = ({
   const handleClose = () => {
     setIsClosing(true)
     setTimeout(() => {
-      console.log("might setup id tracking")
-      if (onClose) onClose
+      // TODO:: "might setup id tracking"
+      if (onClose) onClose()
     }, 300)
   }
 

@@ -69,3 +69,5 @@ export const getIconForType = (type: TNotificationType) => {
       return DefaultIcon()
   }
 }
+
+export default getIconForType

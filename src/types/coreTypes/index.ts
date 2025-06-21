@@ -27,8 +27,9 @@ export type {
   IPopupNotificationItemProps,
   TToastState,
   IToastContext,
+  IModalContext,
 } from "./popup.types"
 export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorageParams } from "./indexDB.types"
-export { defaultToastContext } from "./popup.types"
+export { defaultToastContext, defaultModalContext } from "./popup.types"
 export type { AriaDecision, IStrictAriaProps } from "./aria.types"
 export type { IFormState, IFormErrors } from "./authForm.types"

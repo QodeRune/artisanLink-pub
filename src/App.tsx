@@ -2,16 +2,16 @@
 import type { FC } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Routes } from "@/navigation"
-import { ThemeProvider, ToastProvider } from "@/core"
+import { PopupProvider, ThemeProvider } from "@/core"
 
 const router = createBrowserRouter(Routes)
 
 export const App: FC = () => {
   return (
     <ThemeProvider>
-      <ToastProvider>
+      <PopupProvider>
         <RouterProvider router={router} />
-      </ToastProvider>
+      </PopupProvider>
     </ThemeProvider>
   )
 }
