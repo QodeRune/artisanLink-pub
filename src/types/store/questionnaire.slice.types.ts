@@ -20,11 +20,24 @@ export interface IUpdateResponseArgs {
   selectType: TOptionSelectType
 }
 
+export interface ISetUserTextInput {
+  questionnaire_id: string
+  question_id: string
+  text: string
+  option_id?: string
+}
+
+export interface IIsOptionSelected {
+  questionnaireId: string
+  questionId: string
+  optionId: string
+}
+
 export interface IQuestionnaireResponseSlice {
   responses: TQuestionnaireResponses
   updateResponse: (updateResponseArgs: IUpdateResponseArgs) => void
-  setUserTextInput: (props: { questionnaire_id: string; question_id: string; text: string; option_id?: string }) => void
-  isOptionSelected: (questionnaireId: string, questionId: string, optionId: string) => boolean
+  setUserTextInput: (props: ISetUserTextInput) => void
+  isOptionSelected: (args: IIsOptionSelected) => boolean
   getResponses: (questionnaireId: string) => TQuestionResponses | undefined
   resetResponses: (questionnaireId?: string) => void
 }
@@ -43,16 +56,27 @@ export interface IQuestionnaireCategoryProgressTracking {
   percentageCompletion: number
 }
 
+export interface IQuestionnaireListTag {
+  tag?: string
+}
+export interface ISubmittedQuestionnaire {
+  questionnaireId: string
+}
+
+export interface IQuestionnaireList {
+  [key: string]: IQuestionnaireListItem[] | null
+}
+
 export interface IQuestionnaireListSlice {
-  questionnaireList: IQuestionnaireListItem[] | null
+  questionnaireList: IQuestionnaireList
   isQuestionnaireListLoading: boolean
   questionnaireListError: string | null
   questionnaireCategoryProgressTracking: IQuestionnaireCategoryProgressTracking
-  setQuestionnaireList: (list: IQuestionnaireListItem[]) => Promise<void>
-  fetchAndUpdateQuestionnaireList: (tag: string) => Promise<IQuestionnaireListItem[] | null>
-  getCurrentQuestionnaireList: () => IQuestionnaireListItem[] | null
+  setQuestionnaireList: (questionnaires: IQuestionnaireList) => Promise<void>
+  fetchAndUpdateQuestionnaireList: (tag: IQuestionnaireListTag) => Promise<IQuestionnaireListItem[] | null>
+  getCurrentQuestionnaireList: ({ tag }: { tag?: string }) => IQuestionnaireListItem[] | null
   updateQuestionnaireProgress: (arg: IUpdateProgressTracking) => Promise<void>
-  markQuestionnaireAsSubmitted: (questionnaireId: string) => Promise<void>
+  markQuestionnaireAsSubmitted: (questionnaireId: ISubmittedQuestionnaire) => Promise<void>
 }
 
 export interface IQuestionnaireQuestionsSlice {

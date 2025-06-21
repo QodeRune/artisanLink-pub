@@ -1,5 +1,5 @@
 // src/store/slices/questionnaire/questionnaireList.slice.ts
-import type { IAppState, IQuestionnaireListItem, IQuestionnaireListSlice, IUpdateProgressTracking } from "@/types"
+import type { IAppState, IQuestionnaireList, IQuestionnaireListItem, IQuestionnaireListSlice } from "@/types"
 import { fetchQuestionnaireList, questionnaireTrackingHandler } from "@/services"
 import type { StateCreator } from "zustand"
 import { CacheWrapper } from "@/services/storage/cacheWrapper"
@@ -7,19 +7,16 @@ import { CacheWrapper } from "@/services/storage/cacheWrapper"
 const questionnaireCache = new CacheWrapper<IQuestionnaireListItem[]>({
   cacheName: "questionnaire-cache",
   options: {
-    merge: (newData: IQuestionnaireListItem[], existingData: IQuestionnaireListItem[] | null) => {
+    merge: (newData, existingData) => {
       if (!existingData) return newData
       const currentListMap = new Map(existingData.map((item) => [item.id, item]))
       return newData.map((newItem) => {
         const existingItem = currentListMap.get(newItem.id)
-        if (existingItem) {
-          return {
-            ...newItem,
-            progressTracking: newItem.progressTracking ?? existingItem.progressTracking,
-            isSubmitted: newItem.isSubmitted ?? existingItem.isSubmitted,
-          }
+        return {
+          ...newItem,
+          progressTracking: newItem.progressTracking ?? existingItem?.progressTracking,
+          isSubmitted: newItem.isSubmitted ?? existingItem?.isSubmitted,
         }
-        return newItem
       })
     },
   },
@@ -28,7 +25,7 @@ const questionnaireCache = new CacheWrapper<IQuestionnaireListItem[]>({
 export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQuestionnaireListSlice> = (set, get) => ({
   isQuestionnaireListLoading: false,
   questionnaireListError: null,
-  questionnaireList: [],
+  questionnaireList: {},
   questionnaireCategoryProgressTracking: {
     tag: "initial_assessment",
     totalQuestionnaireCount: 0,
@@ -37,40 +34,43 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
     percentageCompletion: 0,
   },
 
-  setQuestionnaireList: async (list) => {
+  setQuestionnaireList: async (questionnaires) => {
     const responses = get().responses || {}
     const questionsData = get().questionsData
-    const updatedList = await Promise.all(
-      list.map(async (item) => {
-        const questionnaireResponses = responses[item.id] || {}
-        const completed = Object.values(questionnaireResponses).filter((res) => res.length > 0).length
-        const total = questionsData?.id === item.id ? questionsData.questions.length : item.progressTracking?.total || 0
-        const { leftOver, percentage } = await questionnaireTrackingHandler({ total, completed })
 
-        return {
-          ...item,
-          progressTracking: { total, completed, leftOver, percentage },
-        }
-      }),
-    )
+    const updated: IQuestionnaireList = {}
 
-    const submittedCount = updatedList.filter((item) => item.isSubmitted).length
-    const totalQuestionnaireCount = updatedList.length
-    set({
-      questionnaireList: updatedList,
-      questionnaireCategoryProgressTracking: {
-        ...get().questionnaireCategoryProgressTracking,
-        totalQuestionnaireCount,
-        notSubmittedCount: totalQuestionnaireCount - submittedCount,
-        submittedCount,
-        percentageCompletion: totalQuestionnaireCount > 0 ? (submittedCount / totalQuestionnaireCount) * 100 : 0,
-      },
-    })
+    for (const [tag, list] of Object.entries(questionnaires)) {
+      if (!list || !Array.isArray(list)) {
+        updated[tag] = null
+        continue
+      }
+
+      const enrichedList = await Promise.all(
+        list.map(async (item) => {
+          const questionnaireResponses = responses[item.id] || {}
+          const completed = Object.values(questionnaireResponses).filter((res) => res.length > 0).length
+          const total =
+            questionsData?.id === item.id ? questionsData.questions.length : item.progressTracking?.total || 0
+          const { leftOver, percentage } = await questionnaireTrackingHandler({ total, completed })
+
+          return {
+            ...item,
+            progressTracking: { total, completed, leftOver, percentage },
+          }
+        }),
+      )
+
+      updated[tag] = enrichedList
+    }
+
+    set({ questionnaireList: updated })
   },
 
-  fetchAndUpdateQuestionnaireList: async ({ tag = "initial_assessment" }) => {
+  fetchAndUpdateQuestionnaireList: async ({ tag = "initial assessment" }) => {
     try {
       set({ isQuestionnaireListLoading: true, questionnaireListError: null })
+
       const updatedList = await questionnaireCache.getOrFetchByTag(tag, () => fetchQuestionnaireList({ tag }))
 
       if (!updatedList) {
@@ -79,6 +79,7 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
 
       const responses = get().responses || {}
       const questionsData = get().questionsData
+
       const synchronizedList = await Promise.all(
         updatedList.map(async (item) => {
           const questionnaireResponses = responses[item.id] || {}
@@ -86,6 +87,7 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
           const total =
             questionsData?.id === item.id ? questionsData.questions.length : item.progressTracking?.total || 0
           const { leftOver, percentage } = await questionnaireTrackingHandler({ total, completed })
+
           return {
             ...item,
             progressTracking: { total, completed, leftOver, percentage },
@@ -95,10 +97,11 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
 
       const submittedCount = synchronizedList.filter((item) => item.isSubmitted).length
       const totalQuestionnaireCount = synchronizedList.length
+
       set({
         isQuestionnaireListLoading: false,
         questionnaireListError: null,
-        questionnaireList: synchronizedList,
+        questionnaireList: { [tag]: synchronizedList },
         questionnaireCategoryProgressTracking: {
           tag,
           totalQuestionnaireCount,
@@ -112,19 +115,20 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
       return synchronizedList
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Fetch failed"
-      set({
-        isQuestionnaireListLoading: false,
-        questionnaireListError: errorMessage,
-      })
+      set({ isQuestionnaireListLoading: false, questionnaireListError: errorMessage })
       throw new Error(errorMessage)
     }
   },
 
-  getCurrentQuestionnaireList: () => get().questionnaireList,
+  getCurrentQuestionnaireList: ({ tag = "initial assessment" }) => get().questionnaireList[tag],
 
-  updateQuestionnaireProgress: async ({ questionnaireId, total, completed }: IUpdateProgressTracking) => {
-    const currentList = get().questionnaireList
+  updateQuestionnaireProgress: async ({ questionnaireId, total, completed }) => {
+    const currentListMap = get().questionnaireList
+    const tag = get().questionnaireCategoryProgressTracking.tag
+    const currentList = currentListMap[tag]
+
     if (!currentList) return
+
     const { leftOver, percentage } = await questionnaireTrackingHandler({ total, completed })
 
     const updatedList = currentList.map((item) =>
@@ -136,30 +140,43 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
         : item,
     )
 
-    set({ questionnaireList: updatedList })
-    await questionnaireCache.update(get().questionnaireCategoryProgressTracking.tag, updatedList)
+    set((state) => ({
+      questionnaireList: {
+        ...state.questionnaireList,
+        [tag]: updatedList,
+      },
+    }))
+
+    await questionnaireCache.updateByTag(tag, updatedList)
   },
 
   markQuestionnaireAsSubmitted: async ({ questionnaireId }) => {
-    const currentList = get().questionnaireList
+    const currentListMap = get().questionnaireList
+    const tag = get().questionnaireCategoryProgressTracking.tag
+    const currentList = currentListMap[tag]
+
     if (!currentList) return
 
     const updatedList = currentList.map((item) => (item.id === questionnaireId ? { ...item, isSubmitted: true } : item))
 
     const submittedCount = updatedList.filter((item) => item.isSubmitted).length
     const totalQuestionnaireCount = updatedList.length
-    set({
-      questionnaireList: updatedList,
+
+    set((state) => ({
+      questionnaireList: {
+        ...state.questionnaireList,
+        [tag]: updatedList,
+      },
       questionnaireCategoryProgressTracking: {
-        ...get().questionnaireCategoryProgressTracking,
+        ...state.questionnaireCategoryProgressTracking,
         totalQuestionnaireCount,
-        notSubmittedCount: totalQuestionnaireCount - submittedCount,
         submittedCount,
+        notSubmittedCount: totalQuestionnaireCount - submittedCount,
         percentageCompletion: totalQuestionnaireCount > 0 ? (submittedCount / totalQuestionnaireCount) * 100 : 0,
       },
-    })
+    }))
 
     get().resetResponses(questionnaireId)
-    await questionnaireCache.update(get().questionnaireCategoryProgressTracking.tag, updatedList)
+    await questionnaireCache.updateByTag(tag, updatedList)
   },
 })

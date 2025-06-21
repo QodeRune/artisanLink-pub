@@ -19,4 +19,9 @@ export type {
   IQuestionnaireCategoryProgressTracking,
   IQuestionnaireListSlice,
   IQuestionnaireQuestionsSlice,
+  ISetUserTextInput,
+  IIsOptionSelected,
+  IQuestionnaireListTag,
+  ISubmittedQuestionnaire,
+  IQuestionnaireList,
 } from "./questionnaire.slice.types"
