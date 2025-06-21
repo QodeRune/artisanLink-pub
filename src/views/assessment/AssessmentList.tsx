@@ -1,3 +1,4 @@
+// src/views/assessment/AssessmentList.tsx
 import { useEffect, useRef, type FC } from "react"
 import { ArticleItemCard } from "@/components"
 import { useQuestionnaireListStore } from "@/store/hooks/questionnaire/useQuestionnaire.hook"
