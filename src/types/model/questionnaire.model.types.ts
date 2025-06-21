@@ -127,3 +127,20 @@ export interface IProcessedQuestion {
   type: TQuestionType
   options?: IProcessedOption[]
 }
+
+// render interfaces
+export interface IOptionItemProps {
+  option: IProcessedOption
+  isRequired?: boolean
+  subOptions?: IProcessedOption[]
+
+  questionnaireId?: string
+  questionId?: string
+}
+
+export interface IRenderOptionProps {
+  isRequired?: boolean
+  questionId?: string
+  questionnaireId?: string
+  options: IProcessedOption[]
+}

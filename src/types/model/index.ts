@@ -20,4 +20,6 @@ export type {
   ISubmitUserInputDetails,
   IProcessedOption,
   IProcessedQuestion,
+  IOptionItemProps,
+  IRenderOptionProps,
 } from "./questionnaire.model.types"
