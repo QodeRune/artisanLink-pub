@@ -1,14 +1,14 @@
-// src/store/hooks/useQuestionnaire.hook.ts
+// src/store/hooks/questionnaire/useQuestionnaire.hook.ts
 import { useCallback } from "react"
 import { useAppStore } from "../../app.store"
 import type {
   IIsOptionSelected,
-  IQuestionnaireListItem,
   ISetUserTextInput,
   IUpdateProgressTracking,
   IUpdateResponseArgs,
   IQuestionnaireListTag,
   ISubmittedQuestionnaire,
+  IQuestionnaireList,
 } from "@/types"
 
 export const useQuestionnaireStore = () => {
@@ -81,7 +81,7 @@ export const useQuestionnaireListStore = () => {
   const markQuestionnaireAsSubmitted = useAppStore((state) => state.markQuestionnaireAsSubmitted)
 
   const handleSetQuestionnaireList = useCallback(
-    async (param: IQuestionnaireListItem[]) => {
+    async (param: IQuestionnaireList) => {
       return await setQuestionnaireList(param)
     },
     [setQuestionnaireList],
@@ -94,9 +94,12 @@ export const useQuestionnaireListStore = () => {
     [fetchAndUpdateQuestionnaireList],
   )
 
-  const handleGetQuestionnaireList = useCallback(() => {
-    return getQuestionnaireList()
-  }, [getQuestionnaireList])
+  const handleGetQuestionnaireList = useCallback(
+    (param: { tag?: string }) => {
+      return getQuestionnaireList(param)
+    },
+    [getQuestionnaireList],
+  )
 
   const handleUpdateQuestionnaireProgress = useCallback(
     async (param: IUpdateProgressTracking) => {
