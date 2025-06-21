@@ -1,4 +1,4 @@
-// src/store/slices/questionnaire-list.slice.ts
+// src/store/slices/questionnaire/questionnaireList.slice.ts
 import type { IAppState, IQuestionnaireListItem, IQuestionnaireListSlice, IUpdateProgressTracking } from "@/types"
 import { fetchQuestionnaireList, questionnaireTrackingHandler } from "@/services"
 import type { StateCreator } from "zustand"
@@ -68,10 +68,10 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
     })
   },
 
-  fetchAndUpdateQuestionnaireList: async (tag: string) => {
+  fetchAndUpdateQuestionnaireList: async ({ tag = "initial_assessment" }) => {
     try {
       set({ isQuestionnaireListLoading: true, questionnaireListError: null })
-      const updatedList = await questionnaireCache.getOrFetch(tag, () => fetchQuestionnaireList({ tag }))
+      const updatedList = await questionnaireCache.getOrFetchByTag(tag, () => fetchQuestionnaireList({ tag }))
 
       if (!updatedList) {
         throw new Error("Error fetching questionnaire list")
@@ -108,7 +108,7 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
         },
       })
 
-      await questionnaireCache.update(tag, synchronizedList)
+      await questionnaireCache.updateByTag(tag, synchronizedList)
       return synchronizedList
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Fetch failed"
@@ -140,7 +140,7 @@ export const createQuestionnaireListSlice: StateCreator<IAppState, [], [], IQues
     await questionnaireCache.update(get().questionnaireCategoryProgressTracking.tag, updatedList)
   },
 
-  markQuestionnaireAsSubmitted: async (questionnaireId: string) => {
+  markQuestionnaireAsSubmitted: async ({ questionnaireId }) => {
     const currentList = get().questionnaireList
     if (!currentList) return
 
