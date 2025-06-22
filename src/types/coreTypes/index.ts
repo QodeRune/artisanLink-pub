@@ -33,3 +33,4 @@ export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorage
 export { defaultToastContext, defaultModalContext } from "./popup.types"
 export type { AriaDecision, IStrictAriaProps } from "./aria.types"
 export type { IFormState, IFormErrors } from "./authForm.types"
+export type { TimerProps } from "./timer.types"

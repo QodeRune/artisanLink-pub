@@ -906,6 +906,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/luxon@npm:^3":
+  version: 3.6.2
+  resolution: "@types/luxon@npm:3.6.2"
+  checksum: 10c0/7572ee52b3d3e9dd10464b90561a728b90f34b9a257751cc3ce23762693dd1d14fa98b7f103e2efe2c6f49033331f91de5681ffd65cca88618cefe555be326db
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^22.15.19":
   version: 22.15.21
   resolution: "@types/node@npm:22.15.21"
@@ -1230,6 +1237,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.25.0"
     "@types/eslint-plugin-jsx-a11y": "npm:^6"
+    "@types/luxon": "npm:^3"
     "@types/node": "npm:^22.15.19"
     "@types/react": "npm:^19.1.2"
     "@types/react-dom": "npm:^19.1.2"
@@ -1241,11 +1249,13 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-react-refresh: "npm:^0.4.19"
     globals: "npm:^16.0.0"
+    luxon: "npm:^3.6.1"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
     react-hook-form: "npm:^7.57.0"
     react-router-dom: "npm:^7.6.1"
     sass: "npm:^1.89.0"
+    timezones-list: "npm:^3.1.0"
     typedoc: "npm:^0.28.5"
     typedoc-plugin-markdown: "npm:^4.6.4"
     typescript: "npm:~5.8.3"
@@ -2839,6 +2849,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"luxon@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "luxon@npm:3.6.1"
+  checksum: 10c0/906d57a9dc4d1de9383f2e9223e378c298607c1b4d17b6657b836a3cd120feb1c1de3b5d06d846a3417e1ca764de8476e8c23b3cd4083b5cdb870adcb06a99d5
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^14.0.3":
   version: 14.0.3
   resolution: "make-fetch-happen@npm:14.0.3"
@@ -3867,6 +3884,13 @@ __metadata:
     mkdirp: "npm:^3.0.1"
     yallist: "npm:^5.0.0"
   checksum: 10c0/d4679609bb2a9b48eeaf84632b6d844128d2412b95b6de07d53d8ee8baf4ca0857c9331dfa510390a0727b550fd543d4d1a10995ad86cdf078423fbb8d99831d
+  languageName: node
+  linkType: hard
+
+"timezones-list@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "timezones-list@npm:3.1.0"
+  checksum: 10c0/810cc1d871fb4fea0d84a00e5ee7cb082d3a364f38fe24905753896c5fe1119ecf54b5ad48927d68105a9da241e10f508109d2f33db9acadc696915c5a14c764
   languageName: node
   linkType: hard
 
