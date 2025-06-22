@@ -1,5 +1,5 @@
 // src/views/TermsAndCondition.tsx
-import { CheckBoxConsent } from "@/core/feature/consent"
+import { CheckBoxConsent } from "@/core"
 import type { FC } from "react"
 import TC from "./termsAndConditions.json"
 
@@ -28,7 +28,7 @@ export const TermsAndConditions: FC = () => {
       {/* Render all the dynamically generated sections */}
       {sectionsToRender}
 
-      <CheckBoxConsent />
+      <CheckBoxConsent id="terms-and-conditions" name="terms-and-conditions" />
     </section>
   )
 }

@@ -3,6 +3,10 @@ import { useEffect, useMemo, useState, type FC, type FormEvent } from "react"
 import { useQuestionnaireListStore, useQuestionnaireQuestions, useQuestionnaireStore } from "@/store"
 import { processedQuestionsList } from "./processQuestionList"
 import { submitResponses } from "@/services"
+import { Timer } from "./Timer"
+import { RenderQuestionBlock } from "./AssessmentQuestion"
+import { FormInput } from "@/components"
+import { CheckBoxConsent } from "@/core"
 
 export const Assessment: FC<{ questionnaireId?: string; QUESTIONS_PER_BATCH?: number }> = ({
   questionnaireId = "4a1936c0-5e04-4384-b909-32ed124610bc",
@@ -62,6 +66,10 @@ export const Assessment: FC<{ questionnaireId?: string; QUESTIONS_PER_BATCH?: nu
     }
   }
 
+  const handleTimeUp = () => {
+    // Handle time up (e.g., auto-submit)
+  }
+
   useEffect(() => {
     fetchQuestions()
     console.log(questionsData)
@@ -78,7 +86,36 @@ export const Assessment: FC<{ questionnaireId?: string; QUESTIONS_PER_BATCH?: nu
   }, [answeredCount, totalQuestions, questionnaireId, handleUpdateQuestionnaireProgress])
 
   const QuestionnaireForm = () => {
-    return <form action="" className="assessment-form"></form>
+    return (
+      <form action="" className="assessment-form">
+        {batchQuestions.map((_question) => (
+          <RenderQuestionBlock
+            isRequired={_question.isRequired}
+            id={_question.id}
+            questionnaireId={questionsData.id}
+            question={_question.question}
+            label={_question.label}
+            type={_question.type}
+            options={_question.options}
+          />
+        ))}
+      </form>
+    )
   }
-  return <section className="assessment"> Assessment </section>
+
+  const ConfirmSUbmit = () => {
+    return (
+      <div className="nav-submit">
+        <CheckBoxConsent id="terms-and-conditions" name="terms-and-conditions" />
+      </div>
+    )
+  }
+  return (
+    <section className="assessment">
+      <h1 className="u-section-title">{title}</h1>
+      {allotted_time && <Timer initialSeconds={allotted_time} onTimeUp={handleTimeUp} />}
+      <QuestionnaireForm />
+      <ConfirmSUbmit />
+    </section>
+  )
 }
