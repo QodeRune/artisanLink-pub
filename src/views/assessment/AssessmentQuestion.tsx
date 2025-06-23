@@ -13,12 +13,12 @@ export const RenderQuestionBlock = ({
 }: IProcessedQuestion & { questionnaireId: string }) => {
   return (
     <div className="questionCard" key={id}>
-      <label className="u-margin-block-end-sm" htmlFor={`question-${id}`}>
+      <label htmlFor={`question-${id}`}>
         <span className="labelNumber">
           {label}
           {isRequired && <span className="requiredMark">*</span>}
         </span>
-        <span className="u-margin-inline-sm">{question}</span>
+        <p className="u-inline u-margin-inline-sm">{question}</p>
       </label>
 
       {type === QUESTION_TYPE.USER_TEXT_INPUT && (

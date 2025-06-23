@@ -4,11 +4,11 @@ import { useQuestionnaireListStore, useQuestionnaireQuestions } from "@/store"
 import type { IQuestionnaireListTag } from "@/types"
 import { useToast, useModal } from "@/core"
 import { Assessment } from "./Assessment"
-import { useAppStore } from "@/store" // Import useAppStore for fetch
+// import { useAppStore } from "@/store" // Import useAppStore for fetch
 
 export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Assessment" }) => {
   const { openModal } = useModal()
-  const { questionsData } = useQuestionnaireQuestions()
+  const { questionsData, handleFetchAndUpdateQuestionsData, handleGetQuestionsData } = useQuestionnaireQuestions()
 
   const {
     handleFetchAndUpdateQuestionnaireList,
@@ -19,7 +19,7 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
   const questionnaireList = _questionnaireList[tag]
   const { addToast } = useToast()
   const hasFetchedRef = useRef(false)
-  const fetchAndUpdateQuestionsData = useAppStore((state) => state.fetchAndUpdateQuestionsData) // Get fetch function
+  // const fetchAndUpdateQuestionsData = useAppStore((state) => state.fetchAndUpdateQuestionsData) // Get fetch function
 
   const getQuestionList = async () => {
     try {
@@ -53,9 +53,12 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
 
   const openAssessment = async (id: string) => {
     try {
-      await fetchAndUpdateQuestionsData({ questionnaire_id: id })
-      console.log("Fetched questionsData for id:", id, questionsData)
-      openModal(<Assessment questionnaireId={id} questionsData={questionsData} />)
+      const fetchQuestionnaire = await handleFetchAndUpdateQuestionsData({ questionnaire_id: id })
+      if (fetchQuestionnaire) {
+        console.log("Fetched questionsData for id:", id, questionsData)
+        const _questionsData = await handleGetQuestionsData()
+        openModal(<Assessment questionnaireId={id} questionsData={_questionsData} />)
+      }
     } catch (error) {
       addToast({
         title: "",
@@ -101,7 +104,10 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
       <section className="grid-autofill u-padding-block-md padding-inline-lg scroll-y">
         {questionnaireList.map((item) => (
           <ArticleItemCard
-            onClick={() => openAssessment(item.id)}
+            onClick={() => {
+              console.log(item.id)
+              openAssessment(item.id)
+            }}
             key={item.id}
             title={item.title}
             subTitle={item.tag_questionnaire_order || item.tag}

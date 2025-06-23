@@ -5,7 +5,7 @@ import { submitResponses } from "@/services"
 import { Timer } from "./Timer"
 import { RenderQuestionBlock } from "./AssessmentQuestion"
 import { FormButton } from "@/components"
-import { CheckBoxConsent } from "@/core"
+import { CheckBoxConsent, useToast } from "@/core"
 import type { IQuestionsData } from "@/types"
 
 export const Assessment: FC<{
@@ -13,6 +13,7 @@ export const Assessment: FC<{
   questionsData: IQuestionsData | null
   QUESTIONS_PER_BATCH?: number
 }> = ({ questionnaireId, questionsData, QUESTIONS_PER_BATCH = 10 }) => {
+  const { addToast } = useToast()
   console.log("Assessment rendered with questionnaireId:", questionnaireId, "questionsData:", questionsData)
 
   const { handleUpdateQuestionnaireProgress, handleMarkQuestionnaireAsSubmitted } = useQuestionnaireListStore()
@@ -66,7 +67,14 @@ export const Assessment: FC<{
     console.log("Submitting responses:", responses[questionnaireId], "answeredCount:", answeredCount)
 
     if (!confirmSubmitChecked) {
-      console.log("Submit blocked: Confirm not checked")
+      addToast({
+        title: "",
+        message: "Submit blocked: Confirm not checked",
+        type: "warning",
+        size: "md",
+        position: "top-right",
+        duration: 3000,
+      })
       return
     }
 
@@ -90,7 +98,7 @@ export const Assessment: FC<{
 
   const BatchNav: FC = () => {
     return (
-      <div className="u-flex u-justify-between">
+      <div className="u-flex u-place-items-center u-gap-sm">
         <button onClick={handlePrevious} disabled={currentBatch === 0}>
           Previous
         </button>
@@ -106,14 +114,14 @@ export const Assessment: FC<{
 
   const ConfirmSubmit = () => {
     return (
-      <div className="nav-submit u-flex">
+      <div className="nav-submit u-flex u-place-items-center u-gap-sm">
         <CheckBoxConsent
           toggleCheckbox={() => setConfirmSubmitChecked((prev) => !prev)}
           id="terms-and-conditions"
           name="terms-and-conditions"
-          labelText="Confirm Submit"
+          labelText="Confirm Submit Action"
         />
-        <FormButton containerClassName="checkbox_consent" />
+        <FormButton buttonClassName="button-text" />
       </div>
     )
   }
@@ -140,7 +148,7 @@ export const Assessment: FC<{
   }
 
   return (
-    <section className="assessment">
+    <section className="assessment padding-block-md u-padding-inline-md">
       <h1 className="u-section-title">{title}</h1>
       {allotted_time && <Timer initialSeconds={allotted_time} onTimeUp={handleTimeUp} />}
       <QuestionnaireForm />

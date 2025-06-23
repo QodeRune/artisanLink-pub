@@ -38,19 +38,19 @@ export const FormButton = forwardRef<HTMLButtonElement, IFormButtonProps>(
     })
 
     return (
-      <div className={containerClasses}>
-        <button ref={ref} type={type} className={buttonClasses} {...rest}>
-          {isLoading ? (
-            <span className="loading_spinner" aria-hidden />
-          ) : (
-            <>
-              {leftIcon && <span className="icon_left">{leftIcon}</span>}
-              <span className="button-label">{label}</span>
-              {rightIcon && <span className="icon_right">{rightIcon}</span>}
-            </>
-          )}
-        </button>
-      </div>
+      // <div className={containerClasses}>
+      <button ref={ref} type={type} className={buttonClasses} {...rest}>
+        {isLoading ? (
+          <span className="loading_spinner" aria-hidden />
+        ) : (
+          <>
+            {leftIcon && <span className="icon_left">{leftIcon}</span>}
+            <span className="button-label">{label}</span>
+            {rightIcon && <span className="icon_right">{rightIcon}</span>}
+          </>
+        )}
+      </button>
+      // </div>
     )
   },
 )

@@ -29,7 +29,7 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
   linkClassNames,
 }) => {
   const checkboxClasses = clsx([checkboxClassNames, "checkbox-consent", "checkbox_consent"])
-  const linkClassName = clsx([linkClassNames, "checkbox-consent", "checkbox_consent"])
+  const linkClassName = clsx([linkClassNames, "button-text"])
 
   return (
     <span className={checkboxClasses}>

@@ -104,13 +104,15 @@ video {
       }
     }
   }
-
-  a {
-    padding: 0rem 0.75rem;
-    border-radius: 0.275rem;
-    color: hsl(var(--clr-primary-400));
-    background-color: hsl(var(--clr-secondary-600));
-  }
+}
+.button-text {
+  padding: 0rem 0.75rem;
+  border-radius: 0.275rem;
+  color: hsl(var(--clr-primary-400));
+  background-color: hsl(var(--clr-surface-alt));
+  outline: transparent;
+  border: none;
+  text-transform: capitalize;
 }
 
 .grid-section {

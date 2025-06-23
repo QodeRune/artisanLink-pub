@@ -13,7 +13,7 @@ import type {
 } from "@/types"
 
 export const processedOptionsList = ({
-  storageName,
+  // storageName,
   optionList,
   question_id,
   questionnaire_id,
@@ -21,8 +21,6 @@ export const processedOptionsList = ({
   parentSelectType = OPTION_SELECT_TYPE.SINGLE_SELECT,
 }: IProcessOptionsList): IProcessedOption[] => {
   const { handleUpdateResponse, handleSetUserTextInput } = useQuestionnaireStore()
-  // TODO:: fix storageName necessity
-  storageName && console.log(storageName)
 
   // Handle option selection
   const handleSelect = (submitDetails: SubmitDetails) => {

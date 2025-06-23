@@ -174,6 +174,7 @@ $semantic-colors-light: (
   bg: var(--clr-primary-100) / 0.4,
   bg-alt: var(--clr-primary-200) / 0.6,
   bg-invert: var(--clr-dark-900),
+  bg-legacy: var(--clr-light-100) / 0.8,
   // text-icons
   text: var(--clr-dark-900),
   text-muted: var(--clr-dark-600),
@@ -187,13 +188,14 @@ $semantic-colors-light: (
   on-surface: var(--clr-dark-900),
   on-surface-muted: var(--clr-primary-100),
   on-surface-invert: var(--clr-light-100),
-  // on-surface-alt: var(--clr-dark-900)
+  on-surface-alt: var(--clr-dark-900),
 );
 
 $semantic-colors-dark: (
   bg: var(--clr-dark-700) / 0.8,
   bg-alt: var(--clr-dark-800),
   bg-invert: var(--clr-light-100),
+  bg-legacy: var(--clr-dark-700),
   // text - icons
   text: var(--clr-light-100),
   text-muted: var(--clr-light-500),
@@ -207,6 +209,7 @@ $semantic-colors-dark: (
   on-surface: var(--clr-light-700),
   on-surface-muted: var(--clr-dark-600),
   on-surface-invert: var(--clr-light-700),
+  // on-surface-alt: var(--clr-dark-900)
 );
 
 // Additional color names for 4-5 color projects:

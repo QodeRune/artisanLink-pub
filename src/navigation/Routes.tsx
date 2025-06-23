@@ -86,9 +86,19 @@ export const Routes: RouteObject[] = [
                 path: "enrollment-payment",
                 element: <ProductPayment />,
                 children: [
-                  { path: "success", element: <ProductPayment /> },
-                  { path: "cancel", element: <ProductPayment /> },
-                  { path: "error", element: <ProductPayment /> },
+                  { index: true, element: <PaymentDetails /> }, // default view
+                  {
+                    path: "success",
+                    element: <PaymentResponse status={KPaymentStatus.success} onProceed={() => console.log("")} />,
+                  },
+                  {
+                    path: "error",
+                    element: <PaymentResponse status={KPaymentStatus.error} onProceed={() => console.log("")} />,
+                  },
+                  {
+                    path: "cancel",
+                    element: <PaymentResponse status={KPaymentStatus.cancelled} onProceed={() => console.log("")} />,
+                  }, // Optional alias
                 ],
               },
             ],
