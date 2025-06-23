@@ -30,15 +30,12 @@ export const FormButton = forwardRef<HTMLButtonElement, IFormButtonProps>(
     },
     ref,
   ) => {
-    const containerClasses = clsx("button-container", size, containerClassName)
-
     const buttonClasses = clsx("form-button", buttonClassName, {
       "button-loading": isLoading,
       "button-success": isSuccess,
     })
 
     return (
-      // <div className={containerClasses}>
       <button ref={ref} type={type} className={buttonClasses} {...rest}>
         {isLoading ? (
           <span className="loading_spinner" aria-hidden />
@@ -50,7 +47,6 @@ export const FormButton = forwardRef<HTMLButtonElement, IFormButtonProps>(
           </>
         )}
       </button>
-      // </div>
     )
   },
 )
