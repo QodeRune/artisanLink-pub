@@ -11,7 +11,6 @@ export interface IFormButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
   isSuccess?: boolean
   buttonClassName?: string
   containerClassName?: string
-  fullWidth?: boolean
   size?: "sm" | "md" | "lg"
 }
 
@@ -26,13 +25,12 @@ export const FormButton = forwardRef<HTMLButtonElement, IFormButtonProps>(
       isSuccess,
       buttonClassName,
       containerClassName,
-      fullWidth,
-      size = "md",
+      size = "sm",
       ...rest
     },
     ref,
   ) => {
-    const containerClasses = clsx("button-container", size, fullWidth && "full-width", containerClassName)
+    const containerClasses = clsx("button-container", size, containerClassName)
 
     const buttonClasses = clsx("form-button", buttonClassName, {
       "button-loading": isLoading,

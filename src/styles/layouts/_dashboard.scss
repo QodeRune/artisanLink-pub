@@ -79,7 +79,7 @@ video {
 .checkbox_consent {
   display: flex;
   gap: var(--size-sm-4);
-  margin-block-start: var(--size-md-3);
+  // margin-block-start: var(--size-md-3);
   justify-self: start;
 
   input[type="checkbox"] {

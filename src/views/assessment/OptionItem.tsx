@@ -29,17 +29,18 @@ export const OptionItem = ({ option, subOptions = [], isRequired = false, ...res
   const handleChange = () => handleSelect(_submitDetails)
 
   return (
-    <div className="optionItem">
-      <label>
-        <input
-          type={option.selectType === "SINGLE_SELECT" ? "radio" : "checkbox"}
-          name={_submitDetails.questionId}
-          checked={selected}
-          onChange={handleChange}
-          required={isRequired}
-        />
-        {option.optionValue}
-      </label>
+    <div className="optionItem u-gap-sm">
+      <label />
+      <input
+        className="u-margin-inline-sm"
+        type={option.selectType === "SINGLE_SELECT" ? "radio" : "checkbox"}
+        name={_submitDetails.questionId}
+        checked={selected}
+        onChange={handleChange}
+        required={isRequired}
+      />
+      {option.optionValue}
+      {/* </label> */}
 
       {subOptions.length > 0 && selected && (
         <div className="subOptionGroup">

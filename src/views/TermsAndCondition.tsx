@@ -28,7 +28,7 @@ export const TermsAndConditions: FC = () => {
       {/* Render all the dynamically generated sections */}
       {sectionsToRender}
 
-      <CheckBoxConsent id="terms-and-conditions" name="terms-and-conditions" />
+      <CheckBoxConsent id="terms-and-conditions" name="terms-and-conditions" linkText="Proceed" />
     </section>
   )
 }

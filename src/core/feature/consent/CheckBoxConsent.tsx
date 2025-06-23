@@ -21,7 +21,7 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
   name = "watch_video_confirmation",
   onLinkClick,
   toggleCheckbox,
-  linkText = "Proceed",
+  linkText,
   readonly = false,
   required = true,
   labelText = "Yes I have completed and understood the video content",
@@ -42,9 +42,11 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
         readOnly={readonly}
         required={required}
       />
-      <a className={linkClassName} onClick={onLinkClick}>
-        {linkText}
-      </a>
+      {linkText && (
+        <a className={linkClassName} onClick={onLinkClick}>
+          {linkText}
+        </a>
+      )}
     </span>
   )
 }

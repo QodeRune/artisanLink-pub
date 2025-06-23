@@ -88,42 +88,9 @@ export const Assessment: FC<{
     // Handle time up (e.g., auto-submit)
   }
 
-  const ConfirmSubmit = () => {
-    return (
-      <div className="nav-submit">
-        <CheckBoxConsent
-          toggleCheckbox={() => setConfirmSubmitChecked((prev) => !prev)}
-          id="terms-and-conditions"
-          name="terms-and-conditions"
-          labelText="Confirm Submit"
-        />
-        <FormButton />
-      </div>
-    )
-  }
-
-  const QuestionnaireForm: FC = () => {
-    return (
-      <form action="" className="assessment-form" onSubmit={handleSubmit}>
-        {batchQuestions.map((_question) => (
-          <RenderQuestionBlock
-            isRequired={_question.isRequired}
-            id={_question.id}
-            questionnaireId={questionsData.id}
-            question={_question.question}
-            label={_question.label}
-            type={_question.type}
-            options={_question.options}
-          />
-        ))}
-        <ConfirmSubmit />
-      </form>
-    )
-  }
-
   const BatchNav: FC = () => {
     return (
-      <div className="flex-row">
+      <div className="u-flex u-justify-between">
         <button onClick={handlePrevious} disabled={currentBatch === 0}>
           Previous
         </button>
@@ -137,12 +104,46 @@ export const Assessment: FC<{
     )
   }
 
+  const ConfirmSubmit = () => {
+    return (
+      <div className="nav-submit u-flex">
+        <CheckBoxConsent
+          toggleCheckbox={() => setConfirmSubmitChecked((prev) => !prev)}
+          id="terms-and-conditions"
+          name="terms-and-conditions"
+          labelText="Confirm Submit"
+        />
+        <FormButton containerClassName="checkbox_consent" />
+      </div>
+    )
+  }
+
+  const QuestionnaireForm: FC = () => {
+    return (
+      <form action="" className="assessment-form u-grid u-gap-md" onSubmit={handleSubmit}>
+        {batchQuestions.map((_question) => (
+          <RenderQuestionBlock
+            key={_question.id}
+            isRequired={_question.isRequired}
+            id={_question.id}
+            questionnaireId={questionsData.id}
+            question={_question.question}
+            label={_question.label}
+            type={_question.type}
+            options={_question.options}
+          />
+        ))}
+        <BatchNav />
+        <ConfirmSubmit />
+      </form>
+    )
+  }
+
   return (
     <section className="assessment">
       <h1 className="u-section-title">{title}</h1>
       {allotted_time && <Timer initialSeconds={allotted_time} onTimeUp={handleTimeUp} />}
       <QuestionnaireForm />
-      <BatchNav />
     </section>
   )
 }

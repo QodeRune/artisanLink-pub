@@ -1,5 +1,13 @@
 // src/styles/utilities/_spacing.scss
 
+.u-gap-md {
+  gap: var(--size-md);
+}
+
+.u-gap-sm {
+  gap: var(--size-sm);
+}
+
 .padding-inline-lg {
   padding-inline: var(--size-md-4);
 }
@@ -10,6 +18,7 @@
 .padding-inline-md {
   padding-inline: var(--size-md);
 }
+
 .padding-block-md {
   padding-block: var(--size-md);
 }
@@ -63,4 +72,12 @@
 
 .u-margin-inline-end-sm {
   margin-inline-end: var(--size-sm);
+}
+
+.u-margin-block-end-sm {
+  margin-block-end: var(--size-sm);
+}
+
+.u-margin-inline-sm {
+  margin-inline: var(--size-sm);
 }

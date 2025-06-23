@@ -54,6 +54,7 @@ export class CacheWrapper<T> {
     const entry = await cache.get({ key })
 
     const isFresh = entry && Date.now() - entry.timestamp < (this.defaultOptions.durationMs || Infinity)
+    console.log(isFresh, entry?.timestamp)
 
     if (isFresh) {
       console.info(`[CacheWrapper] Cache hit for key: ${key}`)

@@ -27,7 +27,7 @@ export const ArticleItemCard: FC<IArticleItemCard> = ({
     return
   }
   return (
-    <article className="article_item_card" onClick={handleClick}>
+    <article className="article_item_card u-clickable" onClick={handleClick}>
       <div className="card_highlight">
         <span className="header">
           <span>
