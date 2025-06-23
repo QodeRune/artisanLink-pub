@@ -1,11 +1,15 @@
-// src/views/assessment/AssessmentList.tsx
 import { useEffect, useRef, type FC } from "react"
 import { ArticleItemCard } from "@/components"
-import { useQuestionnaireListStore } from "@/store"
+import { useQuestionnaireListStore, useQuestionnaireQuestions } from "@/store"
 import type { IQuestionnaireListTag } from "@/types"
-import { useToast } from "@/core"
+import { useToast, useModal } from "@/core"
+import { Assessment } from "./Assessment"
+import { useAppStore } from "@/store" // Import useAppStore for fetch
 
 export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Assessment" }) => {
+  const { openModal } = useModal()
+  const { questionsData } = useQuestionnaireQuestions()
+
   const {
     handleFetchAndUpdateQuestionnaireList,
     questionnaireList: _questionnaireList,
@@ -15,10 +19,10 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
   const questionnaireList = _questionnaireList[tag]
   const { addToast } = useToast()
   const hasFetchedRef = useRef(false)
+  const fetchAndUpdateQuestionsData = useAppStore((state) => state.fetchAndUpdateQuestionsData) // Get fetch function
 
   const getQuestionList = async () => {
     try {
-      // TODO:: have the fetch method return a success and feedback message
       await handleFetchAndUpdateQuestionnaireList({ tag })
       addToast({
         title: "",
@@ -46,6 +50,23 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
       getQuestionList()
     }
   }, [handleFetchAndUpdateQuestionnaireList, tag])
+
+  const openAssessment = async (id: string) => {
+    try {
+      await fetchAndUpdateQuestionsData({ questionnaire_id: id })
+      console.log("Fetched questionsData for id:", id, questionsData)
+      openModal(<Assessment questionnaireId={id} questionsData={questionsData} />)
+    } catch (error) {
+      addToast({
+        title: "",
+        message: "Failed to fetch questions",
+        type: "error",
+        size: "md",
+        position: "top-right",
+        duration: 3000,
+      })
+    }
+  }
 
   const PageIntro: FC = () => {
     return (
@@ -80,6 +101,7 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
       <section className="grid-autofill u-padding-block-md padding-inline-lg scroll-y">
         {questionnaireList.map((item) => (
           <ArticleItemCard
+            onClick={() => openAssessment(item.id)}
             key={item.id}
             title={item.title}
             subTitle={item.tag_questionnaire_order || item.tag}

@@ -1,6 +1,6 @@
 // src/components/ui/ArticleItemCard.tsx
 import type { FC, ReactNode } from "react"
-import { useModal } from "@/core"
+
 export interface IArticleItemMeta {
   title: string
   body?: string
@@ -11,14 +11,20 @@ export interface IArticleItemCard {
   headerIcon?: ReactNode
   headerDescription?: string
   metaList?: IArticleItemMeta[]
+  onClick?: (...args: unknown[]) => unknown
 }
 
-export const ArticleItemCard: FC<IArticleItemCard> = ({ title, subTitle, headerIcon, headerDescription, metaList }) => {
-  const { openModal } = useModal()
-
+export const ArticleItemCard: FC<IArticleItemCard> = ({
+  title,
+  subTitle,
+  headerIcon,
+  headerDescription,
+  metaList,
+  onClick,
+}) => {
   const handleClick = () => {
-    // TODO:: should receive openModal if needed
-    openModal(<p className="modal">Opened Modal</p>)
+    if (onClick) onClick()
+    return
   }
   return (
     <article className="article_item_card" onClick={handleClick}>

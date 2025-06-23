@@ -145,7 +145,7 @@ export const createQuestionnaireResponseSlice: StateCreator<IAppState, [], [], I
     })
   },
 
-  isOptionSelected: (questionnaireId, questionId, optionId) => {
+  isOptionSelected: ({ questionnaireId, questionId, optionId }) => {
     const responses = get().responses[questionnaireId]?.[questionId] || []
     return responses.some((r) => r.option_id === optionId || (r.sub_option_list || []).includes(optionId))
   },

@@ -6,8 +6,8 @@ import type { FC } from "react"
 export interface ICheckBoxConsent {
   id: string
   name: string
-  onLinkClick?: () => boolean | void
-  toggleCheckbox?: () => void
+  onLinkClick?: (...args: unknown[]) => unknown
+  toggleCheckbox?: (...args: unknown[]) => unknown
   linkText?: string
   readonly?: boolean
   required?: boolean
@@ -20,6 +20,7 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
   id = "watch_video_confirmation",
   name = "watch_video_confirmation",
   onLinkClick,
+  toggleCheckbox,
   linkText = "Proceed",
   readonly = false,
   required = true,
@@ -32,7 +33,15 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
 
   return (
     <span className={checkboxClasses}>
-      <FormInput id={id} name={name} labelText={labelText} type={"checkbox"} readOnly={readonly} required={required} />
+      <FormInput
+        onChange={toggleCheckbox}
+        id={id}
+        name={name}
+        labelText={labelText}
+        type={"checkbox"}
+        readOnly={readonly}
+        required={required}
+      />
       <a className={linkClassName} onClick={onLinkClick}>
         {linkText}
       </a>
