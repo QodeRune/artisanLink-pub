@@ -9,7 +9,7 @@ import {
   PaymentResponse,
   PaymentDetails,
 } from "@/views"
-import { AuthForm, AuthPage } from "@/core"
+import { AuthForm, AuthPage, UserWelcomeBanner } from "@/core"
 import { RoutePaths } from "./routePaths"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
 import { Logout } from "@/components"
@@ -102,6 +102,16 @@ export const Routes: RouteObject[] = [
                 ],
               },
             ],
+          },
+        ],
+      },
+      {
+        path: "/dashboard",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            index: true,
+            element: <AssessmentList pageIntro={<UserWelcomeBanner />} />,
           },
         ],
       },
