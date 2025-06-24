@@ -1,14 +1,15 @@
 // src/pages/onboarding/onboardingNavList.tsx
-import { RoutePaths } from "@/navigation/routePaths"
+import { RoutePaths } from "../../navigation/routePaths"
 
-// Placeholder icons (replace with actual icons)
-const VideoIcon = <span>📹</span>
-const TermsIcon = <span>📜</span>
-const PaymentIcon = <span>💳</span>
-const QuestionnaireIcon = <span>📋</span>
-const AcceptIcon = <span>✅</span>
-const ProgramIcon = <span>📚</span>
-const ProgramPaymentIcon = <span>💰</span>
+import {
+  VideoIcon,
+  TermsIcon,
+  PaymentIcon,
+  QuestionnaireIcon,
+  AcceptIcon,
+  ProgramIcon,
+  ProgramPaymentIcon,
+} from "@/components"
 
 export const onBoardingNavItems = [
   {

@@ -1,15 +1,15 @@
-// src/pages/onboarding/onboarding.tsx
+// src/pages/enrolled/EnrolledDashboard.tsx
 import type { FC } from "react"
 import { Outlet } from "react-router-dom"
-import { onBoardingNavItems } from "./onboardingNavList"
 import { FooterUserControls, Nav, SideBar } from "@/components"
 import { DashBoardLayout } from "@/layouts"
+import { enrolledNavItems } from "./enrolledNavList"
 
-export const OnBoarding: FC = () => {
+export const EnrolledDashboard: FC = () => {
   const _leftSidebar = (
     <SideBar
       topEl={<p>Evolve with tech</p>}
-      centerEl={<Nav navItems={onBoardingNavItems} />}
+      centerEl={<Nav navItems={enrolledNavItems} />}
       bottomEl={<FooterUserControls />}
     />
   )

@@ -11,6 +11,10 @@
 .padding-inline-lg {
   padding-inline: var(--size-md-4);
 }
+.u-margin-inline-lg {
+  margin-inline: var(--size-md-4);
+}
+
 .padding-block-lg {
   padding-block: var(--size-md-4);
 }
@@ -24,8 +28,17 @@
 }
 
 // Padding
+.u-padding-block-xs {
+  padding-block: var(--size-xs);
+}
+.u-padding-block-sm {
+  padding-block: var(--size-sm);
+}
 .u-padding-block-start-sm {
   padding-block-start: var(--size-sm);
+}
+.u-padding-block-end-sm {
+  padding-block-end: var(--size-sm);
 }
 
 .u-padding-top-md {

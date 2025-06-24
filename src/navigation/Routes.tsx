@@ -1,6 +1,6 @@
 // src/navigation/routes.ts
 import { Navigate, type RouteObject } from "react-router-dom"
-import { OnBoarding, NotFoundPage } from "@/pages"
+import { OnBoarding, NotFoundPage, EnrolledDashboard } from "@/pages"
 import {
   AssessmentList,
   ProductPayment,
@@ -110,8 +110,9 @@ export const Routes: RouteObject[] = [
         element: <ProtectedRoute />,
         children: [
           {
-            index: true,
-            element: <AssessmentList pageIntro={<UserWelcomeBanner />} />,
+            path: "",
+            element: <EnrolledDashboard />,
+            children: [{ index: true, element: <AssessmentList pageIntro={<UserWelcomeBanner />} /> }],
           },
         ],
       },

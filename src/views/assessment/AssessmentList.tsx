@@ -94,14 +94,14 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
 
     if (!questionnaireList || questionnaireList.length === 0) {
       return (
-        <div className="u-text-center u-padding-block-md">
+        <div className="u-text-center ">
           <p className="u-text-body-md">No assessments available at the moment.</p>
         </div>
       )
     }
 
     return (
-      <section className="grid-autofill u-padding-block-md padding-inline-lg scroll-y">
+      <section className="grid-autofill u-padding-block-xs padding-inline-lg scroll-y">
         {questionnaireList.map((item) => (
           <ArticleItemCard
             onClick={() => {
@@ -125,7 +125,7 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
   const PageIntro = () => pageIntro ?? <AssessmentIntro />
 
   return (
-    <section className="grid-section scroll-y u-padding-block-start-sm .u-padding-bottom-sm article-card-item-list-page">
+    <section className="grid-section scroll-y u-padding-block-end-sm .u-padding-bottom-sm article-card-item-list-page">
       <PageIntro />
       <Questionnaires />
     </section>

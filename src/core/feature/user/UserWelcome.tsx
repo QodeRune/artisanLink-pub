@@ -9,7 +9,7 @@ export const UserWelcomeBanner: FC = () => {
     </p>
   )
   return (
-    <div className="user-welcome-banner">
+    <div className="user-welcome-banner u-soft-shadow u-padding-inline-md u-padding-block-md u-margin-inline-lg u-bg-surface">
       <h1 className="heading-text">Hi User, Welcome Back!</h1>
       {welcomeText}
     </div>
