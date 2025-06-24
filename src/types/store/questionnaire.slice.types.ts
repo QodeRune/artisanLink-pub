@@ -58,6 +58,7 @@ export interface IQuestionnaireCategoryProgressTracking {
 
 export interface IQuestionnaireListTag {
   tag?: string
+  pageIntro?: React.ReactNode
 }
 export interface ISubmittedQuestionnaire {
   questionnaireId: string
