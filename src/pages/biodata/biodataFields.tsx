@@ -1,7 +1,6 @@
-import type { FormField } from "@/types"
-
 // src/pages/biodata/biodataFields.tsx
-export const bioDataFields: FormField[] = [
+import type { IFormField } from "@/types"
+export const bioDataFields: IFormField[] = [
   {
     id: "fullName",
     name: "fullName",

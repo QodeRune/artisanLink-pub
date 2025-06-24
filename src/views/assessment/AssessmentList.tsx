@@ -59,6 +59,17 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
         const _questionsData = await handleGetQuestionsData()
         openModal(<Assessment questionnaireId={id} questionsData={_questionsData} />)
       }
+
+      if (!fetchQuestionnaire) {
+        addToast({
+          title: "",
+          message: "Failed to fetch questions",
+          type: "error",
+          size: "md",
+          position: "top-right",
+          duration: 3000,
+        })
+      }
     } catch (error) {
       addToast({
         title: "",

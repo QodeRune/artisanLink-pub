@@ -1,7 +1,7 @@
 // import type { IInputProps } from "@/types/ui"
 
 // src/core/coreTypes/formTypes.ts
-export type FormFieldType =
+export type TFormFieldType =
   | "text"
   | "email"
   | "password"
@@ -25,13 +25,20 @@ export interface IImageProperties {
   onClick?: () => boolean
 }
 
+export interface IFormFieldOption {
+  labelText: string
+  value: string
+}
+
 export interface IFormField {
   id: string
   name: string
-  type?: string
+  type?: TFormFieldType
   labelText?: string
   placeholder?: string
   required?: boolean
+  min?: number | string
+  max?: number | string
   minLength?: number
   maxLength?: number
   helperText?: string
@@ -47,6 +54,9 @@ export interface IFormField {
     alt?: string
     onClick?: () => void
   }
+  options?: IFormFieldOption[]
+  pattern?: string
+  // className?: string
 }
 
 export interface FormProps<T = Record<string, unknown>>
