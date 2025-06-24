@@ -73,9 +73,9 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
 
   const AssessmentIntro: FC = () => {
     return (
-      <div className="u-text-center article-page-intro padding-inline-lg padding-block-md">
-        <h1 className="u-text-heading-lg">Ready when you are! Take these Assessment</h1>
-        <p className="u-text-body-lg">These assessments help reveal your best fit and behavior style</p>
+      <div className="u-text-center article-page-intro padding-inline-lg padding-block-sm u-padding-block-start-md">
+        <h1 className="u-text-heading-md u-bold-text">Ready when you are! Take these Assessment</h1>
+        <p className="u-text-body-md">These assessments help reveal your best fit and behavior style</p>
       </div>
     )
   }
