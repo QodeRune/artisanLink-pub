@@ -6,7 +6,7 @@ import { useToast, useModal } from "@/core"
 import { Assessment } from "./Assessment"
 // import { useAppStore } from "@/store" // Import useAppStore for fetch
 
-export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Assessment" }) => {
+export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Assessment", pageIntro }) => {
   const { openModal } = useModal()
   const { questionsData, handleFetchAndUpdateQuestionsData, handleGetQuestionsData } = useQuestionnaireQuestions()
 
@@ -71,7 +71,7 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
     }
   }
 
-  const PageIntro: FC = () => {
+  const AssessmentIntro: FC = () => {
     return (
       <div className="u-text-center article-page-intro padding-inline-lg padding-block-md">
         <h1 className="u-text-heading-lg">Ready when you are! Take these Assessment</h1>
@@ -121,6 +121,8 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
       </section>
     )
   }
+
+  const PageIntro = () => pageIntro ?? <AssessmentIntro />
 
   return (
     <section className="grid-section scroll-y u-padding-block-start-sm .u-padding-bottom-sm article-card-item-list-page">
