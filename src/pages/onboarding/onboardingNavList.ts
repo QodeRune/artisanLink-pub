@@ -35,7 +35,7 @@ export const onBoardingNavItems = [
   {
     linkIcon: ProgramIcon,
     linkText: "Bio data",
-    hrefLocation: "",
+    hrefLocation: RoutePaths.ONBOARDING_BIO_DATA,
   },
   {
     linkIcon: TermsIcon,

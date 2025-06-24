@@ -1,5 +1,5 @@
 export * from "./input.types"
-export type { TFormFieldType, IFormFieldOption, FormProps, IFormField } from "./formTypes"
+export type { TFormFieldType, IFormFieldOption, FormProps, IFormField, IBiodataFormProps } from "./formTypes"
 export type { INavProps } from "./nav.type"
 export type {
   IClickableProps,

@@ -1,6 +1,4 @@
-// import type { IInputProps } from "@/types/ui"
-
-// src/core/coreTypes/formTypes.ts
+// src/types/ui/formTypes.ts
 export type TFormFieldType =
   | "text"
   | "email"
@@ -17,12 +15,6 @@ export type TFormFieldType =
 export interface IFormFieldOption {
   labelText: string
   value: string
-}
-
-export interface IImageProperties {
-  alt: string
-  url: string
-  onClick?: () => boolean
 }
 
 export interface IFormFieldOption {
@@ -59,6 +51,12 @@ export interface IFormField {
   // className?: string
 }
 
+export interface IImageProperties {
+  alt: string
+  url: string
+  onClick?: () => boolean
+}
+
 export interface FormProps<T = Record<string, unknown>>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
   title?: string
@@ -72,4 +70,12 @@ export interface FormProps<T = Record<string, unknown>>
   className?: string
   loading?: boolean
   initialFormData?: Partial<T>
+}
+
+export interface IBiodataFormProps {
+  fields: IFormField[]
+  onSubmit?: (data: Record<string, any>) => void
+  className?: string
+  submitButtonText?: string
+  title?: string
 }

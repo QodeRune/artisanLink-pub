@@ -1,0 +1,245 @@
+// src/styles/components/_biodataForm.scss
+@use "../abstracts" as abs;
+
+.biodata-form {
+  @include abs.content-block(
+    $padding: var(--size-md-4),
+    $gap: var(--size-md-3),
+    $radius: var(--size-sm-4),
+    $bg: hsl(var(--clr-surface)),
+    $width: 90%,
+    $shadow: true,
+    $margin-block: var(--size-md-3)
+  );
+
+  max-width: 90%;
+  margin-inline: auto;
+
+  &__header {
+    color: hsl(var(--clr-text));
+    border-bottom: 1px solid hsl(var(--clr-primary-200) / 0.3);
+    padding-bottom: var(--size-sm-4);
+    margin-bottom: var(--size-md-2);
+  }
+
+  &__body {
+    grid-template-columns: 1fr;
+
+    @include abs.mq(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--size-md-3) var(--size-md-4);
+
+      // Full width fields
+      .biodata-form__field {
+        &[class*="fullName"],
+        &[class*="address"],
+        &[class*="skillsInterests"],
+        &[class*="additionalInfo"] {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+  }
+
+  &__field {
+    position: relative;
+
+    &--error {
+      .biodata-form__input,
+      .biodata-form__textarea,
+      .biodata-form__select {
+        border-color: hsl(var(--clr-danger-500));
+        box-shadow: 0 0 0 1px hsl(var(--clr-danger-500) / 0.3);
+      }
+    }
+  }
+
+  &__label {
+    color: hsl(var(--clr-text));
+    display: flex;
+    align-items: center;
+    gap: var(--size-sm-2);
+    margin-bottom: var(--size-sm-2);
+  }
+
+  &__required-mark {
+    color: hsl(var(--clr-danger-500));
+    font-weight: bold;
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    width: 100%;
+    padding: var(--size-sm-4);
+    border: 1px solid hsl(var(--clr-primary-300) / 0.5);
+    border-radius: var(--size-sm-3);
+    background-color: hsl(var(--clr-surface-alt));
+    color: hsl(var(--clr-text));
+    font-size: var(--size-sm-6);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: hsl(var(--clr-text-muted));
+    }
+
+    &:focus {
+      outline: none;
+      border-color: hsl(var(--clr-primary-500));
+      box-shadow: 0 0 0 2px hsl(var(--clr-primary-500) / 0.2);
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: hsl(var(--clr-surface-muted));
+      color: hsl(var(--clr-text-muted));
+      cursor: not-allowed;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  &__select {
+    cursor: pointer;
+
+    // Custom arrow for select (optional)
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--size-sm-4) center;
+    background-size: 16px;
+    padding-right: var(--size-md-5);
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__helper-text {
+    margin-top: var(--size-sm-2);
+    line-height: 1.4;
+  }
+
+  &__error-text {
+    color: hsl(var(--clr-danger-500));
+    margin-top: var(--size-sm-2);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: var(--size-sm-2);
+
+    &::before {
+      content: "⚠";
+      font-size: 0.9em;
+    }
+  }
+
+  &__actions {
+    border-top: 1px solid hsl(var(--clr-primary-200) / 0.3);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--size-sm-4);
+
+    @include abs.mq(sm) {
+      justify-content: center;
+    }
+  }
+
+  &__submit-button {
+    background-color: hsl(var(--clr-primary-500));
+    color: hsl(var(--clr-light-100));
+    border: none;
+    border-radius: var(--size-sm-3);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+    min-width: 120px;
+
+    &:hover {
+      background-color: hsl(var(--clr-primary-600));
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      background-color: hsl(var(--clr-primary-300));
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  // Responsive adjustments
+  @include abs.mq(sm, max) {
+    padding: var(--size-md-2);
+
+    &__body {
+      gap: var(--size-md-2);
+    }
+
+    &__actions {
+      justify-content: stretch;
+
+      .biodata-form__submit-button {
+        width: 100%;
+      }
+    }
+  }
+
+  // Dark theme adjustments
+  [data-theme="dark"] & {
+    &__input,
+    &__textarea,
+    &__select {
+      border-color: hsl(var(--clr-primary-600) / 0.3);
+
+      &:focus {
+        border-color: hsl(var(--clr-primary-400));
+        box-shadow: 0 0 0 2px hsl(var(--clr-primary-400) / 0.2);
+      }
+    }
+  }
+
+  // Animation for form appearance
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Loading state (optional)
+.biodata-form--loading {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsl(var(--clr-surface) / 0.8);
+    backdrop-filter: blur(2px);
+    border-radius: inherit;
+    z-index: 10;
+  }
+
+  .biodata-form__submit-button {
+    pointer-events: none;
+  }
+}

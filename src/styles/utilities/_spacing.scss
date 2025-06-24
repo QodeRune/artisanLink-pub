@@ -77,9 +77,18 @@
 .u-margin-top-lg {
   margin-top: var(--size-lg);
 }
-.u-margin-block-lg {
-  margin-bottom: var(--size-lg);
+.u-margin-block-md {
+  margin-block: var(--size-md);
 }
+
+.u-margin-block-lg {
+  margin-block: var(--size-lg);
+}
+
+.u-margin-inline-lg {
+  margin-inline: var(--size-lg);
+}
+
 .u-margin-inline-auto {
   margin-inline: auto;
 }

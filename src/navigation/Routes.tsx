@@ -8,6 +8,7 @@ import {
   WatchVideo,
   PaymentResponse,
   PaymentDetails,
+  BioDataForm,
 } from "@/views"
 import { AuthForm, AuthPage, UserWelcomeBanner } from "@/core"
 import { RoutePaths } from "./routePaths"
@@ -71,6 +72,7 @@ export const Routes: RouteObject[] = [
                 ],
               },
               { path: "assessments", element: <AssessmentList /> },
+              { path: "bio-data", element: <BioDataForm /> },
               { path: "career-tapestry-snapshot", element: <AssessmentList /> },
               {
                 path: "acceptance-status",
