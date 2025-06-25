@@ -1,5 +1,5 @@
 // src/navigation/routes.ts
-import { Navigate, type RouteObject } from "react-router-dom"
+import { type RouteObject } from "react-router-dom"
 import { OnBoarding, NotFoundPage, EnrolledDashboard } from "@/pages"
 import {
   AssessmentList,
@@ -11,11 +11,11 @@ import {
   BioDataForm,
 } from "@/views"
 import { AuthForm, AuthPage, UserWelcomeBanner } from "@/core"
-import { RoutePaths } from "./routePaths"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
 import { Logout } from "@/components"
 import { Initializer } from "./AppInit"
 import { KPaymentStatus, UserCapabilityKeys } from "@/types"
+import { HomeRedirect } from "./HomeRedirect"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
 
@@ -26,7 +26,7 @@ export const Routes: RouteObject[] = [
     children: [
       {
         path: "",
-        element: <Navigate to={RoutePaths.AUTH} replace />,
+        element: <HomeRedirect />,
       },
       {
         path: "/auth",
