@@ -86,7 +86,7 @@ export const Routes: RouteObject[] = [
               { path: "program-terms-and-conditions", element: <TermsAndConditions /> },
               {
                 path: "enrollment-payment",
-                element: <ProductPayment />,
+                element: <ProductPayment productName="ENROLLMENT" />,
                 children: [
                   { index: true, element: <PaymentDetails /> }, // default view
                   {
@@ -114,7 +114,9 @@ export const Routes: RouteObject[] = [
           {
             path: "",
             element: <EnrolledDashboard />,
-            children: [{ index: true, element: <AssessmentList pageIntro={<UserWelcomeBanner />} /> }],
+            children: [
+              { index: true, element: <AssessmentList tag="Enrolled Assessment" pageIntro={<UserWelcomeBanner />} /> },
+            ],
           },
         ],
       },

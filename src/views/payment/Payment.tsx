@@ -8,8 +8,8 @@ import { Outlet } from "react-router-dom"
 
 export const ProductPayment: FC<IFetchProductArgs> = ({ productName = "CAREER_TAPESTRY_SNAPSHOT" }) => {
   const { handleFetchProduct, isProductLoading } = useProductHook()
-
   useEffect(() => {
+    console.log("MOUNTED")
     void handleFetchProduct({ productName })
   }, [productName])
 
