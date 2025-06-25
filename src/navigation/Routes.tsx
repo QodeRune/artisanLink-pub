@@ -15,7 +15,7 @@ import { RoutePaths } from "./routePaths"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
 import { Logout } from "@/components"
 import { Initializer } from "./AppInit"
-import { KPaymentStatus } from "@/types"
+import { KPaymentStatus, UserCapabilityKeys } from "@/types"
 // TODO:: Remove test toast
 // import { TestToast } from "@/core"
 
@@ -109,7 +109,7 @@ export const Routes: RouteObject[] = [
       },
       {
         path: "/dashboard",
-        element: <ProtectedRoute />,
+        element: <ProtectedRoute requiredCapabilities={[UserCapabilityKeys.hasEnrolledAccess]} />,
         children: [
           {
             path: "",
