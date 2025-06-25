@@ -5,6 +5,7 @@ import { FooterUserControls, Nav, SideBar } from "@/components"
 import { DashBoardLayout } from "@/layouts"
 import { enrolledNavItems } from "./enrolledNavList"
 import { SiteBanner } from "@/components/ui/SiteBanner"
+import { UserProfileBadge } from "@/core"
 
 export const EnrolledDashboard: FC = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false)
@@ -16,7 +17,12 @@ export const EnrolledDashboard: FC = () => {
     <SideBar
       topEl={<p>Evolve with tech</p>}
       centerEl={<Nav navItems={enrolledNavItems} />}
-      bottomEl={<FooterUserControls />}
+      bottomEl={
+        <>
+          <FooterUserControls />
+          {/* <UserProfileBadge /> */}
+        </>
+      }
       className={isSidebarVisible ? "visible" : ""}
     />
   )
@@ -30,19 +36,12 @@ export const EnrolledDashboard: FC = () => {
       }}
       right={{
         name: "User Actions",
-        component: (
-          <div className="u-flex u-items-center u-gap-sm">
-            <button className="btn btn--ghost">Settings</button>
-            <div className="user-avatar">JD</div>
-          </div>
-        ),
+        component: <UserProfileBadge />,
         isMobileVisible: false,
       }}
       hamburger={{
         showOnMobile: true,
         onClick: toggleSidebar,
-        // Optional custom icon - will use default hamburger if not provided
-        // icon: <CustomMenuIcon />
       }}
     />
   )
