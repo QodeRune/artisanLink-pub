@@ -1,12 +1,15 @@
 // src/components/ui/SideBar.tsx
 import type { FC, ReactNode } from "react"
 import { IconText } from "@/components/ui/IconText"
+import clsx from "clsx"
 
-export const SideBar: FC<{ topEl: ReactNode; centerEl?: ReactNode; bottomEl?: ReactNode }> = ({
+export const SideBar: FC<{ topEl: ReactNode; centerEl?: ReactNode; bottomEl?: ReactNode; className?: string }> = ({
   topEl,
   centerEl,
   bottomEl,
+  className = "",
 }) => {
+  const sidebarClasses = clsx(["sideBar", className])
   const _brand = topEl || (
     <IconText
       icon={{
@@ -22,7 +25,7 @@ export const SideBar: FC<{ topEl: ReactNode; centerEl?: ReactNode; bottomEl?: Re
     />
   )
   return (
-    <aside className="sideBar">
+    <aside className={sidebarClasses}>
       {_brand} {centerEl} {bottomEl}
     </aside>
   )

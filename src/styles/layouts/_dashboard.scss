@@ -8,7 +8,7 @@
 
   @media only screen and (max-width: 50em) {
     grid-template-columns: 1fr;
-    padding-inline: 0.5rem;
+    padding-inline: 0rem;
   }
 }
 
@@ -16,12 +16,10 @@
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-  // background-color: hsl(var(--clr-primary-500));
-  // background-color: hsla(var(--clr-primary));
-  padding-inline: var(--size-xs);
+  // padding-inline: var(--size-xs);
 
   @media only screen and (max-width: 50em) {
-    max-height: 100%;
+    height: 100%;
   }
 }
 

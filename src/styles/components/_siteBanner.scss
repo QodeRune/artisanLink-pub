@@ -1,0 +1,138 @@
+// src/styles/components/_siteBanner.scss
+@use "../abstracts" as abs;
+
+.site-banner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--size-sm-4) var(--size-md);
+  // background-color: hsl(var(--clr-surface));
+  border-bottom: 1px solid hsl(var(--clr-surface-alt));
+  box-shadow: var(--soft-shadow);
+  height: var(--size-lg-1); // 64px - matches your navbar-height
+  position: relative;
+  z-index: 10;
+
+  @include abs.mq(md, max) {
+    grid-template-columns: auto 1fr auto;
+    padding: var(--size-sm-4) var(--size-md-2);
+  }
+}
+
+.banner-section {
+  display: flex;
+  align-items: center;
+  min-height: var(--size-md-4); // Ensures minimum touch target
+
+  &--left {
+    justify-content: flex-start;
+    gap: var(--size-sm-4);
+  }
+
+  &--center {
+    justify-content: center;
+
+    @include abs.mq(md, max) {
+      justify-content: flex-start;
+      margin-left: var(--size-sm-4);
+    }
+  }
+
+  &--right {
+    justify-content: flex-end;
+  }
+}
+
+.banner-item {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+
+  // Mobile visibility control
+  @include abs.mq(md, max) {
+    &--mobile-hidden {
+      display: none;
+    }
+  }
+}
+
+.banner-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--size-sm-2);
+  border-radius: var(--size-sm-2);
+  color: hsl(var(--clr-on-surface));
+  transition: all 0.2s ease;
+  min-width: var(--size-md-5); // 40px - good touch target
+  min-height: var(--size-md-5);
+  align-items: center;
+  justify-content: center;
+
+  @include abs.mq(md, max) {
+    display: flex;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: hsl(var(--clr-surface-alt));
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid hsl(var(--clr-primary-500));
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // Icon styling
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 2;
+  }
+}
+
+// Utility classes for common banner content
+.banner-title {
+  font-size: var(--size-md-2); // 1.25rem
+  font-weight: 600;
+  color: hsl(var(--clr-on-surface));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include abs.mq(sm, max) {
+    font-size: var(--size-md-1); // 1rem on very small screens
+  }
+}
+
+.banner-subtitle {
+  font-size: var(--size-sm-5_14); // 0.875rem
+  color: hsl(var(--clr-text-muted));
+  margin-left: var(--size-sm-2);
+}
+
+// Integration with your existing sidebar
+.site-banner + .main-layout {
+  padding-top: var(--size-lg-1); // Account for fixed banner if needed
+}
+
+// If you want the banner to be sticky/fixed
+.site-banner--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-banner--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}

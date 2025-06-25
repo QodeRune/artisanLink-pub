@@ -18,6 +18,7 @@
 
     &.visible {
       transform: translateX(0);
+      background-color: hsl(var(--clr-bg-legacy));
     }
   }
 }
