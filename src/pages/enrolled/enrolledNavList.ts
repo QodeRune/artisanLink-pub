@@ -1,11 +1,11 @@
 // src/pages/onboarding/enrolledNavList.ts
 import { RoutePaths } from "@/navigation/routePaths"
-import { VideoIcon, TermsIcon, PaymentIcon } from "@/components"
+import { VideoIcon, TermsIcon } from "@/components"
 
 export const enrolledNavItems = [
   {
     linkIcon: VideoIcon,
-    linkText: "Home",
+    linkText: "Dashboard",
     hrefLocation: RoutePaths.DASHBOARD,
   },
   {
@@ -13,9 +13,9 @@ export const enrolledNavItems = [
     linkText: "Profile",
     hrefLocation: RoutePaths.DASHBOARD_PROFILE,
   },
-  // {
-  //   linkIcon: PaymentIcon,
-  //   linkText: "Payment",
-  //   hrefLocation: RoutePaths.PROFILE_REPORTS,
-  // },
+  {
+    linkIcon: TermsIcon,
+    linkText: "Reports",
+    hrefLocation: RoutePaths.PROFILE_REPORTS,
+  },
 ]
