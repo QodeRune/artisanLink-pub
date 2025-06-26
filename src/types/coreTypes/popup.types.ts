@@ -64,3 +64,5 @@ export const defaultModalContext: IModalContext = {
   modalContent: null,
   isOpen: false,
 }
+
+export type TCloseAssessmentFn = (payload?: { success?: boolean }) => void

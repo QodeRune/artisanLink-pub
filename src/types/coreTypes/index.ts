@@ -28,6 +28,7 @@ export type {
   TToastState,
   IToastContext,
   IModalContext,
+  TCloseAssessmentFn,
 } from "./popup.types"
 export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorageParams } from "./indexDB.types"
 export { defaultToastContext, defaultModalContext } from "./popup.types"

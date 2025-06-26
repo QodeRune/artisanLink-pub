@@ -2,13 +2,13 @@
 import { useEffect, useRef, type FC } from "react"
 import { ArticleItemCard } from "@/components"
 import { useQuestionnaireListStore, useQuestionnaireQuestions } from "@/store"
-import type { IQuestionnaireListTag } from "@/types"
+import type { IQuestionnaireListTag, TCloseAssessmentFn } from "@/types"
 import { useToast, useModal } from "@/core"
 import { Assessment } from "./Assessment"
 // import { useAppStore } from "@/store" // Import useAppStore for fetch
 
 export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Assessment", pageIntro }) => {
-  const { openModal } = useModal()
+  const { openModal, closeModal } = useModal()
   const { questionsData, handleFetchAndUpdateQuestionsData, handleGetQuestionsData } = useQuestionnaireQuestions()
 
   const {
@@ -52,13 +52,37 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
     }
   }, [handleFetchAndUpdateQuestionnaireList, tag])
 
+  const closeAssessment: TCloseAssessmentFn = ({ success } = {}) => {
+    closeModal()
+
+    if (success) {
+      addToast({
+        title: "",
+        message: "Submit successful",
+        type: "success",
+        size: "md",
+        position: "top-right",
+        duration: 3000,
+      })
+    } else {
+      addToast({
+        title: "",
+        message: "Submission failed",
+        type: "error",
+        size: "md",
+        position: "top-right",
+        duration: 3000,
+      })
+    }
+  }
+
   const openAssessment = async (id: string) => {
     try {
       const fetchQuestionnaire = await handleFetchAndUpdateQuestionsData({ questionnaire_id: id })
       if (fetchQuestionnaire) {
         console.log("Fetched questionsData for id:", id, questionsData)
         const _questionsData = await handleGetQuestionsData()
-        openModal(<Assessment questionnaireId={id} questionsData={_questionsData} />)
+        openModal(<Assessment questionnaireId={id} questionsData={_questionsData} closeAssessment={closeAssessment} />)
       }
 
       if (!fetchQuestionnaire) {
