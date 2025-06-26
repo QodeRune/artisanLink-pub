@@ -74,7 +74,15 @@ export const Routes: RouteObject[] = [
               },
               { path: "assessments", element: <AssessmentList /> },
               { path: "bio-data", element: <BioDataForm /> },
-              { path: "career-tapestry-snapshot", element: <AssessmentList /> },
+              {
+                path: "career-tapestry-snapshot",
+                element: (
+                  <ProfileReports
+                    className="u-margin-block-md"
+                    pageIntro={<h1 className="u-bold-text padding-inline-lg">Career Tapestry Snapshot</h1>}
+                  />
+                ),
+              },
               {
                 path: "acceptance-status",
                 element: (
