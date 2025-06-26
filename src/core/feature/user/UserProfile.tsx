@@ -4,13 +4,13 @@ import type { FC } from "react"
 export const UserProfile: FC = () => {
   const userDetails = (
     <header
-      className="user-details u-profile-section u-padding-block-md u-padding-inline-md"
+      className="user-details u-profile-section u-padding-block-md u-padding-inline-md u-flex u-gap-md"
       data-dev-id="user-details"
       aria-label="User summary"
     >
-      <div className="avatar" aria-hidden="true">
+      <span className="user-avatar large" aria-hidden="true">
         F
-      </div>
+      </span>
       <div className="update-pw">
         <h2 className="user-name">FirstName LastName</h2>
         <p className="user-email">email@email.com</p>
@@ -27,9 +27,12 @@ export const UserProfile: FC = () => {
       data-dev-id="profile-details"
       aria-labelledby="profile-details-heading"
     >
-      <h2 id="profile-details-heading" className="section-heading u-margin-block-end-md">
-        Profile Information
-      </h2>
+      <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
+        <h2 id="profile-details-heading" className="section-heading ">
+          Profile Information
+        </h2>
+        <button className="edit">edit</button>
+      </span>
       <div className="content">
         <div className="address article-meta-list">
           <div className="detailItem">
@@ -65,9 +68,12 @@ export const UserProfile: FC = () => {
       data-dev-id="additional-details"
       aria-labelledby="additional-details-heading"
     >
-      <h2 id="additional-details-heading" className="section-heading u-margin-block-end-md">
-        Additional Details
-      </h2>
+      <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
+        <h2 id="additional-details-heading" className="section-heading ">
+          Additional Details
+        </h2>
+        <button className="edit">edit</button>
+      </span>
       <div className="content u-gap-md u-grid">
         <div className="section-1 article-meta-list">
           <div className="detailItem">
@@ -99,9 +105,12 @@ export const UserProfile: FC = () => {
       data-dev-id="preference-settings"
       aria-labelledby="preference-settings-heading"
     >
-      <h2 id="preference-settings-heading" className="section-heading u-margin-block-end-md">
-        Preference Settings
-      </h2>
+      <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
+        <h2 id="preference-settings-heading" className="section-heading ">
+          Preference Settings
+        </h2>
+        <button className="edit">edit</button>
+      </span>
       <div className="content article-meta-list">
         <div className="detailItem">
           <h3 className="u-bold-text">Time Zone</h3>

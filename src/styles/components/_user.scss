@@ -35,6 +35,13 @@
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+
+  &.large {
+    width: 5rem;
+    height: 5rem;
+
+    font-size: 3rem;
+  }
 }
 
 .user-info {

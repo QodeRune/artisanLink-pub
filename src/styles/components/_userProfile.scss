@@ -8,5 +8,10 @@
   .content {
     display: grid;
     grid-template-columns: auto 30%;
+
+    @media only screen and (max-width: 50em) {
+      grid-template-columns: 1fr;
+      gap: var(--size-md);
+    }
   }
 }
