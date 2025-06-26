@@ -10,12 +10,12 @@ export const enrolledNavItems = [
   },
   {
     linkIcon: TermsIcon,
-    linkText: "Terms & conditions",
+    linkText: "Profile",
     hrefLocation: RoutePaths.DASHBOARD_PROFILE,
   },
-  {
-    linkIcon: PaymentIcon,
-    linkText: "Payment",
-    hrefLocation: RoutePaths.PROFILE_REPORTS,
-  },
+  // {
+  //   linkIcon: PaymentIcon,
+  //   linkText: "Payment",
+  //   hrefLocation: RoutePaths.PROFILE_REPORTS,
+  // },
 ]

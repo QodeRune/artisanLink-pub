@@ -1,0 +1,12 @@
+// src/styles/components/_userProfile.scss
+.u-profile-section {
+  background-color: hsl(var(--clr-bg-legacy));
+  border-radius: var(--size-sm);
+}
+
+.profile-details {
+  .content {
+    display: grid;
+    grid-template-columns: auto 30%;
+  }
+}

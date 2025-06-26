@@ -10,7 +10,7 @@ import {
   PaymentDetails,
   BioDataForm,
 } from "@/views"
-import { AuthForm, AuthPage, UserWelcomeBanner } from "@/core"
+import { AuthForm, AuthPage, UserProfile, UserWelcomeBanner } from "@/core"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
 import { Logout } from "@/components"
 import { Initializer } from "./AppInit"
@@ -108,14 +108,15 @@ export const Routes: RouteObject[] = [
         ],
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <ProtectedRoute requiredCapabilities={[UserCapabilityKeys.hasEnrolledAccess]} />,
         children: [
           {
             path: "",
             element: <EnrolledDashboard />,
             children: [
-              { index: true, element: <AssessmentList tag="Enrolled Assessment" pageIntro={<UserWelcomeBanner />} /> },
+              { path: "", element: <AssessmentList tag="Enrolled Assessment" pageIntro={<UserWelcomeBanner />} /> },
+              { path: "profile", element: <UserProfile /> },
             ],
           },
         ],
