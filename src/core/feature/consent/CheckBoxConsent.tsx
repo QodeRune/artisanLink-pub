@@ -14,6 +14,7 @@ export interface ICheckBoxConsent {
   labelText?: string
   checkboxClassNames?: string
   linkClassNames?: string
+  checked?: boolean
 }
 
 export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
@@ -27,6 +28,7 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
   labelText = "Yes I have completed and understood the video content",
   checkboxClassNames,
   linkClassNames,
+  checked,
 }) => {
   const checkboxClasses = clsx([checkboxClassNames, "checkbox-consent", "checkbox_consent"])
   const linkClassName = clsx([linkClassNames, "button-text"])
@@ -41,6 +43,7 @@ export const CheckBoxConsent: FC<ICheckBoxConsent> = ({
         type={"checkbox"}
         readOnly={readonly}
         required={required}
+        checked={checked}
       />
       {linkText && (
         <a className={linkClassName} onClick={onLinkClick}>

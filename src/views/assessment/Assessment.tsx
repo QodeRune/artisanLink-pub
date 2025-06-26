@@ -1,3 +1,4 @@
+// src/views/assessment/Assessment.tsx
 import { useEffect, useMemo, useState, type FC, type FormEvent } from "react"
 import { useQuestionnaireListStore, useQuestionnaireStore } from "@/store"
 import { processedQuestionsList } from "./processQuestionList"
@@ -120,8 +121,9 @@ export const Assessment: FC<{
           id="terms-and-conditions"
           name="terms-and-conditions"
           labelText="Confirm Submit Action"
+          checked={confirmSubmitChecked} // 👈 here
         />
-        <FormButton buttonClassName="button-text" />
+        <FormButton buttonClassName="button-text" disabled={!confirmSubmitChecked} />
       </div>
     )
   }
