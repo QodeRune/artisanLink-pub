@@ -1,5 +1,5 @@
 // src/navigation/routes.ts
-import { type RouteObject } from "react-router-dom"
+import { Navigate, type RouteObject } from "react-router-dom"
 import { OnBoarding, NotFoundPage, EnrolledDashboard } from "@/pages"
 import {
   AssessmentList,
@@ -9,6 +9,7 @@ import {
   PaymentResponse,
   PaymentDetails,
   BioDataForm,
+  ProfileReports,
 } from "@/views"
 import { AuthForm, AuthPage, UserProfile, UserWelcomeBanner } from "@/core"
 import { ProtectedRoute } from "@/navigation/ProtectedRoute"
@@ -49,7 +50,7 @@ export const Routes: RouteObject[] = [
             path: "",
             element: <OnBoarding />,
             children: [
-              { path: "", element: <WatchVideo /> },
+              { index: true, element: <Navigate to="watch-video" replace /> },
               { path: "watch-video", element: <WatchVideo /> },
               { path: "terms-and-conditions", element: <TermsAndConditions /> },
               {
@@ -115,8 +116,10 @@ export const Routes: RouteObject[] = [
             path: "",
             element: <EnrolledDashboard />,
             children: [
-              { path: "", element: <AssessmentList tag="Enrolled Assessment" pageIntro={<UserWelcomeBanner />} /> },
+              { index: true, element: <Navigate to="home" replace /> },
+              { path: "home", element: <AssessmentList tag="Enrolled Assessment" pageIntro={<UserWelcomeBanner />} /> },
               { path: "profile", element: <UserProfile /> },
+              { path: "reports", element: <ProfileReports /> },
             ],
           },
         ],

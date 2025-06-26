@@ -5,8 +5,8 @@ import { VideoIcon, TermsIcon } from "@/components"
 export const enrolledNavItems = [
   {
     linkIcon: VideoIcon,
-    linkText: "Dashboard",
-    hrefLocation: RoutePaths.DASHBOARD,
+    linkText: "Home",
+    hrefLocation: RoutePaths.DASHBOARD_HOME,
   },
   {
     linkIcon: TermsIcon,
