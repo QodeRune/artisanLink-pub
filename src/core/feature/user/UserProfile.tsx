@@ -110,9 +110,48 @@ export const UserProfile: FC = () => {
       { name: "location", value: location, type: "textarea" },
     ]
 
+    const updateDetails = async (data?: Partial<IUser>) => {
+      if (!data) return { success: false }
+
+      const userDetails: Partial<IUser> = {}
+      const bioDataDetails: Record<string, unknown> = {}
+
+      // Explicitly handle each user property
+      if (data.first_name !== undefined) userDetails.first_name = data.first_name
+      if (data.last_name !== undefined) userDetails.last_name = data.last_name
+      if (data.email !== undefined) userDetails.email = data.email
+      if (data.id !== undefined) userDetails.id = data.id
+      if (data.user_status_id !== undefined) userDetails.user_status_id = data.user_status_id
+      if (data.user_status !== undefined) userDetails.user_status = data.user_status
+      if (data.organization_id !== undefined) userDetails.organization_id = data.organization_id
+      // Explicitly exclude capabilities
+
+      // Handle bio data
+      const bioKeys = ["phone", "location"]
+      for (const key of bioKeys) {
+        if (key in data) {
+          bioDataDetails[key] = data[key as keyof typeof data]
+        }
+      }
+
+      try {
+        const [userRes, bioRes] = await Promise.all([
+          Object.keys(userDetails).length ? updateUser(userDetails) : Promise.resolve(null),
+          Object.keys(bioDataDetails).length ? updateBioData(bioDataDetails) : Promise.resolve(null),
+        ])
+
+        const success = Boolean(userRes?.success || bioRes?.success)
+        return { success }
+      } catch (error) {
+        console.error("Update failed:", error)
+        return { success: false }
+      }
+    }
+
     const handleEdit = () => {
       updateSection<Partial<IUser>>({
         title: "Update Profile Details",
+        onSubmit: updateDetails,
         formFieldList,
       })
     }

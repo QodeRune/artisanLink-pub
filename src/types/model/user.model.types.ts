@@ -24,3 +24,5 @@ export interface IUser {
   capabilities: IUserCapabilities
   bio_data?: Record<string, unknown>
 }
+
+export type IUserWithoutCapabilities = Omit<IUser, "capabilities">

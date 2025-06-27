@@ -1,5 +1,5 @@
 // src/types/model/index.ts
-export type { TUserCapabilityKeys, IUserCapabilities, IUser } from "./user.model.types"
+export type { TUserCapabilityKeys, IUserCapabilities, IUser, IUserWithoutCapabilities } from "./user.model.types"
 export { UserCapabilityKeys } from "./user.model.types"
 export type { IProductData, IProductPaymentResponse, ICouponResponse } from "./product.types"
 export type {
