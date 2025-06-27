@@ -12,31 +12,39 @@ export const useQuestionnaireStore = () => {
   const resetResponses = useAppStore((state) => state.resetResponses)
 
   const handleUpdateResponse = useCallback(
-    async (params: IUpdateResponseArgs) => {
+    (params: IUpdateResponseArgs) => {
+      // Remove async
       return updateResponse(params)
     },
     [updateResponse],
   )
+
   const handleSetUserTextInput = useCallback(
-    async (params: ISetUserTextInput) => {
+    (params: ISetUserTextInput) => {
+      // Remove async
       return setUserTextInput(params)
     },
     [setUserTextInput],
   )
+
   const handleIsOptionSelected = useCallback(
     (params: IIsOptionSelected) => {
       return isOptionSelected(params)
     },
     [isOptionSelected],
   )
+
   const handleGetResponses = useCallback(
-    async (params: string) => {
+    (params: string) => {
+      // Remove async
       return getResponses(params)
     },
     [getResponses],
   )
+
   const handleResetResponses = useCallback(
-    async (params: string) => {
+    (params: string) => {
+      // Remove async
       return resetResponses(params)
     },
     [resetResponses],
