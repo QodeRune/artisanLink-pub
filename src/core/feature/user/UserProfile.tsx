@@ -1,8 +1,8 @@
 // src/core/feature/user/UserProfile.tsx
-import { useModal } from "@/core/feature/popup"
+import { useModal, useToast } from "@/core/feature/popup"
 import { ProfileUpdateForm } from "@/core/feature/user/ProfileUpdateForm"
 import { useUserHook } from "@/store"
-import type { IProfileUpdateForm, IUpdateProfile, IUser, WithOptional } from "@/types"
+import type { IProfileUpdateForm, IUpdateProfile, IUser, TCloseAssessmentFn, WithOptional } from "@/types"
 import type { FC } from "react"
 
 export const UserProfile: FC = () => {
@@ -20,15 +20,45 @@ export const UserProfile: FC = () => {
   const skills_and_expertise = "skills_and_expertise"
   const biographic_information = "biographic_information"
 
-  const { openModal } = useModal()
+  const { openModal, closeModal } = useModal()
+  const { addToast } = useToast()
 
   const updateSection = <T = Record<string, unknown>,>({
     title,
     formFieldList,
     onSubmit,
   }: WithOptional<IProfileUpdateForm<T>, "onSubmit">) => {
+    // TODO:: make this post submit a util, also rename TCLoseAssessmentFn to closeModal
+    const postSubmit: TCloseAssessmentFn = ({ success } = {}) => {
+      if (success) {
+        addToast({
+          title: "",
+          message: "Submit successful",
+          type: "success",
+          size: "md",
+          position: "top-right",
+          duration: 3000,
+        })
+      } else {
+        addToast({
+          title: "",
+          message: "Submission failed",
+          type: "error",
+          size: "md",
+          position: "top-right",
+          duration: 3000,
+        })
+      }
+      closeModal()
+    }
+
     const modalEl = (
-      <ProfileUpdateForm title={title} formFieldList={formFieldList} onSubmit={onSubmit || updateBioData} />
+      <ProfileUpdateForm
+        title={title}
+        formFieldList={formFieldList}
+        onSubmit={onSubmit || updateBioData}
+        postSubmit={postSubmit}
+      />
     )
     openModal(modalEl)
   }
@@ -105,11 +135,11 @@ export const UserProfile: FC = () => {
           <div className="address article-meta-list">
             <div className="detailItem">
               <h3 className="u-bold-text">First Name</h3>
-              <p>Jack</p>
+              <p> {firstName}</p>
             </div>
             <div className="detailItem">
               <h3 className="u-bold-text">Last Name</h3>
-              <p>Adams</p>
+              <p> {lastName}</p>
             </div>
             <div className="detailItem">
               <h3 className="u-bold-text">Phone Number</h3>

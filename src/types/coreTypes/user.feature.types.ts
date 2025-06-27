@@ -1,4 +1,5 @@
 // src/types/coreTypes/user.feature.types.ts
+import type { TCloseAssessmentFn } from "./popup.types"
 import type { IComponentFetchResponse } from "../service"
 import type { TFormFieldType } from "../ui"
 
@@ -13,4 +14,5 @@ export interface IProfileUpdateForm<T = any> {
   title: string
   formFieldList: IUpdateProfile[]
   onSubmit: (data?: T) => Promise<IComponentFetchResponse>
+  postSubmit?: TCloseAssessmentFn
 }

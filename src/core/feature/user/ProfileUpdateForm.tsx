@@ -3,19 +3,15 @@ import { DynamicForm } from "@/core/feature/dynamicForm"
 import type { IFormField, IProfileUpdateForm } from "@/types"
 import type { FC } from "react"
 
-export const ProfileUpdateForm: FC<IProfileUpdateForm> = ({ title, formFieldList, onSubmit }) => {
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
-
-    // Extract form data if needed
-    const formData = new FormData(e.target)
-    const data = Object.fromEntries(formData.entries())
-
-    // Call the provided onSubmit function
+export const ProfileUpdateForm: FC<IProfileUpdateForm> = ({ title, formFieldList, onSubmit, postSubmit }) => {
+  const handleSubmit = async (data: any) => {
     if (onSubmit) {
-      return await onSubmit(data)
+      const isSubmitted = await onSubmit(data)
+      if (postSubmit) {
+        const { success } = isSubmitted
+        return postSubmit({ success })
+      }
     }
-
     return { success: true }
   }
 
