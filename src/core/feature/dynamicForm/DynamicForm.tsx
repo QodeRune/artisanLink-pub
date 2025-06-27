@@ -88,7 +88,7 @@ export const DynamicForm: FC<IFormProps> = ({
     return ""
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newErrors: Record<string, string> = {}
 
     // Validate all fields
@@ -103,7 +103,7 @@ export const DynamicForm: FC<IFormProps> = ({
 
     // If no errors, submit the form
     if (Object.keys(newErrors).length === 0) {
-      onSubmit?.(formData)
+      await onSubmit?.(formData)
     }
   }
 
