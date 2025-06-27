@@ -12,7 +12,7 @@ export interface IProfileUpdateForm {
 export const ProfileUpdateForm: FC<IProfileUpdateForm> = ({ title, formFieldList }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    return true
+    return { success: true }
   }
   return (
     <section className="update-form">

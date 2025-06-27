@@ -6,7 +6,7 @@ export const BioDataForm = () => {
   const handleSubmit = (data: Record<string, any>) => {
     console.log("Form data:", data)
     // Handle form submission
-    return true
+    return { success: true }
   }
 
   return (

@@ -1,9 +1,9 @@
 // src/core/feature/dynamicForm/DynamicForm.tsx
-import type { IFormField, FormProps } from "@/types"
+import type { IFormField, IFormProps } from "@/types"
 import { useState, type FC } from "react"
 import clsx from "clsx"
 
-export const DynamicForm: FC<FormProps> = ({
+export const DynamicForm: FC<IFormProps> = ({
   fields,
   onSubmit,
   className,

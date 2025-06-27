@@ -1,3 +1,5 @@
+import type { IComponentFetchResponse } from "@/types/service"
+
 // src/types/ui/formTypes.ts
 export type TFormFieldType =
   | "text"
@@ -57,16 +59,16 @@ export interface IImageProperties {
   onClick?: () => boolean
 }
 
-export interface FormProps<T = Record<string, unknown>>
+export interface IFormProps<T = Record<string, unknown>>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
   title?: string
   instructions?: string
   fields: IFormField[]
   isEditable?: boolean
-  onSubmit: (data: T) => boolean
+  onSubmit: (data: T) => IComponentFetchResponse
   submitButtonText?: string
   cancelButtonText?: string
-  onCancel?: () => boolean
+  onCancel?: () => IComponentFetchResponse
   className?: string
   loading?: boolean
   initialFormData?: Partial<T>
@@ -74,7 +76,7 @@ export interface FormProps<T = Record<string, unknown>>
 
 export interface IBiodataFormProps {
   fields: IFormField[]
-  onSubmit?: (data: Record<string, any>) => void
+  onSubmit?: (data: Record<string, any>) => IComponentFetchResponse
   className?: string
   submitButtonText?: string
   title?: string
