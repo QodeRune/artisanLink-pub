@@ -13,6 +13,12 @@ export const UserProfile: FC = () => {
   const firstName = user?.first_name || "first_name"
   const lastName = user?.last_name || "last_name"
   const email = user?.email || "email"
+  const phoneNumber = ""
+  const location = ""
+  const interests_and_hobbies = "interests_and_hobbies"
+  const social_connections = "social_connections"
+  const skills_and_expertise = "skills_and_expertise"
+  const biographic_information = "biographic_information"
 
   const { openModal } = useModal()
 
@@ -34,7 +40,6 @@ export const UserProfile: FC = () => {
     ]
 
     const handleEdit = () => {
-      console.log("called edit")
       updateSection<Partial<IUser>>({
         title: "Update Credentials",
         onSubmit: updateUser,
@@ -59,7 +64,7 @@ export const UserProfile: FC = () => {
             <p className="user-email">{email}</p>
           </div>
 
-          <button type="button" onClick={() => handleEdit()} className="reset-password-btn u-edit-button">
+          <button type="button" onClick={handleEdit} className="reset-password-btn u-edit-button">
             Reset password
           </button>
         </div>
@@ -67,80 +72,115 @@ export const UserProfile: FC = () => {
     )
   }
 
-  // ... rest of the component remains the same
-  const profileDetails = (
-    <section
-      className="profile-details u-profile-section u-padding-block-md u-padding-inline-md"
-      data-dev-id="profile-details"
-      aria-labelledby="profile-details-heading"
-    >
-      <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
-        <h2 id="profile-details-heading" className="section-heading ">
-          Profile Information
-        </h2>
-        <button className="edit u-edit-button">edit</button>
-      </span>
-      <div className="content">
-        <div className="address article-meta-list">
-          <div className="detailItem">
-            <h3 className="u-bold-text">First Name</h3>
-            <p>Jack</p>
-          </div>
-          <div className="detailItem">
-            <h3 className="u-bold-text">Last Name</h3>
-            <p>Adams</p>
-          </div>
-          <div className="detailItem">
-            <h3 className="u-bold-text">Phone Number</h3>
-            <p>000 000 - 0000</p>
-          </div>
-        </div>
-        <div className="other-details">
-          <div className="detailItem">
-            <h3 className="u-bold-text">Location</h3>
-            <p>United States of America</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+  const ProfileDetails: FC = () => {
+    const formFieldList: IUpdateProfile[] = [
+      { name: "first_name", value: firstName },
+      { name: "last_name", value: lastName },
+      { name: "phone", value: phoneNumber, type: "tel" },
+      { name: "location", value: location, type: "textarea" },
+    ]
 
-  const additionalDetails = (
-    <section
-      className="additional-details u-profile-section u-padding-block-md u-padding-inline-md"
-      data-dev-id="additional-details"
-      aria-labelledby="additional-details-heading"
-    >
-      <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
-        <h2 id="additional-details-heading" className="section-heading ">
-          Additional Details
-        </h2>
-        <button className="edit u-edit-button">edit</button>
-      </span>
-      <div className="content u-gap-md u-grid">
-        <div className="section-1 article-meta-list">
-          <div className="detailItem">
-            <h3 className="u-bold-text">Interests and Hobbies</h3>
-            <p>Drawing, Singing, Dancing, etc</p>
+    const handleEdit = () => {
+      updateSection<Partial<IUser>>({
+        title: "Update Profile Details",
+        formFieldList,
+      })
+    }
+
+    return (
+      <section
+        className="profile-details u-profile-section u-padding-block-md u-padding-inline-md"
+        data-dev-id="profile-details"
+        aria-labelledby="profile-details-heading"
+      >
+        <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
+          <h2 id="profile-details-heading" className="section-heading ">
+            Profile Information
+          </h2>
+          <button onClick={handleEdit} className="edit u-edit-button">
+            edit
+          </button>
+        </span>
+        <div className="content">
+          <div className="address article-meta-list">
+            <div className="detailItem">
+              <h3 className="u-bold-text">First Name</h3>
+              <p>Jack</p>
+            </div>
+            <div className="detailItem">
+              <h3 className="u-bold-text">Last Name</h3>
+              <p>Adams</p>
+            </div>
+            <div className="detailItem">
+              <h3 className="u-bold-text">Phone Number</h3>
+              <p>000 000 - 0000</p>
+            </div>
           </div>
-          <div className="detailItem">
-            <h3 className="u-bold-text">Skills and Expertise</h3>
-            <p>Drawing, Singing, Dancing, etc</p>
-          </div>
-          <div className="detailItem">
-            <h3 className="u-bold-text">Social Connection</h3>
-            <p>Facebook, LinkedIn, Twitter</p>
+          <div className="other-details">
+            <div className="detailItem">
+              <h3 className="u-bold-text">Location</h3>
+              <p>United States of America</p>
+            </div>
           </div>
         </div>
-        <div className="section-2">
-          <div className="detailItem">
-            <h3 className="u-bold-text">Biographic Information</h3>
-            <p>Something, something</p>
+      </section>
+    )
+  }
+
+  const AdditionalDetails: FC = () => {
+    const formFieldList: IUpdateProfile[] = [
+      { name: "interests_and_hobbies", value: interests_and_hobbies },
+      { name: "social_connections", value: social_connections },
+      { name: "skills_and_expertise", value: skills_and_expertise, type: "textarea" },
+      { name: "biographic_information", value: biographic_information, type: "textarea" },
+    ]
+
+    const handleEdit = () => {
+      updateSection<Partial<IUser>>({
+        title: "Update Profile Details",
+        formFieldList,
+      })
+    }
+
+    return (
+      <section
+        className="additional-details u-profile-section u-padding-block-md u-padding-inline-md"
+        data-dev-id="additional-details"
+        aria-labelledby="additional-details-heading"
+      >
+        <span className="section-head u-margin-block-end-md u-flex u-justify-between u-items-center">
+          <h2 id="additional-details-heading" className="section-heading ">
+            Additional Details
+          </h2>
+          <button onClick={handleEdit} className="edit u-edit-button">
+            edit
+          </button>
+        </span>
+        <div className="content u-gap-md u-grid">
+          <div className="section-1 article-meta-list">
+            <div className="detailItem">
+              <h3 className="u-bold-text">Interests and Hobbies</h3>
+              <p>Drawing, Singing, Dancing, etc</p>
+            </div>
+            <div className="detailItem">
+              <h3 className="u-bold-text">Skills and Expertise</h3>
+              <p>Drawing, Singing, Dancing, etc</p>
+            </div>
+            <div className="detailItem">
+              <h3 className="u-bold-text">Social Connection</h3>
+              <p>Facebook, LinkedIn, Twitter</p>
+            </div>
+          </div>
+          <div className="section-2">
+            <div className="detailItem">
+              <h3 className="u-bold-text">Biographic Information</h3>
+              <p>Something, something</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
+  }
 
   const preferenceSettings = (
     <section
@@ -184,8 +224,8 @@ export const UserProfile: FC = () => {
       <h1 className="profile-page u-margin-inline-md">Profile</h1>
       <div className="page-content u-gap-md u-grid scroll-y u-margin-block-end-md u-padding-inline-md">
         <UserDetails />
-        {profileDetails}
-        {additionalDetails}
+        <ProfileDetails />
+        <AdditionalDetails />
         {preferenceSettings}
       </div>
     </section>
