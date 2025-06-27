@@ -8,3 +8,8 @@
 .u-h-screen {
   height: 100vh;
 }
+
+.section-head {
+  padding: 0.25rem;
+  border-bottom: 1px solid hsl(var(--clr-surface-alt));
+}

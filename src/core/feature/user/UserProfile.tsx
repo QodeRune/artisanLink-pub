@@ -11,10 +11,13 @@ export const UserProfile: FC = () => {
       <span className="user-avatar large" aria-hidden="true">
         F
       </span>
-      <div className="update-pw">
-        <h2 className="user-name">FirstName LastName</h2>
-        <p className="user-email">email@email.com</p>
-        <button type="button" className="reset-password-btn">
+      <div className="update-pw u-grid u-gap-sm">
+        <div className="user-particulars">
+          <h2 className="user-name">FirstName LastName</h2>
+          <p className="user-email">email@email.com</p>
+        </div>
+
+        <button type="button" className="reset-password-btn u-edit-button">
           Reset password
         </button>
       </div>
@@ -31,7 +34,7 @@ export const UserProfile: FC = () => {
         <h2 id="profile-details-heading" className="section-heading ">
           Profile Information
         </h2>
-        <button className="edit">edit</button>
+        <button className="edit u-edit-button">edit</button>
       </span>
       <div className="content">
         <div className="address article-meta-list">
@@ -72,7 +75,7 @@ export const UserProfile: FC = () => {
         <h2 id="additional-details-heading" className="section-heading ">
           Additional Details
         </h2>
-        <button className="edit">edit</button>
+        <button className="edit u-edit-button">edit</button>
       </span>
       <div className="content u-gap-md u-grid">
         <div className="section-1 article-meta-list">
@@ -109,7 +112,7 @@ export const UserProfile: FC = () => {
         <h2 id="preference-settings-heading" className="section-heading ">
           Preference Settings
         </h2>
-        <button className="edit">edit</button>
+        <button className="edit u-edit-button">edit</button>
       </span>
       <div className="content article-meta-list">
         <div className="detailItem">

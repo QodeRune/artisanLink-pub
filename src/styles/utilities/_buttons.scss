@@ -1,0 +1,14 @@
+// src/styles/utilities/_buttons.scss
+.u-edit-button {
+  background: hsl(var(--clr-surface-alt));
+  color: var(--clr-bg-legacy);
+  border: none;
+  padding: 0.125rem 0.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: hsl(var(--clr-primary-300));
+  }
+}
