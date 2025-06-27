@@ -1,4 +1,5 @@
 // src/types/coreTypes/index.ts
+export type WithOptional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type {
   TErrorType,
   TErrorCodes,
@@ -30,6 +31,7 @@ export type {
   IModalContext,
   TCloseAssessmentFn,
 } from "./popup.types"
+export type { IUpdateProfile, IProfileUpdateForm } from "./user.feature.types"
 export type { IPutInStorage, IGetFromStorage, IHandleTokenStorage, ITokenStorageParams } from "./indexDB.types"
 export { defaultToastContext, defaultModalContext } from "./popup.types"
 export type { AriaDecision, IStrictAriaProps } from "./aria.types"

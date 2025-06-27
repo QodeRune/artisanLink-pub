@@ -30,12 +30,12 @@ export const createUserSlice: StateCreator<TAuthStore, [], [], TUserSlice> = (se
         const user_id = currentUser.id
         const updatedUser = await userService.updateMe({ user_id: user_id, userUpdates: { id: user_id, ...updates } })
         if (!updatedUser) {
-          return false
+          return { success: false }
         }
         set({ user: { ...currentUser, ...updates } })
-        return true
+        return { success: true }
       } else {
-        return false
+        return { success: false }
       }
     } catch (error) {
       // TODO::  use custom Error handling and class
@@ -52,12 +52,12 @@ export const createUserSlice: StateCreator<TAuthStore, [], [], TUserSlice> = (se
           userUpdates: { id: user_id, ...updates },
         })
         if (!updatedUser) {
-          return false
+          return { success: false }
         }
         set({ user: { ...currentUser, ...updates } })
-        return true
+        return { success: true }
       } else {
-        return false
+        return { success: false }
       }
     } catch (error) {
       // TODO::  use custom Error handling and class

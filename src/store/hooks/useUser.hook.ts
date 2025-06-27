@@ -21,14 +21,14 @@ export const useUserHook = () => {
 
   // Memoized action to update user
   const handleUpdateUser = useCallback(
-    (updates: Partial<IUser>) => {
+    (updates?: Partial<IUser>) => {
       return updateUser(updates)
     },
     [updateUser],
   )
 
   const handleUpdateBioData = useCallback(
-    (updates: Partial<IUser>) => {
+    (updates?: Partial<IUser>) => {
       return updateBioData(updates)
     },
     [updateUser],

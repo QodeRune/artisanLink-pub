@@ -1,29 +1,73 @@
 // src/core/feature/user/UserProfile.tsx
+import { useModal } from "@/core/feature/popup"
+import { ProfileUpdateForm } from "@/core/feature/user/ProfileUpdateForm"
+import { useUserHook } from "@/store"
+import type { IProfileUpdateForm, IUpdateProfile, IUser, WithOptional } from "@/types"
 import type { FC } from "react"
 
 export const UserProfile: FC = () => {
-  const userDetails = (
-    <header
-      className="user-details u-profile-section u-padding-block-md u-padding-inline-md u-flex u-gap-md"
-      data-dev-id="user-details"
-      aria-label="User summary"
-    >
-      <span className="user-avatar large" aria-hidden="true">
-        F
-      </span>
-      <div className="update-pw u-grid u-gap-sm">
-        <div className="user-particulars">
-          <h2 className="user-name">FirstName LastName</h2>
-          <p className="user-email">email@email.com</p>
+  const { user: _user, updateUser, updateBioData } = useUserHook()
+  const user: IUser = Array.isArray(_user) ? _user[0] : _user
+
+  // !profile particulars
+  const firstName = user?.first_name || "first_name"
+  const lastName = user?.last_name || "last_name"
+  const email = user?.email || "email"
+
+  const { openModal } = useModal()
+
+  const updateSection = <T = Record<string, unknown>,>({
+    title,
+    formFieldList,
+    onSubmit,
+  }: WithOptional<IProfileUpdateForm<T>, "onSubmit">) => {
+    const modalEl = (
+      <ProfileUpdateForm title={title} formFieldList={formFieldList} onSubmit={onSubmit || updateBioData} />
+    )
+    openModal(modalEl)
+  }
+
+  const UserDetails: FC = () => {
+    const formFieldList: IUpdateProfile[] = [
+      { name: "email", value: email, type: "email" },
+      { name: "password", value: "", type: "password" },
+    ]
+
+    const handleEdit = () => {
+      console.log("called edit")
+      updateSection<Partial<IUser>>({
+        title: "Update Credentials",
+        onSubmit: updateUser,
+        formFieldList,
+      })
+    }
+
+    return (
+      <header
+        className="user-details u-profile-section u-padding-block-md u-padding-inline-md u-flex u-gap-md"
+        data-dev-id="user-details"
+        aria-label="User summary"
+      >
+        <span className="user-avatar large" aria-hidden="true">
+          F
+        </span>
+        <div className="update-pw u-grid u-gap-sm">
+          <div className="user-particulars">
+            <h2 className="user-name">
+              {firstName} {lastName}
+            </h2>
+            <p className="user-email">{email}</p>
+          </div>
+
+          <button type="button" onClick={() => handleEdit()} className="reset-password-btn u-edit-button">
+            Reset password
+          </button>
         </div>
+      </header>
+    )
+  }
 
-        <button type="button" className="reset-password-btn u-edit-button">
-          Reset password
-        </button>
-      </div>
-    </header>
-  )
-
+  // ... rest of the component remains the same
   const profileDetails = (
     <section
       className="profile-details u-profile-section u-padding-block-md u-padding-inline-md"
@@ -139,7 +183,7 @@ export const UserProfile: FC = () => {
     >
       <h1 className="profile-page u-margin-inline-md">Profile</h1>
       <div className="page-content u-gap-md u-grid scroll-y u-margin-block-end-md u-padding-inline-md">
-        {userDetails}
+        <UserDetails />
         {profileDetails}
         {additionalDetails}
         {preferenceSettings}

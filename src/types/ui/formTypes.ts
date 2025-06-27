@@ -65,10 +65,10 @@ export interface IFormProps<T = Record<string, unknown>>
   instructions?: string
   fields: IFormField[]
   isEditable?: boolean
-  onSubmit: (data: T) => IComponentFetchResponse
+  onSubmit: (data: T) => any
   submitButtonText?: string
   cancelButtonText?: string
-  onCancel?: () => IComponentFetchResponse
+  onCancel?: () => any
   className?: string
   loading?: boolean
   initialFormData?: Partial<T>
