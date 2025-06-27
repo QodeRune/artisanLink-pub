@@ -1,6 +1,6 @@
+// src/core/feature/user/UserProfile.tsx
 import type { FC } from "react"
 
-// src/core/feature/user/UserProfile.tsx
 export const UserProfile: FC = () => {
   const userDetails = (
     <header
@@ -45,10 +45,6 @@ export const UserProfile: FC = () => {
           <div className="detailItem">
             <h3 className="u-bold-text">Last Name</h3>
             <p>Adams</p>
-          </div>
-          <div className="detailItem">
-            <h3 className="u-bold-text">Email Address</h3>
-            <p>Adams@jack.com</p>
           </div>
           <div className="detailItem">
             <h3 className="u-bold-text">Phone Number</h3>
