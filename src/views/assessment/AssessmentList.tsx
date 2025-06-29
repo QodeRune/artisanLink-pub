@@ -20,7 +20,6 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
   const questionnaireList = _questionnaireList[tag]
   const { addToast } = useToast()
   const hasFetchedRef = useRef(false)
-  // const fetchAndUpdateQuestionsData = useAppStore((state) => state.fetchAndUpdateQuestionsData) // Get fetch function
 
   const getQuestionList = async () => {
     try {
@@ -161,7 +160,7 @@ export const AssessmentList: FC<IQuestionnaireListTag> = ({ tag = "Initial Asses
   const PageIntro = () => pageIntro ?? <AssessmentIntro />
 
   return (
-    <section className="grid-section scroll-y u-padding-block-end-sm .u-padding-bottom-sm article-card-item-list-page">
+    <section className="grid-section scroll-y u-padding-block-end-md .u-padding-bottom-sm article-card-item-list-page">
       <PageIntro />
       <Questionnaires />
     </section>

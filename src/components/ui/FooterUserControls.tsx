@@ -20,7 +20,9 @@ export const FooterUserControls: FC = () => {
         Log Out
       </button>
       <ThemeToggle />
-      <p className="get-support">Get Support</p>
+      <button className="get-support u-btn u-btn-text" disabled>
+        Get Support
+      </button>
     </div>
   )
 }

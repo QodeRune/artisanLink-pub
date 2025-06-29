@@ -36,6 +36,13 @@
   }
 }
 
+.u-btn:disabled,
+.u-btn.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .u-btn-text {
   background: none;
   border: none;

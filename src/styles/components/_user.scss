@@ -4,9 +4,10 @@
 }
 
 .user-profile-wrapper {
-  --profile-badge-min-width: 12rem
-  position: relative;
+  --profile-badge-min-width: 12rem;
   min-width: var(--profile-badge-min-width);
+  position: relative;
+  width: fit-content; // ensures the wrapper only expands to its content + min-width
 }
 
 .user-profile-btn {
@@ -63,12 +64,13 @@
 .user-menu-popup {
   position: absolute;
   top: 110%;
-  right: 0;
+  right: 0.25rem;
   background-color: hsl(var(--clr-bg-legacy));
   box-shadow: var(--soft-shadow);
   border-radius: var(--size-sm-4);
-  min-width: var(--profile-badge-min-width);
-  width: 100%;
+  min-width: 12rem;
+  max-width: 100%;
+  width: max-content;
   padding: var(--size-sm-2) 0;
   z-index: 999;
 
