@@ -1,6 +1,6 @@
 // src/services/storage/cacheStorage.service.ts
 import type { ICacheStorage } from "@/types/storage/cacheStorage.types"
-const CACHE_NAME = "default-cache"
+const CACHE_NAME = "evolve-with-cache"
 
 /**
  * Factory function to create a strongly typed CacheStorage service.
@@ -141,5 +141,23 @@ export const createCacheStorageService = async <T>(cacheName: string = CACHE_NAM
         return false
       }
     },
+  }
+}
+
+/**
+ * Clears all entries from your app's cache storage.
+ *
+ * @returns Promise<boolean> indicating success.
+ *
+ * @example
+ * const success = await clearCache()
+ */
+export const clearCache = async (): Promise<boolean> => {
+  try {
+    const cacheService = await createCacheStorageService()
+    const success = await cacheService.clearAll()
+    return success
+  } catch {
+    return false
   }
 }

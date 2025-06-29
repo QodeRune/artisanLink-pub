@@ -1,7 +1,7 @@
 // src/store/auth.slice.ts
 import type { StateCreator } from "zustand"
 import type { IAuthCredentials, ISignUpData, TAuthSlice, TAuthStore } from "@/types"
-import { authService, userService } from "@/services"
+import { authService, clearCache, userService } from "@/services"
 import { getAccessToken, getRefreshToken, AppError, ErrorType, ErrorMessageConsts } from "@/core"
 
 export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (set, get) => ({
@@ -93,10 +93,17 @@ export const createAuthSlice: StateCreator<TAuthStore, [], [], TAuthSlice> = (se
     }
   },
 
-  logout: () => {
+  logout: async () => {
     try {
       set({ isLoggedIn: false, user: null, authError: null })
       authService.clearTokens()
+
+      const cacheCleared = await clearCache()
+      if (!cacheCleared) {
+        // TODO:: Find how best to handle this
+        console.warn("Cache was not cleared successfully on logout")
+      }
+
       return { success: true }
     } catch (error) {
       const appError = AppError.handle({

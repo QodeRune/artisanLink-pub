@@ -1,3 +1,3 @@
 // src/services/storage/index.ts
-export { createCacheStorageService } from "./cacheStorage.service"
+export { createCacheStorageService, clearCache } from "./cacheStorage.service"
 export { createSessionStorageService } from "./sessionStorage.service"

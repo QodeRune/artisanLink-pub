@@ -23,7 +23,7 @@ export interface IAuthActions {
   login: (credentials: IAuthCredentials) => Promise<IComponentFetchResponse>
   signup: (data: ISignUpData) => Promise<IComponentFetchResponse>
   init: () => Promise<IComponentFetchResponse>
-  logout: () => IComponentFetchResponse
+  logout: () => Promise<IComponentFetchResponse>
   clearError: () => void
   setAuthState: (state: Partial<IAuthState>) => void
   updateTokens: (params: ITokenStorageParams) => IComponentFetchResponse

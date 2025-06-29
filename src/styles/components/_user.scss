@@ -4,7 +4,9 @@
 }
 
 .user-profile-wrapper {
+  --profile-badge-min-width: 12rem
   position: relative;
+  min-width: var(--profile-badge-min-width);
 }
 
 .user-profile-btn {
@@ -65,7 +67,7 @@
   background-color: hsl(var(--clr-bg-legacy));
   box-shadow: var(--soft-shadow);
   border-radius: var(--size-sm-4);
-  min-width: 12rem;
+  min-width: var(--profile-badge-min-width);
   width: 100%;
   padding: var(--size-sm-2) 0;
   z-index: 999;
